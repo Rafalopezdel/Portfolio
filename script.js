@@ -45,6 +45,17 @@ function efectoHabilidades(){
 }
 
 // formulario
+// mensaje de exito al enviar
+function mostrarToast() {
+    const toast = document.getElementById("toast");
+    toast.classList.add("show");
+  
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 4000); // El toast desaparece después de 4 segundos
+  }
+  
+// envio formulario
 document.getElementById("formularioContacto").addEventListener("submit", function (e) {
     e.preventDefault(); // Evita que se redirija
 
@@ -60,7 +71,7 @@ document.getElementById("formularioContacto").addEventListener("submit", functio
     }).then(response => {
       if (response.ok) {
         form.reset(); // Limpia el formulario
-        document.getElementById("mensajeExito").style.display = "block"; // Muestra mensaje
+        mostrarToast(); // Muestra mensaje
       } else {
         alert("Hubo un error al enviar el mensaje.");
       }
