@@ -44,6 +44,31 @@ function efectoHabilidades(){
     }
 }
 
+// formulario
+document.getElementById("formularioContacto").addEventListener("submit", function (e) {
+    e.preventDefault(); // Evita que se redirija
+
+    const form = e.target;
+
+    // Usamos Fetch para enviar los datos
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        form.reset(); // Limpia el formulario
+        document.getElementById("mensajeExito").style.display = "block"; // Muestra mensaje
+      } else {
+        alert("Hubo un error al enviar el mensaje.");
+      }
+    }).catch(error => {
+      alert("Error al enviar el mensaje. Intenta de nuevo más tarde.");
+    });
+  });
+
 
 
 //detecto el scrolling para aplicar la animacion de la barra de habilidades

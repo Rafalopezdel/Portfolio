@@ -397,18 +397,28 @@
             <h2 class="contacto__h2">CONTACTO</h2>
             <div class="contacto__fila">
                 <!-- Formulario -->
-                <form action="https://formsubmit.co/rafalopezdel@gmail.com" method="POST" class="contacto__col">
+                <form id="formularioContacto" action="https://formsubmit.co/rafalopezdel@gmail.com" method="POST"
+                    class="contacto__col">
                     <input class="contacto__input" type="text" placeholder="Tú Nombre" required>
                     <input class="contacto__input" type="text" placeholder="Número telefónico" required>
                     <input class="contacto__input" type="email" placeholder="Dirección de correo" required>
                     <input class="contacto__input" type="text" placeholder="Tema">
                     <textarea class="contacto__textarea" name="" id="" cols="30" rows="10" required
                         placeholder="Mensaje"></textarea>
+                    <!-- Evita spam -->
+                    <input type="text" name="_honey" style="display:none">
+                    <!-- Sin captcha de FormSubmit -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <!-- Desactivamos redirección -->
+                    <input type="hidden" name="_next" value="">
                     <button type="submit" class="contacto__button">
                         Enviar Mensaje<i class="fa-solid fa-paper-plane"></i>
                         <span class="overlay"></span>
                     </button>
                 </form>
+                <p id="mensajeExito" style="display: none; color: green; margin-top: 1em;">
+                    ✅ Mensaje enviado correctamente.
+                </p>
                 <!-- Mapa -->
                 <div class="contacto__col">
                     <img class="contacto__img" src="img/ubicacion1.jpg" alt="">
