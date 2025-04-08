@@ -31,5 +31,8 @@ Si deseas contactarme, puedes utilizar el formulario del sitio o escribirme dire
 
 3. ¡Listo! Ya puedes navegar por el portafolio.
 
-## O navega directamente a la url de Github pages: **📧 eeeee**
+## 🌍 Sitio en vivo
+
+Puedes ver mi portafolio en línea en el siguiente enlace:  
+🔗 [https://rafalopezdel.github.io/Portfolio/](https://rafalopezdel.github.io/Portfolio/)
 
