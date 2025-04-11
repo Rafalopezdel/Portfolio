@@ -13,7 +13,7 @@ function mostrarOcultarMenu(){
 // descargar CV con el boton
 document.getElementById('descargarCV').addEventListener('click', function () {
     const enlace = document.createElement('a');
-    enlace.href = 'docs/HojaDeVidaRafaelLopez2025.pdf'; // Ruta al PDF
+    enlace.href = 'assets/pdf/HojaDeVidaRafaelLopez2025.pdf'; // Ruta al PDF
     enlace.download = 'HojaDeVidaRafaelLopez2025.pdf'; // Nombre con el que se descargará
     enlace.target = '_blank'; // Opcional: abrir en nueva pestaña
     enlace.click();

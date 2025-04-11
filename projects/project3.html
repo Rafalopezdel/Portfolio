@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="../estilo.css">
+</head>
+
+<body>
+    <section id="curriculum" class="curriculum">
+        <div class="curriculum__seccion">
+            <a href="javascript:history.back()" class="project__volver">
+                <i class="fa-solid fa-angles-left"></i>
+            </a>
+            <h2 class="curriculum__h2">AuthApp</h2>
+            <h3 class="curriculum__h3">Angular - Nest</h3>
+            <div class="curriculum__fila">
+                <div class="curriculum__col izquierda">
+                    <div class="curriculum__item izq">
+                        <p class="curriculum__p" class="curriculum__p">La aplicación de autenticación se compone de un
+                            frontend desarrollado en Angular y un backend construido con NestJS, utilizando MongoDB como
+                            sistema de base de datos. El módulo permite a los usuarios registrarse y acceder mediante un
+                            sistema de login protegido. La interfaz en Angular está diseñada de manera intuitiva,
+                            brindando formularios claros para el registro y el inicio de sesión, con validaciones tanto
+                            en tiempo real como al enviar los datos. Además, gestiona los estados de autenticación para
+                            mostrar o restringir vistas según si el usuario está logueado o no.</p>
+                    </div>
+                    <div class="curriculum__item izq">
+                        <img class="portfolio__img" src="../assets/img/authApp2.jpg" alt="">
+                    </div>
+                    <div class="curriculum__item izq">
+                        <p class="curriculum__p">En el backend, NestJS implementa un conjunto de controladores,
+                            servicios y esquemas que permiten manejar el ciclo completo del usuario: desde su creación
+                            hasta su autenticación. Las contraseñas se almacenan de forma segura utilizando hashing (por
+                            ejemplo con bcrypt), y se implementan tokens JWT para mantener sesiones seguras. El backend
+                            también ofrece un CRUD completo sobre los usuarios, lo que permite no solo registrar, sino
+                            también consultar, actualizar o eliminar usuarios desde la base de datos MongoDB. </p>
+                    </div>
+
+                </div>
+
+                <div class="curriculum__col derecha">
+                    <div class="curriculum__item der">
+                        <img class="portfolio__img" src="../assets/img/authApp3.jpg" alt="">
+                    </div>
+                    <div class="curriculum__item der">
+                        <p class="curriculum__p">El sistema de autenticación se comunica entre frontend y backend a
+                            través de peticiones HTTP utilizando HttpClient en Angular, y rutas protegidas con guards
+                            para asegurar la navegación. Gracias a la arquitectura modular de NestJS y al modelo NoSQL
+                            flexible de MongoDB, el sistema es fácilmente escalable y mantenible, ideal para integrarse
+                            como base en proyectos más grandes o como microservicio autónomo de autenticación.</p>
+                    </div>
+                    <div class="curriculum__item der">
+                        <img class="portfolio__img" src="../assets/img/authApp4.jpg" alt="">
+                    </div>
+                    <div class="curriculum__item der">
+                        <p class="curriculum__p">Puedes observar detalladamente el codigo del Frontend en gitHub:</p>
+                        <span class="curriculum__fecha"><a
+                                href="https://github.com/Rafalopezdel/authAppFrontAngular">authAppFrontend</a></span>
+                        <p class="curriculum__p">Puedes observar detalladamente el codigo del Backend en gitHub:</p>
+                        <span class="curriculum__fecha"><a
+                                href="https://github.com/Rafalopezdel/authAppBackNest">authAppBackend</a></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
