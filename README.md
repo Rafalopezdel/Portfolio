@@ -26,7 +26,7 @@ Si deseas contactarme, puedes utilizar el formulario del sitio o escribirme dire
 
 1. Clona este repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/portafolio-web.git
+   git clone https://github.com/Rafalopezdel/Portfolio.git 
 2. Abre el archivo index.html en tu navegador favorito.
 
 3. ¡Listo! Ya puedes navegar por el portafolio.
