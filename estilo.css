@@ -58,7 +58,7 @@ html{
 /* SECCION I N I C I O */
 .inicio{
     background: linear-gradient(to top, rgba(30,35,38,.8), rgba(30,35,38,1)),
-    url(img/fondo1.png);
+    url(assets/img/fondo1.png);
     background-size: cover;
     height: 100vh;
     color: #fff;
@@ -310,15 +310,6 @@ html{
     100%{width: 50%;}
 }
 
-.skills__skill .wordpress{
-    width: 0%;
-    animation: 2s wordpress forwards;
-}
-@keyframes wordpress {
-    0%{width: 0%;}
-    100%{width: 60%;}
-}
-
 .skills__skill .nodejs{
     width: 0%;
     animation: 2s nodejs forwards;
@@ -538,7 +529,7 @@ html{
 }
 /* SECCION CONTACTO */
 .contacto{
-    background-image: url(img/contact_bg.png);
+    background-image: url(assets/img/contact_bg.png);
     background-color: #1e2326;
     color: #fff;
     padding: 50px 0;
@@ -765,10 +756,20 @@ html{
         display: block;
     }
     .curriculum__col{
-        width: 90%;
+        width: 100%;
+        padding: 0;
+    }
+    .curriculum__fila .izq{
+        margin-right: 0;
+    }
+    .curriculum__fila .der{
+        margin-left: 0;
     }
     .curriculum__fila .derecha{
-        margin-left: 20px;
+        margin-left: 0;
+    }
+    .project__volver{
+        top: 15px;
     }
 
     .portfolio__galeria{
