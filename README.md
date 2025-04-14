@@ -35,4 +35,3 @@ Si deseas contactarme, puedes utilizar el formulario del sitio o escribirme dire
 
 Puedes ver mi portafolio en línea en el siguiente enlace:  
 🔗 [https://rafalopezdel.github.io/Portfolio/](https://rafalopezdel.github.io/Portfolio/)
-
