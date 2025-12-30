@@ -1,0 +1,535 @@
+/* ========================================
+   CUSTOM CSS - PORTFOLIO RAFAEL LÓPEZ
+   Variables CSS para theming y estilos custom
+   ======================================== */
+
+/* ========================================
+   CSS VARIABLES - LIGHT THEME (DEFAULT)
+   ======================================== */
+:root {
+  /* Primary Colors */
+  --color-primary: #1CB698;
+  --color-primary-light: #10B981;
+  --color-primary-dark: #059669;
+
+  /* Background Colors */
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F9FAFB;
+  --color-bg-tertiary: #F3F4F6;
+  --color-bg-elevated: #FFFFFF;
+
+  /* Text Colors */
+  --color-text-primary: #111827;
+  --color-text-secondary: #6B7280;
+  --color-text-tertiary: #9CA3AF;
+
+  /* Border Colors */
+  --color-border: #E5E7EB;
+  --color-border-light: #F3F4F6;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+
+  /* Gradients */
+  --gradient-hero: linear-gradient(135deg, #F9FAFB 0%, #E5E7EB 100%);
+  --gradient-primary: linear-gradient(135deg, #1CB698 0%, #10B981 100%);
+}
+
+/* ========================================
+   CSS VARIABLES - DARK THEME
+   ======================================== */
+[data-theme="dark"] {
+  /* Primary Colors */
+  --color-primary: #10B981;
+  --color-primary-light: #34D399;
+  --color-primary-dark: #059669;
+
+  /* Background Colors */
+  --color-bg-primary: #0F172A;
+  --color-bg-secondary: #1E293B;
+  --color-bg-tertiary: #334155;
+  --color-bg-elevated: #1E293B;
+
+  /* Text Colors */
+  --color-text-primary: #F1F5F9;
+  --color-text-secondary: #94A3B8;
+  --color-text-tertiary: #64748B;
+
+  /* Border Colors */
+  --color-border: #334155;
+  --color-border-light: #475569;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.5);
+
+  /* Gradients */
+  --gradient-hero: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  --gradient-primary: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+}
+
+/* ========================================
+   GLOBAL STYLES
+   ======================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Work Sans', sans-serif;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ========================================
+   THEME TRANSITION
+   ======================================== */
+body,
+header,
+section,
+footer,
+div,
+nav,
+a {
+  transition: background-color 0.3s ease,
+              color 0.3s ease,
+              border-color 0.3s ease;
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Righteous', cursive;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-primary-light);
+}
+
+/* ========================================
+   CUSTOM ANIMATIONS
+   ======================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Gradient Animation for Hero */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease infinite;
+}
+
+.animate-gradient-shift {
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
+}
+
+/* Animation Delays */
+.delay-1000 {
+  animation-delay: 1s;
+}
+
+.delay-2000 {
+  animation-delay: 2s;
+}
+
+/* Hero Section Specific Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Glow effect for profile image */
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.shadow-glow {
+  box-shadow: 0 0 20px rgba(28, 182, 152, 0.3);
+}
+
+[data-theme="dark"] .shadow-glow {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+}
+
+/* Hover lift effect */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* ========================================
+   SCROLLBAR STYLING
+   ======================================== */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-dark);
+}
+
+/* ========================================
+   FOCUS STATES (ACCESSIBILITY)
+   ======================================== */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   SELECTION STYLING
+   ======================================== */
+::selection {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  nav, footer {
+    display: none;
+  }
+}
+
+/* ========================================
+   REDUCED MOTION (ACCESSIBILITY)
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================================
+   HEADER STYLES
+   ======================================== */
+
+/* Header scrolled effect */
+header.header-scrolled {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+}
+
+[data-theme="dark"] header.header-scrolled {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+}
+
+/* Navigation link hover effect */
+.nav-link {
+  position: relative;
+}
+
+/* Active link styling */
+.nav-link.active {
+  color: var(--color-primary);
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  transition: width 0.1s ease-out;
+}
+
+/* ========================================
+   THEME & LANGUAGE TOGGLES
+   ======================================== */
+
+/* Toggle Container */
+.menu__toggles {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+/* Toggle Button Base Styles */
+.toggle-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  background: transparent;
+  border: 2px solid var(--color-border);
+  border-radius: 9999px;
+  color: var(--color-text-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  min-width: 2.5rem;
+  height: 2.5rem;
+}
+
+.toggle-btn:hover {
+  background: var(--color-bg-secondary);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.toggle-btn:active {
+  transform: translateY(0);
+}
+
+/* Theme Toggle Specific */
+.theme-toggle i {
+  font-size: 1.125rem;
+  color: var(--color-text-primary);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover i {
+  color: var(--color-primary);
+  transform: rotate(20deg);
+}
+
+[data-theme="dark"] .theme-toggle:hover i {
+  color: var(--color-primary-light);
+}
+
+/* Language Toggle Specific */
+.language-toggle {
+  padding: 0.5rem 0.75rem;
+}
+
+.flag-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.lang-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-text-primary);
+}
+
+.language-toggle:hover .lang-text {
+  color: var(--color-primary);
+}
+
+/* Focus States for Accessibility */
+.toggle-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-color: var(--color-primary);
+}
+
+/* Active State Animation */
+@keyframes togglePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(28, 182, 152, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(28, 182, 152, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(28, 182, 152, 0);
+  }
+}
+
+[data-theme="dark"] .toggle-btn:active {
+  animation: togglePulse 0.5s ease-out;
+}
+
+/* Responsive Design for Toggles */
+@media (max-width: 980px) {
+  .menu__toggles {
+    position: absolute;
+    right: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    gap: 0.5rem;
+  }
+
+  .toggle-btn {
+    padding: 0.375rem 0.625rem;
+    min-width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .language-toggle .lang-text {
+    display: none;
+  }
+
+  .flag-icon {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .menu__toggles {
+    right: 3.5rem;
+  }
+
+  .toggle-btn {
+    padding: 0.25rem 0.5rem;
+    min-width: 2rem;
+    height: 2rem;
+    border-width: 1.5px;
+  }
+
+  .theme-toggle i {
+    font-size: 1rem;
+  }
+
+  .flag-icon {
+    font-size: 1rem;
+  }
+}

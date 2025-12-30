@@ -5,229 +5,855 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
         integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Portfolio</title>
+
+    <!-- AOS (Animate On Scroll) CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Translations - MUST load before Alpine.js -->
+    <script src="assets/js/translations.js"></script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                screens: {
+                    'sm': '640px',
+                    'md': '768px',
+                    'lg': '980px',  // Changed from 1024px to 980px for menu breakpoint
+                    'xl': '1280px',
+                    '2xl': '1536px',
+                },
+                extend: {
+                    colors: {
+                        primary: '#1CB698',
+                        'primary-light': '#10B981',
+                        'primary-dark': '#059669',
+                    },
+                    fontFamily: {
+                        heading: ['Righteous', 'cursive'],
+                        body: ['Work Sans', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS (Variables & Overrides) -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <!-- Original CSS (Temporary - will be removed in later phases) -->
     <link rel="stylesheet" href="estilo.css">
+
+    <!-- Alpine.js Cloak -->
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
+
+    <title>Rafael López | Frontend Developer & Industrial Engineer</title>
 </head>
 
-<body>
-    <!-- MENU ENCABEZADO -->
-    <div class="menu">
-        <header class="menu__header">
-            <div class="menu__logo">
-                <a href="#">Rafael López</a>
-            </div>
-            <nav id="nav">
-                <ul class="menu__ul">
-                    <li class="menu__li"><a href="#inicio" onclick="seleccionar()">INICIO</a></li>
-                    <li class="menu__li"><a href="#sobremi" onclick="seleccionar()">SOBRE MI</a></li>
-                    <li class="menu__li"><a href="#skills" onclick="seleccionar()">SKILLS</a></li>
-                    <li class="menu__li"><a href="#curriculum" onclick="seleccionar()">CURRICULUM</a></li>
-                    <li class="menu__li"><a href="#portfolio" onclick="seleccionar()">PORTFOLIO</a></li>
-                    <li class="menu__li"><a href="#contacto" onclick="seleccionar()">CONTACTO</a></li>
-                </ul>
-            </nav>
-            <div class="nav-responsive" onclick="mostrarOcultarMenu()">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-        </header>
-    </div>
+<body x-data="{
+    theme: localStorage.getItem('theme') || 'light',
+    lang: localStorage.getItem('lang') || 'es',
+    toggleTheme() {
+        this.theme = this.theme === 'light' ? 'dark' : 'light';
+        localStorage.setItem('theme', this.theme);
+        document.documentElement.setAttribute('data-theme', this.theme);
+        if (this.theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    },
+    toggleLang() {
+        this.lang = this.lang === 'es' ? 'en' : 'es';
+        localStorage.setItem('lang', this.lang);
+        document.documentElement.setAttribute('lang', this.lang);
+    }
+}" x-init="
+    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.setAttribute('lang', lang);
+    if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+    }
+">
+    <!-- MODERN HEADER WITH TAILWIND -->
+    <header
+        x-data="{
+            scrolled: false,
+            activeSection: 'inicio',
+            menuOpen: false
+        }"
+        @scroll.window="scrolled = window.pageYOffset > 50"
+        :class="{ 'header-scrolled': scrolled }"
+        class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-800/50 dark:border-slate-700/50">
 
-    <!-- SECCION INICIO -->
-    <section id="inicio" class="inicio">
-        <div class="inicio__banner">
-            <div class="inicio__contimg">
-                <img class="inicio__img" src="assets/img/foto.jpg" alt="">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#inicio"
+                       class="text-2xl lg:text-3xl font-heading font-bold text-primary hover:text-primary-light transition-colors duration-300"
+                       aria-label="Rafael López - Home">
+                        Rafael López
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-1" id="nav">
+                    <a href="#inicio"
+                       @click="seleccionar()"
+                       class="nav-link group relative px-4 py-2 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
+                       :class="{ 'text-primary': activeSection === 'inicio' }">
+                        <span x-text="translations[lang]?.nav?.home || 'INICIO'">INICIO</span>
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    </a>
+
+                    <a href="#sobremi"
+                       @click="seleccionar()"
+                       class="nav-link group relative px-4 py-2 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
+                       :class="{ 'text-primary': activeSection === 'sobremi' }">
+                        <span x-text="translations[lang]?.nav?.about || 'SOBRE MI'">SOBRE MI</span>
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    </a>
+
+                    <a href="#skills"
+                       @click="seleccionar()"
+                       class="nav-link group relative px-4 py-2 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
+                       :class="{ 'text-primary': activeSection === 'skills' }">
+                        <span x-text="translations[lang]?.nav?.skills || 'SKILLS'">SKILLS</span>
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    </a>
+
+                    <a href="#curriculum"
+                       @click="seleccionar()"
+                       class="nav-link group relative px-4 py-2 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
+                       :class="{ 'text-primary': activeSection === 'curriculum' }">
+                        <span x-text="translations[lang]?.nav?.curriculum || 'CURRICULUM'">CURRICULUM</span>
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    </a>
+
+                    <a href="#portfolio"
+                       @click="seleccionar()"
+                       class="nav-link group relative px-4 py-2 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
+                       :class="{ 'text-primary': activeSection === 'portfolio' }">
+                        <span x-text="translations[lang]?.nav?.portfolio || 'PORTFOLIO'">PORTFOLIO</span>
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    </a>
+
+                    <a href="#contacto"
+                       @click="seleccionar()"
+                       class="nav-link group relative px-4 py-2 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
+                       :class="{ 'text-primary': activeSection === 'contacto' }">
+                        <span x-text="translations[lang]?.nav?.contact || 'CONTACTO'">CONTACTO</span>
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    </a>
+                </nav>
+
+                <!-- Desktop Toggles -->
+                <div class="hidden lg:flex items-center space-x-3">
+                    <!-- Language Toggle -->
+                    <button @click="lang = lang === 'es' ? 'en' : 'es'; localStorage.setItem('lang', lang); document.documentElement.setAttribute('lang', lang)"
+                            class="flex items-center gap-2 px-3 py-2 rounded-full border-2 border-slate-700 hover:border-primary text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 hover:-translate-y-0.5"
+                            :title="lang === 'es' ? 'Switch to English' : 'Cambiar a Español'"
+                            aria-label="Toggle language">
+                        <span class="text-xl" x-text="lang === 'es' ? '🇬🇧' : '🇪🇸'">🇬🇧</span>
+                        <span class="text-xs font-bold tracking-wider" x-text="lang === 'es' ? 'EN' : 'ES'">EN</span>
+                    </button>
+
+                    <!-- Theme Toggle -->
+                    <button @click="theme = theme === 'light' ? 'dark' : 'light'; localStorage.setItem('theme', theme); document.documentElement.setAttribute('data-theme', theme); theme === 'dark' ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')"
+                            class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-slate-700 hover:border-primary text-slate-300 hover:text-primary transition-all duration-300 hover:-translate-y-0.5 hover:rotate-12"
+                            :title="theme === 'light' ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro'"
+                            aria-label="Toggle theme">
+                        <i class="fa-solid text-lg" :class="theme === 'dark' ? 'fa-sun' : 'fa-moon'"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center space-x-2">
+                    <!-- Mobile Toggles -->
+                    <button @click="lang = lang === 'es' ? 'en' : 'es'; localStorage.setItem('lang', lang); document.documentElement.setAttribute('lang', lang)"
+                            class="flex items-center justify-center w-9 h-9 rounded-full border-2 border-slate-700 hover:border-primary text-slate-300 transition-all duration-300"
+                            aria-label="Toggle language">
+                        <span class="text-lg" x-text="lang === 'es' ? '🇬🇧' : '🇪🇸'">🇬🇧</span>
+                    </button>
+
+                    <button @click="theme = theme === 'light' ? 'dark' : 'light'; localStorage.setItem('theme', theme); document.documentElement.setAttribute('data-theme', theme); theme === 'dark' ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')"
+                            class="flex items-center justify-center w-9 h-9 rounded-full border-2 border-slate-700 hover:border-primary text-slate-300 transition-all duration-300"
+                            aria-label="Toggle theme">
+                        <i class="fa-solid" :class="theme === 'dark' ? 'fa-sun' : 'fa-moon'"></i>
+                    </button>
+
+                    <button @click="menuOpen = !menuOpen"
+                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-primary hover:bg-primary-light text-white transition-all duration-300"
+                            aria-label="Toggle menu"
+                            :aria-expanded="menuOpen">
+                        <i x-show="!menuOpen" class="fa-solid fa-bars text-lg"></i>
+                        <i x-show="menuOpen" class="fa-solid fa-times text-lg"></i>
+                    </button>
+                </div>
             </div>
-            <h1 class="inicio__h1">RAFAEL LÓPEZ</h1>
-            <h2 class="inicio__h2">Ingeniero Industrial - Frontend Developer</h2>
-            <div class="inicio__redes">
-                <a href="https://www.facebook.com/profile.php?id=630147647"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://github.com/Rafalopezdel"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/rafael-lópez-delgado"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div x-show="menuOpen"
+             class="lg:hidden border-t border-slate-800/50 bg-slate-900/98 dark:bg-slate-950/98 backdrop-blur-lg transition-all duration-200"
+             @click.away="menuOpen = false">
+
+            <nav class="px-4 py-6 space-y-2">
+                <a href="#inicio"
+                   @click="menuOpen = false; seleccionar()"
+                   class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300"
+                   :class="{ 'bg-primary/10 text-primary': activeSection === 'inicio' }">
+                    <span x-text="translations[lang]?.nav?.home || 'INICIO'">INICIO</span>
+                </a>
+
+                <a href="#sobremi"
+                   @click="menuOpen = false; seleccionar()"
+                   class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300"
+                   :class="{ 'bg-primary/10 text-primary': activeSection === 'sobremi' }">
+                    <span x-text="translations[lang]?.nav?.about || 'SOBRE MI'">SOBRE MI</span>
+                </a>
+
+                <a href="#skills"
+                   @click="menuOpen = false; seleccionar()"
+                   class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300"
+                   :class="{ 'bg-primary/10 text-primary': activeSection === 'skills' }">
+                    <span x-text="translations[lang]?.nav?.skills || 'SKILLS'">SKILLS</span>
+                </a>
+
+                <a href="#curriculum"
+                   @click="menuOpen = false; seleccionar()"
+                   class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300"
+                   :class="{ 'bg-primary/10 text-primary': activeSection === 'curriculum' }">
+                    <span x-text="translations[lang]?.nav?.curriculum || 'CURRICULUM'">CURRICULUM</span>
+                </a>
+
+                <a href="#portfolio"
+                   @click="menuOpen = false; seleccionar()"
+                   class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300"
+                   :class="{ 'bg-primary/10 text-primary': activeSection === 'portfolio' }">
+                    <span x-text="translations[lang]?.nav?.portfolio || 'PORTFOLIO'">PORTFOLIO</span>
+                </a>
+
+                <a href="#contacto"
+                   @click="menuOpen = false; seleccionar()"
+                   class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300"
+                   :class="{ 'bg-primary/10 text-primary': activeSection === 'contacto' }">
+                    <span x-text="translations[lang]?.nav?.contact || 'CONTACTO'">CONTACTO</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Scroll Progress Indicator -->
+        <div class="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-primary via-primary-light to-primary transition-all duration-300"
+             :style="`width: ${(window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100}%`"
+             x-data
+             @scroll.window="$el.style.width = `${(window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100}%`">
+        </div>
+    </header>
+
+    <!-- Spacer for fixed header -->
+    <div class="h-20"></div>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+
+        <!-- Animated Background Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary-light/10 animate-gradient-shift"></div>
+
+        <!-- Decorative Elements -->
+        <div class="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-primary-light/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+
+        <!-- Content Container -->
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+
+            <!-- Profile Image -->
+            <div class="mb-8 inline-block" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary to-primary-light rounded-full blur-xl opacity-50 animate-pulse"></div>
+                    <img src="assets/img/foto.jpg"
+                         alt="Rafael López - Frontend Developer"
+                         class="relative w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 rounded-full border-4 border-primary shadow-2xl object-cover transform hover:scale-105 transition-transform duration-300">
+                </div>
             </div>
+
+            <!-- Name -->
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-4 bg-gradient-to-r from-white via-slate-100 to-white bg-clip-text text-transparent px-4"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay="400"
+                x-text="translations[lang]?.hero?.title || 'RAFAEL LÓPEZ'">
+                RAFAEL LÓPEZ
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl text-slate-300 dark:text-slate-400 mb-12 font-light px-4"
+               data-aos="fade-up"
+               data-aos-duration="1000"
+               data-aos-delay="600"
+               x-text="translations[lang]?.hero?.subtitle || 'Ingeniero Industrial - Frontend Developer'">
+                Ingeniero Industrial - Frontend Developer
+            </p>
+
+            <!-- Social Links -->
+            <div class="flex justify-center items-center gap-4 sm:gap-6 mb-16"
+                 data-aos="fade-up"
+                 data-aos-duration="1000"
+                 data-aos-delay="800">
+
+                <a href="https://www.facebook.com/profile.php?id=630147647"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="group relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-slate-700 hover:border-primary text-slate-300 hover:text-white bg-slate-800/50 hover:bg-primary/20 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/50"
+                   aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f text-xl sm:text-2xl"></i>
+                    <span class="absolute -bottom-8 opacity-0 group-hover:opacity-100 text-xs text-slate-400 transition-opacity duration-300">Facebook</span>
+                </a>
+
+                <a href="https://github.com/Rafalopezdel"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="group relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-slate-700 hover:border-primary text-slate-300 hover:text-white bg-slate-800/50 hover:bg-primary/20 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/50"
+                   aria-label="GitHub">
+                    <i class="fa-brands fa-github text-xl sm:text-2xl"></i>
+                    <span class="absolute -bottom-8 opacity-0 group-hover:opacity-100 text-xs text-slate-400 transition-opacity duration-300">GitHub</span>
+                </a>
+
+                <a href="https://www.linkedin.com/in/rafael-lópez-delgado"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="group relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-slate-700 hover:border-primary text-slate-300 hover:text-white bg-slate-800/50 hover:bg-primary/20 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/50"
+                   aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in text-xl sm:text-2xl"></i>
+                    <span class="absolute -bottom-8 opacity-0 group-hover:opacity-100 text-xs text-slate-400 transition-opacity duration-300">LinkedIn</span>
+                </a>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-20"
+                 data-aos="fade-up"
+                 data-aos-duration="1000"
+                 data-aos-delay="1000">
+                <a href="#portfolio"
+                   class="group relative px-8 py-4 bg-gradient-to-r from-primary to-primary-light text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/50">
+                    <span class="relative z-10" x-text="translations[lang]?.hero?.viewProjects || 'Ver Proyectos'">Ver Proyectos</span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary-light to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </a>
+
+                <a href="#contacto"
+                   class="px-8 py-4 border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                    <span x-text="translations[lang]?.hero?.contactMe || 'Contáctame'">Contáctame</span>
+                </a>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <a href="#sobremi"
+               class="inline-flex flex-col items-center gap-2 text-slate-400 hover:text-primary transition-colors duration-300 animate-bounce"
+               data-aos="fade-up"
+               data-aos-duration="1000"
+               data-aos-delay="1200">
+                <span class="text-xs font-medium tracking-wider uppercase" x-text="translations[lang]?.hero?.scroll || 'Desliza'">Desliza</span>
+                <i class="fa-solid fa-chevron-down text-2xl"></i>
+            </a>
         </div>
     </section>
 
-    <!-- SECCION SOBRE MI -->
-    <section id="sobremi" class="sobremi">
-        <div class="sobremi__seccion">
-            <h2 class="sobremi__h2">Sobre Mí</h2>
-            <p class="sobremi__p"><span>Hola, soy Rafael López.</span> Profesional en Ingeniería Industrial con
-                formación en desarrollo web y programación de aplicaciones. Cuento con habilidades técnicas en lenguajes
-                como HTML, CSS y JavaScript, así como experiencia en el uso de herramientas y frameworks modernos como
-                Angular, React, Node.js, Express, MongoDB, Bootstrap y GitHub. Mi perfil combina una sólida base
-                académica con competencias prácticas que me permiten contribuir eficientemente al desarrollo de
-                soluciones web innovadoras y funcionales.</p>
+    <!-- ABOUT SECTION -->
+    <section id="sobremi" class="relative py-20 lg:py-32 bg-white dark:bg-slate-900 overflow-hidden">
 
-            <div class="sobremi__fila">
-                <!-- datos personales -->
-                <div class="sobremi__col">
-                    <h3 class="sobremi__h3">Datos Personales</h3>
-                    <ul class="sobremi__ul">
-                        <li class="sobremi__li">
-                            <strong>Cumpleaños</strong>
-                            11-09-1991
+        <!-- Decorative Background -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section Title -->
+            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-6 text-slate-900 dark:text-white px-4"
+                data-aos="fade-down"
+                data-aos-duration="1000"
+                x-text="translations[lang]?.about?.title">
+                Sobre Mí
+            </h2>
+
+            <!-- Introduction -->
+            <div class="max-w-4xl mx-auto text-center mb-12 md:mb-16"
+                 data-aos="fade-up"
+                 data-aos-duration="1000"
+                 data-aos-delay="200">
+                <p class="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 leading-relaxed px-4">
+                    <span class="font-semibold text-primary" x-text="translations[lang]?.about?.intro">Hola, soy Rafael López.</span>
+                    <span x-text="translations[lang]?.about?.description">
+                        Profesional en Ingeniería Industrial con formación en desarrollo web y programación de aplicaciones. Cuento con habilidades técnicas en lenguajes como HTML, CSS y JavaScript, así como experiencia en el uso de herramientas y frameworks modernos como Angular, React, Node.js, Express, MongoDB, Bootstrap y GitHub. Mi perfil combina una sólida base académica con competencias prácticas que me permiten contribuir eficientemente al desarrollo de soluciones web innovadoras y funcionales.
+                    </span>
+                </p>
+            </div>
+
+            <!-- Personal Info & Interests Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
+
+                <!-- Personal Data Card -->
+                <div class="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 sm:p-8 backdrop-blur-sm border border-slate-200 dark:border-slate-700"
+                     data-aos="fade-right"
+                     data-aos-duration="1000"
+                     data-aos-delay="400">
+                    <h3 class="text-xl sm:text-2xl font-heading font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-2">
+                        <i class="fa-solid fa-user text-primary"></i>
+                        <span x-text="translations[lang]?.about?.personalDataTitle">Datos Personales</span>
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3 text-slate-700 dark:text-slate-300">
+                            <i class="fa-solid fa-cake-candles text-primary mt-1"></i>
+                            <div>
+                                <strong class="block text-sm text-slate-500 dark:text-slate-400" x-text="translations[lang]?.about?.birthday">Cumpleaños</strong>
+                                <span>11-09-1991</span>
+                            </div>
                         </li>
-                        <li class="sobremi__li">
-                            <strong>Teléfono</strong>
-                            (+57) 320 4686643
+                        <li class="flex items-start gap-3 text-slate-700 dark:text-slate-300">
+                            <i class="fa-solid fa-phone text-primary mt-1"></i>
+                            <div>
+                                <strong class="block text-sm text-slate-500 dark:text-slate-400" x-text="translations[lang]?.about?.phone">Teléfono</strong>
+                                <a href="tel:+573204686643" class="hover:text-primary transition-colors">(+57) 320 4686643</a>
+                            </div>
                         </li>
-                        <li class="sobremi__li">
-                            <strong>Email</strong>
-                            rafalopezdel@gmail.com
+                        <li class="flex items-start gap-3 text-slate-700 dark:text-slate-300">
+                            <i class="fa-solid fa-envelope text-primary mt-1"></i>
+                            <div>
+                                <strong class="block text-sm text-slate-500 dark:text-slate-400" x-text="translations[lang]?.about?.email">Email</strong>
+                                <a href="mailto:rafalopezdel@gmail.com" class="hover:text-primary transition-colors">rafalopezdel@gmail.com</a>
+                            </div>
                         </li>
-                        <li class="sobremi__li">
-                            <strong>Website</strong>
-                            https://rafalopezdel.github.io/Portfolio/
+                        <li class="flex items-start gap-3 text-slate-700 dark:text-slate-300">
+                            <i class="fa-solid fa-globe text-primary mt-1"></i>
+                            <div>
+                                <strong class="block text-sm text-slate-500 dark:text-slate-400" x-text="translations[lang]?.about?.website">Website</strong>
+                                <a href="https://rafalopezdel.github.io/Portfolio/" target="_blank" class="hover:text-primary transition-colors break-all">rafalopezdel.github.io/Portfolio</a>
+                            </div>
                         </li>
-                        <li class="sobremi__li">
-                            <strong>Dirección</strong>
-                            Pereira, Colombia
+                        <li class="flex items-start gap-3 text-slate-700 dark:text-slate-300">
+                            <i class="fa-solid fa-location-dot text-primary mt-1"></i>
+                            <div>
+                                <strong class="block text-sm text-slate-500 dark:text-slate-400" x-text="translations[lang]?.about?.address">Dirección</strong>
+                                <span>Pereira, Colombia</span>
+                            </div>
                         </li>
-                        <li class="sobremi__li">
-                            <strong>Cargo</strong>
-                            <span>Desarrollador Web Junior</span>
+                        <li class="flex items-start gap-3 text-slate-700 dark:text-slate-300">
+                            <i class="fa-solid fa-briefcase text-primary mt-1"></i>
+                            <div>
+                                <strong class="block text-sm text-slate-500 dark:text-slate-400" x-text="translations[lang]?.about?.position">Cargo</strong>
+                                <span x-text="translations[lang]?.about?.positionValue">Desarrollador Web Junior</span>
+                            </div>
                         </li>
                     </ul>
                 </div>
 
-                <!-- intereses -->
-                <div class="sobremi__col">
-                    <h3 class="sobremi__h3">Intereses</h3>
-                    <div class="sobremi__intereses">
-                        <div class="sobremi__interes">
-                            <i class="fa-solid fa-headphones"></i>
-                            <span>MUSICA</span>
+                <!-- Interests Card -->
+                <div class="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 sm:p-8 backdrop-blur-sm border border-slate-200 dark:border-slate-700"
+                     data-aos="fade-left"
+                     data-aos-duration="1000"
+                     data-aos-delay="400">
+                    <h3 class="text-xl sm:text-2xl font-heading font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-2">
+                        <i class="fa-solid fa-heart text-primary"></i>
+                        <span x-text="translations[lang]?.about?.interestsTitle">Intereses</span>
+                    </h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+                        <div class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-700/50 rounded-xl hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-300 hover:scale-105 group">
+                            <i class="fa-solid fa-headphones text-3xl text-primary mb-2 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-sm font-medium text-slate-700 dark:text-slate-300" x-text="translations[lang]?.about?.interests.music">MUSICA</span>
                         </div>
-                        <div class="sobremi__interes">
-                            <i class="fa-solid fa-gamepad"></i>
-                            <span>JUEGOS</span>
+                        <div class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-700/50 rounded-xl hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-300 hover:scale-105 group">
+                            <i class="fa-solid fa-gamepad text-3xl text-primary mb-2 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-sm font-medium text-slate-700 dark:text-slate-300" x-text="translations[lang]?.about?.interests.games">JUEGOS</span>
                         </div>
-                        <div class="sobremi__interes">
-                            <i class="fa-solid fa-plane"></i>
-                            <span>VIAJAR</span>
+                        <div class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-700/50 rounded-xl hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-300 hover:scale-105 group">
+                            <i class="fa-solid fa-plane text-3xl text-primary mb-2 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-sm font-medium text-slate-700 dark:text-slate-300" x-text="translations[lang]?.about?.interests.travel">VIAJAR</span>
                         </div>
-                        <div class="sobremi__interes">
-                            <i class="fa-solid fa-person-hiking"></i>
-                            <span>DEPORTE</span>
+                        <div class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-700/50 rounded-xl hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-300 hover:scale-105 group">
+                            <i class="fa-solid fa-person-hiking text-3xl text-primary mb-2 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-sm font-medium text-slate-700 dark:text-slate-300" x-text="translations[lang]?.about?.interests.sports">DEPORTE</span>
                         </div>
-                        <div class="sobremi__interes">
-                            <i class="fa-solid fa-book"></i>
-                            <span>LIBROS</span>
+                        <div class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-700/50 rounded-xl hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-300 hover:scale-105 group">
+                            <i class="fa-solid fa-book text-3xl text-primary mb-2 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-sm font-medium text-slate-700 dark:text-slate-300" x-text="translations[lang]?.about?.interests.books">LIBROS</span>
                         </div>
-                        <div class="sobremi__interes">
-                            <i class="fa-solid fa-hands-holding-child"></i>
-                            <span>MEDITACIÓN</span>
+                        <div class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-700/50 rounded-xl hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-300 hover:scale-105 group">
+                            <i class="fa-solid fa-hands-holding-child text-3xl text-primary mb-2 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-sm font-medium text-slate-700 dark:text-slate-300" x-text="translations[lang]?.about?.interests.meditation">MEDITACIÓN</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <button id="descargarCV" class="sobremi__button">
-                Descargar CV <i class="fa-solid fa-download"></i>
-                <span class="overlay"></span>
-            </button>
+
+            <!-- Download CV Button -->
+            <div class="text-center"
+                 data-aos="fade-up"
+                 data-aos-duration="1000"
+                 data-aos-delay="600">
+                <button id="descargarCV"
+                        class="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-primary-light text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/50">
+                    <span class="relative z-10" x-text="translations[lang]?.about?.downloadCV">Descargar CV</span>
+                    <i class="fa-solid fa-download relative z-10 group-hover:animate-bounce"></i>
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary-light to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </button>
+            </div>
         </div>
     </section>
 
-    <!-- SECCION SKILLS -->
-    <section class="skills" id="skills">
-        <div class="skills__seccion">
-            <h2 class="skills__h2">Skills</h2>
-            <ol class="skills__dominio">
-                <li><span>1</span> Básico</li>
-                <li><span>2</span> Novato</li>
-                <li><span>3</span> Intermedio</li>
-                <li><span>4</span> Avanzado</li>
-                <li><span>5</span> Experto</li>
-            </ol>
-            <div class="skills__fila">
-                <!-- Technical Skill -->
-                <div class="skills__col">
-                    <h3 class="skills__h3">Technical Skills</h3>
-                    <div class="skills__skill">
-                        <span>Javascript</span>
-                        <div class="skills__barra">
-                            <div class="skills__progreso">
-                                <span>3</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skills__skill">
-                        <span>HTML & CSS</span>
-                        <div class="skills__barra">
-                            <div class="skills__progreso">
-                                <span>4</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skills__skill">
-                        <span>Angular</span>
-                        <div class="skills__barra">
-                            <div class="skills__progreso">
-                                <span>3</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skills__skill">
-                        <span>React</span>
-                        <div class="skills__barra">
-                            <div class="skills__progreso">
-                                <span>3</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skills__skill">
-                        <span>NodeJS</span>
-                        <div class="skills__barra">
-                            <div class="skills__progreso">
-                                <span>2</span>
-                            </div>
-                        </div>
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="relative py-20 lg:py-32 bg-slate-50 dark:bg-slate-800 overflow-hidden">
+
+        <!-- Decorative Background -->
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section Title -->
+            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-12 md:mb-16 text-slate-900 dark:text-white px-4"
+                data-aos="fade-down"
+                data-aos-duration="1000"
+                x-text="translations[lang]?.skills?.title">
+                Skills
+            </h2>
+
+            <!-- Skills Categories -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+
+                <!-- Technical Skills -->
+                <div data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
+                    <h3 class="text-2xl font-heading font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-2">
+                        <i class="fa-solid fa-code text-primary"></i>
+                        <span x-text="translations[lang]?.skills?.technical">Technical Skills</span>
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="300">
+                            JavaScript
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="350">
+                            HTML & CSS
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="400">
+                            TypeScript
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="450">
+                            React
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="500">
+                            Angular
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="550">
+                            Node.js
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="600">
+                            Express.js
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="650">
+                            MongoDB
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="700">
+                            MySQL
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="750">
+                            Nest.js
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="800">
+                            Tailwind CSS
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="850">
+                            Bootstrap
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="900">
+                            Git & GitHub
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="950">
+                            REST APIs
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="1000">
+                            Responsive Design
+                        </span>
                     </div>
                 </div>
+
                 <!-- Professional Skills -->
-                <div class="skills__col">
-                    <h3 class="skills__h3">Professional Skills</h3>
-                    <div class="skills__skill">
-                        <span>Comunicación</span>
-                        <div class="skills__barra">
-                            <div class="skills__progreso">
-                                <span>3</span>
+                <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <h3 class="text-2xl font-heading font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-2">
+                        <i class="fa-solid fa-lightbulb text-primary"></i>
+                        <span x-text="translations[lang]?.skills?.professional">Professional Skills</span>
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="300"
+                              x-text="translations[lang]?.skills?.list.communication">
+                            Comunicación
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="350"
+                              x-text="translations[lang]?.skills?.list.teamwork">
+                            Trabajo en Equipo
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="400"
+                              x-text="translations[lang]?.skills?.list.creativity">
+                            Creatividad
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="450"
+                              x-text="translations[lang]?.skills?.list.dedication">
+                            Dedicación
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="500"
+                              x-text="translations[lang]?.skills?.list.logic">
+                            Lógica Programación
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="550">
+                            Problem Solving
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="600">
+                            Adaptabilidad
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="650">
+                            Continuous Learning
+                        </span>
+                        <span class="skill-tag px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                              data-aos="fade-up" data-aos-delay="700">
+                            Time Management
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CURRICULUM SECTION -->
+    <section id="curriculum" class="relative py-20 lg:py-32 bg-white dark:bg-slate-900 overflow-hidden">
+
+        <!-- Decorative Background -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section Title -->
+            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-12 md:mb-16 text-slate-900 dark:text-white px-4"
+                data-aos="fade-down"
+                data-aos-duration="1000"
+                x-text="translations[lang]?.curriculum?.title">
+                Curriculum
+            </h2>
+
+            <!-- Timeline Container -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16">
+
+                <!-- EDUCATION COLUMN -->
+                <div data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
+                    <h3 class="text-2xl sm:text-3xl font-heading font-bold mb-8 text-slate-900 dark:text-white flex items-center gap-3">
+                        <i class="fa-solid fa-graduation-cap text-primary text-3xl"></i>
+                        <span x-text="translations[lang]?.curriculum?.education">Educación</span>
+                    </h3>
+
+                    <!-- Timeline Items -->
+                    <div class="relative space-y-8 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-0.5 before:bg-primary/30">
+
+                        <!-- React Course -->
+                        <div class="relative pl-6 sm:pl-8" data-aos="fade-up" data-aos-delay="300">
+                            <div class="absolute left-0 top-2 w-3 h-3 bg-primary rounded-full -translate-x-[5px] ring-4 ring-white dark:ring-slate-900"></div>
+                            <div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300 border border-slate-200 dark:border-slate-700">
+                                <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full mb-3">
+                                    2025
+                                </span>
+                                <h4 class="text-base sm:text-lg font-heading font-bold text-slate-900 dark:text-white mb-2"
+                                    x-text="translations[lang]?.curriculum?.items.reactCourse.title">
+                                    Curso React de Cero a Experto
+                                </h4>
+                                <p class="text-sm text-primary font-semibold mb-3"
+                                   x-text="translations[lang]?.curriculum?.items.reactCourse.institution">
+                                    Udemy
+                                </p>
+                                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                                   x-text="translations[lang]?.curriculum?.items.reactCourse.description">
+                                    React de cero a experto: Context API, MERN, Hooks, Firestore, JWT, Testing, Autenticaciones, Despliegues, CRUD, Logs, MUI, Multiple Routers y mucho más.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Angular Course -->
+                        <div class="relative pl-6 sm:pl-8" data-aos="fade-up" data-aos-delay="350">
+                            <div class="absolute left-0 top-2 w-3 h-3 bg-primary rounded-full -translate-x-[5px] ring-4 ring-white dark:ring-slate-900"></div>
+                            <div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300 border border-slate-200 dark:border-slate-700">
+                                <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full mb-3">
+                                    2022
+                                </span>
+                                <h4 class="text-base sm:text-lg font-heading font-bold text-slate-900 dark:text-white mb-2"
+                                    x-text="translations[lang]?.curriculum?.items.angularCourse.title">
+                                    Curso Angular de Cero a Experto
+                                </h4>
+                                <p class="text-sm text-primary font-semibold mb-3"
+                                   x-text="translations[lang]?.curriculum?.items.angularCourse.institution">
+                                    Udemy
+                                </p>
+                                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                                   x-text="translations[lang]?.curriculum?.items.angularCourse.description">
+                                    Angular de cero a experto: Signals, componentes, directivas, servicios, mapas, JWT, autenticación, despliegues, mongo, Git, GitHub y mucho más.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Web Development Course -->
+                        <div class="relative pl-6 sm:pl-8" data-aos="fade-up" data-aos-delay="400">
+                            <div class="absolute left-0 top-2 w-3 h-3 bg-primary rounded-full -translate-x-[5px] ring-4 ring-white dark:ring-slate-900"></div>
+                            <div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300 border border-slate-200 dark:border-slate-700">
+                                <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full mb-3">
+                                    2021
+                                </span>
+                                <h4 class="text-base sm:text-lg font-heading font-bold text-slate-900 dark:text-white mb-2"
+                                    x-text="translations[lang]?.curriculum?.items.webCourse.title">
+                                    Curso HTML, CSS y JavaScript
+                                </h4>
+                                <p class="text-sm text-primary font-semibold mb-3"
+                                   x-text="translations[lang]?.curriculum?.items.webCourse.institution">
+                                    Udemy
+                                </p>
+                                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                                   x-text="translations[lang]?.curriculum?.items.webCourse.description">
+                                    Master en HTML, CSS3, Maquetación web, Responsive Web Design, SASS, LESS, Flexbox, CSS Grid, Bootstrap, Javascript, JQuery desde cero.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- University Degree -->
+                        <div class="relative pl-6 sm:pl-8" data-aos="fade-up" data-aos-delay="450">
+                            <div class="absolute left-0 top-2 w-3 h-3 bg-primary rounded-full -translate-x-[5px] ring-4 ring-white dark:ring-slate-900"></div>
+                            <div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300 border border-slate-200 dark:border-slate-700">
+                                <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full mb-3">
+                                    2009 - 2014
+                                </span>
+                                <h4 class="text-base sm:text-lg font-heading font-bold text-slate-900 dark:text-white mb-2"
+                                    x-text="translations[lang]?.curriculum?.items.university.title">
+                                    Ingeniería Industrial
+                                </h4>
+                                <p class="text-sm text-primary font-semibold mb-3"
+                                   x-text="translations[lang]?.curriculum?.items.university.institution">
+                                    Universidad Tecnológica de Pereira
+                                </p>
+                                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                                   x-text="translations[lang]?.curriculum?.items.university.description">
+                                    Profesional capaz de investigar, innovar y optimizar procesos de producción y servicios.
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <div class="skills__skill">
-                        <span>Trabajo en Equipo</span>
-                        <div class="skills__barra">
-                            <div class="skills__progreso">
-                                <span>4</span>
+                </div>
+
+                <!-- WORK EXPERIENCE COLUMN -->
+                <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <h3 class="text-2xl sm:text-3xl font-heading font-bold mb-8 text-slate-900 dark:text-white flex items-center gap-3">
+                        <i class="fa-solid fa-briefcase text-primary text-3xl"></i>
+                        <span x-text="translations[lang]?.curriculum?.experience">Experiencia de trabajo</span>
+                    </h3>
+
+                    <!-- Timeline Items -->
+                    <div class="relative space-y-8 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-0.5 before:bg-primary/30">
+
+                        <!-- Current Position -->
+                        <div class="relative pl-6 sm:pl-8" data-aos="fade-up" data-aos-delay="300">
+                            <div class="absolute left-0 top-2 w-3 h-3 bg-primary rounded-full -translate-x-[5px] ring-4 ring-white dark:ring-slate-900 animate-pulse"></div>
+                            <div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300 border-2 border-primary/50">
+                                <div class="flex flex-wrap items-center gap-2 mb-3">
+                                    <span class="inline-block px-3 py-1 bg-primary text-white text-xs font-semibold rounded-full">
+                                        2022 - <span x-text="lang === 'es' ? 'Continúo' : 'Present'">Continúo</span>
+                                    </span>
+                                    <span class="inline-block px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-semibold rounded">
+                                        <span x-text="lang === 'es' ? 'Actual' : 'Current'">Actual</span>
+                                    </span>
+                                </div>
+                                <h4 class="text-base sm:text-lg font-heading font-bold text-slate-900 dark:text-white mb-2"
+                                    x-text="translations[lang]?.curriculum?.items.lopezoft.title">
+                                    Frontend Developer Junior
+                                </h4>
+                                <p class="text-sm text-primary font-semibold mb-3"
+                                   x-text="translations[lang]?.curriculum?.items.lopezoft.institution">
+                                    Lopezoft Soluciones Informáticas
+                                </p>
+                                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                                   x-text="translations[lang]?.curriculum?.items.lopezoft.description">
+                                    Desarrollo de aplicaciones web con Angular, React, Node.js y MongoDB.
+                                </p>
                             </div>
                         </div>
-                    </div>
-                    <div class="skills__skill">
-                        <span>Creatividad</span>
-                        <div class="skills__barra">
-                            <div class="skills__progreso">
-                                <span>4</span>
+
+                        <!-- G3 Security -->
+                        <div class="relative pl-6 sm:pl-8" data-aos="fade-up" data-aos-delay="350">
+                            <div class="absolute left-0 top-2 w-3 h-3 bg-primary rounded-full -translate-x-[5px] ring-4 ring-white dark:ring-slate-900"></div>
+                            <div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300 border border-slate-200 dark:border-slate-700">
+                                <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full mb-3">
+                                    2016 - 2022
+                                </span>
+                                <h4 class="text-base sm:text-lg font-heading font-bold text-slate-900 dark:text-white mb-2"
+                                    x-text="translations[lang]?.curriculum?.items.g3.title">
+                                    Gerente General
+                                </h4>
+                                <p class="text-sm text-primary font-semibold mb-3"
+                                   x-text="translations[lang]?.curriculum?.items.g3.institution">
+                                    G3 Seguridad
+                                </p>
+                                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                                   x-text="translations[lang]?.curriculum?.items.g3.description">
+                                    Creación, desarrollo y gestión de organización de distribución de hardware de seguridad electrónica a nivel nacional.
+                                </p>
                             </div>
                         </div>
-                    </div>
-                    <div class="skills__skill">
-                        <span>Dedicación</span>
-                        <div class="skills__barra">
-                            <div class="skills__progreso">
-                                <span>5</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skills__skill">
-                        <span>Logica Programación</span>
-                        <div class="skills__barra">
-                            <div class="skills__progreso">
-                                <span>4</span>
+
+                        <!-- Servientrega -->
+                        <div class="relative pl-6 sm:pl-8" data-aos="fade-up" data-aos-delay="400">
+                            <div class="absolute left-0 top-2 w-3 h-3 bg-primary rounded-full -translate-x-[5px] ring-4 ring-white dark:ring-slate-900"></div>
+                            <div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300 border border-slate-200 dark:border-slate-700">
+                                <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full mb-3">
+                                    2014 - 2015
+                                </span>
+                                <h4 class="text-base sm:text-lg font-heading font-bold text-slate-900 dark:text-white mb-2"
+                                    x-text="translations[lang]?.curriculum?.items.servientrega.title">
+                                    Analista - Practicante
+                                </h4>
+                                <p class="text-sm text-primary font-semibold mb-3"
+                                   x-text="translations[lang]?.curriculum?.items.servientrega.institution">
+                                    Servientrega S.A.
+                                </p>
+                                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                                   x-text="translations[lang]?.curriculum?.items.servientrega.description">
+                                    Estudio de tiempos y movimientos en el área de logística.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -236,230 +862,493 @@
         </div>
     </section>
 
-    <!-- SECCION CURRICULUM -->
-    <section id="curriculum" class="curriculum">
-        <div class="curriculum__seccion">
-            <h2 class="curriculum__h2">Curriculum</h2>
-            <div class="curriculum__fila">
-                <div class="curriculum__col izquierda">
-                    <h3 class="curriculum__h3">Educación</h3>
-                    <div class="curriculum__item izq">
-                        <h4 class="curriculum__h4">Curso React de Cero a Experto</h4>
-                        <span class="curriculum__casa">Udemy</span>
-                        <span class="curriculum__fecha">2025</span>
-                        <p class="curriculum__p">React de cero a experto: Context API, MERN, Hooks, Firestore, JWT,
-                            Testing, Autenticaciones, Despliegues, CRUD, Logs, MUI, Multiple Routers y mucho más. Con la
-                            capacidad de desenvolverme eficientemente con el Framework siguiendo los estándares para
-                            comprender código de otros desarrolladores y optimizar el propio. </p>
-                        <div class="conectori">
-                            <div class="circuloi"></div>
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio" class="relative py-20 lg:py-32 bg-white dark:bg-slate-900 overflow-hidden">
+
+        <!-- Decorative Background -->
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section Title -->
+            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-12 md:mb-16 text-slate-900 dark:text-white px-4"
+                data-aos="fade-down"
+                data-aos-duration="1000"
+                x-text="translations[lang]?.portfolio?.title">
+                PORTFOLIO
+            </h2>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
+
+                <!-- Project 1: WhatsApp Bot Dental -->
+                <div class="group relative bg-slate-50 dark:bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+                     data-aos="fade-up"
+                     data-aos-duration="1000"
+                     data-aos-delay="200"
+                     onclick="window.location.href='projects/project1.html'">
+
+                    <!-- Image Container -->
+                    <div class="relative h-64 md:h-72 lg:h-80 overflow-hidden">
+                        <img src="assets/img/authApp1.jpg"
+                             alt="Dental WhatsApp Assistant - AI Chatbot with Claude & Firebase"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+                    </div>
+
+                    <!-- Content Overlay -->
+                    <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-2"
+                            x-text="translations[lang]?.portfolio?.projects.whatsappBot.title">
+                            Asistente WhatsApp Dental
+                        </h3>
+                        <p class="text-sm text-slate-300 mb-4"
+                           x-text="translations[lang]?.portfolio?.projects.whatsappBot.tech">
+                            Claude AI - Firebase
+                        </p>
+
+                        <!-- Tech Stack Tags -->
+                        <div class="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">Claude AI</span>
+                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">Firebase</span>
+                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">WhatsApp API</span>
+                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">Dentalink</span>
                         </div>
                     </div>
-                    <div class="curriculum__item izq">
-                        <h4 class="curriculum__h4">Curso Angular de Cero a Experto</h4>
-                        <span class="curriculum__casa">Udemy</span>
-                        <span class="curriculum__fecha">2022</span>
-                        <p class="curriculum__p">Angular de cero a experto: Signals, componentes, directivas, servicios,
-                            mapas, JWT, autenticación, despliegues, mongo, Git, GitHub y mucho más. Con la capacidad de
-                            desenvolverme eficientemente con el Framework siguiendo los estándares para comprender
-                            código de otros desarrolladores y optimizar el propio. </p>
-                        <div class="conectori">
-                            <div class="circuloi"></div>
-                        </div>
-                    </div>
-                    <div class="curriculum__item izq">
-                        <h4 class="curriculum__h4">Curso HTML, CSS y JavaScript</h4>
-                        <span class="curriculum__casa">Udemy</span>
-                        <span class="curriculum__fecha">2021</span>
-                        <p class="curriculum__p">Master en HTML, CSS3, Maquetación web, Responsive Web Design, SASS,
-                            LESS, Flexbox, CSS Grid, Bootstrap, Javascript, JQuery desde cero con más de 40 horas de
-                            videos estudiados, con la capacidad de maquetar diferentes diseños web y darle su respectiva
-                            funcionalidad.</p>
-                        <div class="conectori">
-                            <div class="circuloi"></div>
-                        </div>
-                    </div>
-                    <div class="curriculum__item izq">
-                        <h4 class="curriculum__h4">Ingenieria Industrial</h4>
-                        <span class="curriculum__casa">Universidad Tecnologica de Pereira</span>
-                        <span class="curriculum__fecha">2009 - 2014</span>
-                        <p class="curriculum__p" class="curriculum__p">Por mi formación académica, puedo desempeñarme
-                            como un profesional capaz de investigar, innovar y optimizar procesos de producción y
-                            servicios, buscando altos rendimientos económicos, financieros y sociales, así como mejorar
-                            la productividad, calidad y competitividad en las organizaciones.</p>
-                        <div class="conectori">
-                            <div class="circuloi"></div>
-                        </div>
+
+                    <!-- View Project Icon -->
+                    <div class="absolute top-4 right-4 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
+                        <i class="fa-solid fa-arrow-right text-white text-lg"></i>
                     </div>
                 </div>
 
-                <div class="curriculum__col derecha">
-                    <h3 class="curriculum__h3">Experiencia de trabajo</h3>
-                    <div class="curriculum__item der">
-                        <h4 class="curriculum__h4">Frontend Developer Junior</h4>
-                        <span class="curriculum__casa">Lopezoft Soluciones Informáticas</span>
-                        <span class="curriculum__fecha">2022 - Continúo</span>
-                        <p class="curriculum__p">Apoyo y desarrollo de diferentes aplicaciones web con niveles de
-                            complejidad variada como Home Pages en WordPress, hasta aplicaciones de mayor complejidad
-                            utilizando Angular y React como Frameworks, entre otros desarrollos utilizando
-                            lenguajes como HTML, CSS (Saas) y JavaScript (Typescript) en el Frontend y herramientas como
-                            NodeJS y PHP en el lado del servidor trabajando con bases de datos SQL(MySQL) y
-                            NoSQL(MongoDB).</p>
-                        <div class="conectord">
-                            <div class="circulod"></div>
+                <!-- Project 2: CalendarApp -->
+                <div class="group relative bg-slate-50 dark:bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+                     data-aos="fade-up"
+                     data-aos-duration="1000"
+                     data-aos-delay="300"
+                     onclick="window.location.href='projects/project2.html'">
+
+                    <!-- Image Container -->
+                    <div class="relative h-64 md:h-72 lg:h-80 overflow-hidden">
+                        <img src="assets/img/calendarApp1.jpg"
+                             alt="CalendarioApp - MERN Stack Calendar Application"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+                    </div>
+
+                    <!-- Content Overlay -->
+                    <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-2"
+                            x-text="translations[lang]?.portfolio?.projects.calendarApp.title">
+                            CalendarioApp
+                        </h3>
+                        <p class="text-sm text-slate-300 mb-4"
+                           x-text="translations[lang]?.portfolio?.projects.calendarApp.tech">
+                            MERN Stack
+                        </p>
+
+                        <!-- Tech Stack Tags -->
+                        <div class="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">MongoDB</span>
+                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">Express</span>
+                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">React</span>
+                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">Node.js</span>
                         </div>
                     </div>
-                    <div class="curriculum__item der">
-                        <h4 class="curriculum__h4">Gerente General</h4>
-                        <span class="curriculum__casa">G3 seguridad</span>
-                        <span class="curriculum__fecha">2016 - 2022</span>
-                        <p class="curriculum__p">Creación, desarrollo y gestión de una organización encargada de
-                            distribuir hardware de seguridad electrónica a nivel nacional con sede en 5 diferentes
-                            ciudades, atendiendo las necesidades y problemas surgidos durante todo el proceso comercial
-                            brindando soluciones eficientes tanto para los clientes como para la organización.</p>
-                        <div class="conectord">
-                            <div class="circulod"></div>
+
+                    <!-- View Project Icon -->
+                    <div class="absolute top-4 right-4 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
+                        <i class="fa-solid fa-arrow-right text-white text-lg"></i>
+                    </div>
+                </div>
+
+                <!-- Project 3: WordPress Divi Corporate Site -->
+                <div class="group relative bg-slate-50 dark:bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+                     data-aos="fade-up"
+                     data-aos-duration="1000"
+                     data-aos-delay="400"
+                     onclick="window.location.href='projects/project3.html'">
+
+                    <!-- Image Container -->
+                    <div class="relative h-64 md:h-72 lg:h-80 overflow-hidden">
+                        <img src="assets/img/webCorporativa4.jpg"
+                             alt="WordPress Divi Corporate Site - Professional Business Website"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+                    </div>
+
+                    <!-- Content Overlay -->
+                    <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-2"
+                            x-text="translations[lang]?.portfolio?.projects.wordpressDivi.title">
+                            Sitio Corporativo Divi
+                        </h3>
+                        <p class="text-sm text-slate-300 mb-4"
+                           x-text="translations[lang]?.portfolio?.projects.wordpressDivi.tech">
+                            WordPress - Divi
+                        </p>
+
+                        <!-- Tech Stack Tags -->
+                        <div class="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">WordPress</span>
+                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">Divi Builder</span>
+                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">PHP</span>
+                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">MySQL</span>
                         </div>
                     </div>
-                    <div class="curriculum__item der">
-                        <h4 class="curriculum__h4">Analista - Practicante</h4>
-                        <span class="curriculum__casa">Servientrega S.A.</span>
-                        <span class="curriculum__fecha">2014 - 2015</span>
-                        <p class="curriculum__p">Estudio de tiempos y movimientos en el área de logística con el
-                            objetivo de implementar pagos por productividad en la entrega de mercancías desarrollando un
-                            algoritmo que mide el tiempo y esfuerzo de entrega por zona regional determinada.</p>
-                        <div class="conectord">
-                            <div class="circulod"></div>
+
+                    <!-- View Project Icon -->
+                    <div class="absolute top-4 right-4 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
+                        <i class="fa-solid fa-arrow-right text-white text-lg"></i>
+                    </div>
+                </div>
+
+                <!-- Project 4: React Corporate Website -->
+                <div class="group relative bg-slate-50 dark:bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+                     data-aos="fade-up"
+                     data-aos-duration="1000"
+                     data-aos-delay="500"
+                     onclick="window.location.href='projects/project4.html'">
+
+                    <!-- Image Container -->
+                    <div class="relative h-64 md:h-72 lg:h-80 overflow-hidden">
+                        <img src="assets/img/gifsApp1.jpg"
+                             alt="React Corporate Website - Modern SPA with Tailwind"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+                    </div>
+
+                    <!-- Content Overlay -->
+                    <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-2"
+                            x-text="translations[lang]?.portfolio?.projects.webCorporativa.title">
+                            Website Corporativa
+                        </h3>
+                        <p class="text-sm text-slate-300 mb-4"
+                           x-text="translations[lang]?.portfolio?.projects.webCorporativa.tech">
+                            React
+                        </p>
+
+                        <!-- Tech Stack Tags -->
+                        <div class="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">React</span>
+                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">React Router</span>
+                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">Tailwind</span>
+                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">Vite</span>
                         </div>
                     </div>
+
+                    <!-- View Project Icon -->
+                    <div class="absolute top-4 right-4 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
+                        <i class="fa-solid fa-arrow-right text-white text-lg"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contacto" class="relative py-20 lg:py-32 bg-slate-50 dark:bg-slate-800 overflow-hidden">
+
+        <!-- Decorative Background -->
+        <div class="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section Title -->
+            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-12 md:mb-16 text-slate-900 dark:text-white px-4"
+                data-aos="fade-down"
+                data-aos-duration="1000"
+                x-text="translations[lang]?.contact?.title">
+                CONTACTO
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16">
+
+                <!-- Contact Form -->
+                <div data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
+                    <form id="formularioContacto"
+                          action="https://formsubmit.co/rafalopezdel@gmail.com"
+                          method="POST"
+                          class="space-y-6">
+
+                        <!-- Name Input -->
+                        <div class="relative group">
+                            <label class="absolute -top-2.5 left-4 px-2 bg-slate-50 dark:bg-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-400 group-focus-within:text-primary transition-colors duration-300"
+                                   x-text="translations[lang]?.contact?.form.name">
+                                Tú Nombre
+                            </label>
+                            <input type="text"
+                                   name="name"
+                                   required
+                                   class="w-full px-6 py-4 bg-white dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 outline-none"
+                                   :placeholder="translations[lang]?.contact?.form.name">
+                        </div>
+
+                        <!-- Phone Input -->
+                        <div class="relative group">
+                            <label class="absolute -top-2.5 left-4 px-2 bg-slate-50 dark:bg-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-400 group-focus-within:text-primary transition-colors duration-300"
+                                   x-text="translations[lang]?.contact?.form.phone">
+                                Número telefónico
+                            </label>
+                            <input type="text"
+                                   name="phone"
+                                   required
+                                   class="w-full px-6 py-4 bg-white dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 outline-none"
+                                   :placeholder="translations[lang]?.contact?.form.phone">
+                        </div>
+
+                        <!-- Email Input -->
+                        <div class="relative group">
+                            <label class="absolute -top-2.5 left-4 px-2 bg-slate-50 dark:bg-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-400 group-focus-within:text-primary transition-colors duration-300"
+                                   x-text="translations[lang]?.contact?.form.email">
+                                Dirección de correo
+                            </label>
+                            <input type="email"
+                                   name="email"
+                                   required
+                                   class="w-full px-6 py-4 bg-white dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 outline-none"
+                                   :placeholder="translations[lang]?.contact?.form.email">
+                        </div>
+
+                        <!-- Subject Input -->
+                        <div class="relative group">
+                            <label class="absolute -top-2.5 left-4 px-2 bg-slate-50 dark:bg-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-400 group-focus-within:text-primary transition-colors duration-300"
+                                   x-text="translations[lang]?.contact?.form.subject">
+                                Tema
+                            </label>
+                            <input type="text"
+                                   name="about"
+                                   class="w-full px-6 py-4 bg-white dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 outline-none"
+                                   :placeholder="translations[lang]?.contact?.form.subject">
+                        </div>
+
+                        <!-- Message Textarea -->
+                        <div class="relative group">
+                            <label class="absolute -top-2.5 left-4 px-2 bg-slate-50 dark:bg-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-400 group-focus-within:text-primary transition-colors duration-300"
+                                   x-text="translations[lang]?.contact?.form.message">
+                                Mensaje
+                            </label>
+                            <textarea name="message"
+                                      rows="6"
+                                      required
+                                      class="w-full px-6 py-4 bg-white dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 outline-none resize-none"
+                                      :placeholder="translations[lang]?.contact?.form.message"></textarea>
+                        </div>
+
+                        <!-- Hidden Fields -->
+                        <input type="text" name="_honey" style="display:none">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="">
+
+                        <!-- Submit Button -->
+                        <button type="submit"
+                                class="group relative w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-primary to-primary-light text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/50 flex items-center justify-center gap-3">
+                            <span class="relative z-10" x-text="translations[lang]?.contact?.form.send">Enviar Mensaje</span>
+                            <i class="fa-solid fa-paper-plane relative z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"></i>
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary-light to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Information Cards -->
+                <div class="space-y-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+
+                    <!-- Contact Intro -->
+                    <div class="bg-white dark:bg-slate-700 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-600">
+                        <h3 class="text-2xl sm:text-3xl font-heading font-bold text-slate-900 dark:text-white mb-4">
+                            <span x-text="lang === 'es' ? 'Conectemos' : 'Let\'s Connect'">Conectemos</span>
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <span x-text="lang === 'es' ? 'Estoy disponible para nuevos proyectos y oportunidades. No dudes en contactarme.' : 'I\'m available for new projects and opportunities. Feel free to reach out.'">
+                                Estoy disponible para nuevos proyectos y oportunidades. No dudes en contactarme.
+                            </span>
+                        </p>
+                    </div>
+
+                    <!-- Location Card -->
+                    <div class="bg-white dark:bg-slate-700 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 border border-slate-200 dark:border-slate-600 group">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                                <i class="fa-solid fa-location-dot text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-1">
+                                    <span x-text="lang === 'es' ? 'Ubicación' : 'Location'">Ubicación</span>
+                                </h4>
+                                <p class="text-slate-900 dark:text-white font-medium"
+                                   x-text="translations[lang]?.contact?.info.location">
+                                    CC Fiducentro Local Verde 33
+                                </p>
+                                <p class="text-slate-600 dark:text-slate-300 text-sm">Pereira, Colombia</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phone Card -->
+                    <div class="bg-white dark:bg-slate-700 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 border border-slate-200 dark:border-slate-600 group">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                                <i class="fa-solid fa-phone text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-1">
+                                    <span x-text="lang === 'es' ? 'Teléfono' : 'Phone'">Teléfono</span>
+                                </h4>
+                                <a href="tel:+573204686643"
+                                   class="text-slate-900 dark:text-white font-medium hover:text-primary transition-colors">
+                                    (+57) 320 4686643
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email Card -->
+                    <div class="bg-white dark:bg-slate-700 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 border border-slate-200 dark:border-slate-600 group">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                                <i class="fa-solid fa-envelope text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-1">Email</h4>
+                                <a href="mailto:rafalopezdel@gmail.com"
+                                   class="text-slate-900 dark:text-white font-medium hover:text-primary transition-colors break-all">
+                                    rafalopezdel@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECCION PORTFOLIO -->
-    <section id="portfolio" class="portfolio">
-        <div class="portfolio__seccion">
-            <h2 class="portfolio__h2">PORTFOLIO</h2>
-            <div class="portfolio__galeria">
-                <div class="portfolio__proyecto" onclick="window.location.href='projects/project4.html'">
-                    <img class="portfolio__img" src="assets/img/calendarApp1.jpg" alt="">
-                    <div class="portfolio__overlay">
-                        <h3>CalendarioApp</h3>
-                        <p>MERN Stack</p>
-                    </div>
-                </div>
-                <div class="portfolio__proyecto" onclick="window.location.href='projects/project3.html'">
-                    <img class="portfolio__img" src="assets/img/authApp1.jpg" alt="">
-                    <div class="portfolio__overlay">
-                        <h3>AuthApp</h3>
-                        <p>Angular - Nest</p>
-                    </div>
-                </div>
-                <div class="portfolio__proyecto" onclick="window.location.href='projects/project2.html'">
-                    <img class="portfolio__img" src="assets/img/playJavaScript1.jpg" alt="">
-                    <div class="portfolio__overlay">
-                        <h3>PlayJavaScriptApp</h3>
-                        <p>Javascript</p>
-                    </div>
-                </div>
-                <div class="portfolio__proyecto" onclick="window.location.href='projects/project5.html'">
-                    <img class="portfolio__img" src="assets/img/webCorporativa4.jpg" alt="">
-                    <div class="portfolio__overlay">
-                        <h3>Website Corporativa</h3>
-                        <p>React</p>
-                    </div>
-                </div>
-                <!-- <div class="portfolio__proyecto" onclick="window.location.href='projects/project1.html'">
-                    <img class="portfolio__img" src="assets/img/gifsApp4.jpg" alt="">
-                    <div class="portfolio__overlay">
-                        <h3>GifExpertApp</h3>
-                        <p>React</p>
-                    </div>
-                </div> -->
-                <!-- <div class="portfolio__proyecto">
-                    <img class="portfolio__img" src="assets/img/p5.jpg" alt="">
-                    <div class="portfolio__overlay">
-                        <h3>Diseño Creativo</h3>
-                        <p>Fotografía</p>
-                    </div>
-                </div>
-                <div class="portfolio__proyecto">
-                    <img class="portfolio__img" src="assets/img/p6.jpg" alt="">
-                    <div class="portfolio__overlay">
-                        <h3>Diseño Creativo</h3>
-                        <p>Fotografía</p>
-                    </div>
-                </div> -->
-            </div>
-        </div>
-    </section>
+    <!-- FOOTER -->
+    <footer class="relative bg-slate-900 dark:bg-slate-950 pt-16 pb-8 overflow-hidden">
 
-    <!-- SECCION CONTACTO -->
-    <section id="contacto" class="contacto">
-        <div class="contacto__seccion">
-            <h2 class="contacto__h2">CONTACTO</h2>
-            <div class="contacto__fila">
-                <!-- Formulario -->
-                <form id="formularioContacto" action="https://formsubmit.co/rafalopezdel@gmail.com" method="POST"
-                    class="contacto__col">
-                    <input class="contacto__input" name="name" type="text" placeholder="Tú Nombre" required>
-                    <input class="contacto__input" name="phone" type="text" placeholder="Número telefónico" required>
-                    <input class="contacto__input" name="email" type="email" placeholder="Dirección de correo" required>
-                    <input class="contacto__input" name="about" type="text" placeholder="Tema">
-                    <textarea class="contacto__textarea" name="message" id="" cols="30" rows="10" required
-                        placeholder="Mensaje"></textarea>
-                    <!-- Evita spam -->
-                    <input type="text" name="_honey" style="display:none">
-                    <!-- Sin captcha de FormSubmit -->
-                    <input type="hidden" name="_captcha" value="false">
-                    <!-- Desactivamos redirección -->
-                    <input type="hidden" name="_next" value="">
-                    <button type="submit" class="contacto__button">
-                        Enviar Mensaje <i class="fa-solid fa-paper-plane"></i>
-                        <span class="overlay"></span>
-                    </button>
-                </form>
-                <!-- Mapa -->
-                <div class="contacto__col">
-                    <img class="contacto__img" src="assets/img/ubicacion1.jpg" alt="">
-                    <div class="contacto__info">
-                        <ul class="contacto__ul">
-                            <li class="contacto__li">
-                                <i class="fa-solid fa-location-dot"></i>
-                                CC Fiducentro Local Verde 33
-                            </li>
-                            <li class="contacto__li">
-                                <i class="fa-solid fa-mobile-screen"></i>
-                                Llamanos: (+57) 320 4686643
-                            </li>
-                            <li class="contacto__li">
-                                <i class="fa-solid fa-envelope"></i>
-                                Email: rafalopezdel@gmail.com
-                            </li>
-                        </ul>
+        <!-- Decorative Background -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+
+                <!-- Brand Column -->
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl sm:text-3xl font-heading font-bold bg-gradient-to-r from-white via-slate-100 to-white bg-clip-text text-transparent mb-4">
+                        Rafael López
+                    </h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        <span x-text="lang === 'es' ? 'Desarrollador Frontend especializado en crear experiencias web modernas y funcionales.' : 'Frontend Developer specialized in creating modern and functional web experiences.'">
+                            Desarrollador Frontend especializado en crear experiencias web modernas y funcionales.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- Quick Links Column -->
+                <div class="text-center">
+                    <h4 class="text-white font-heading font-bold mb-4 text-lg">
+                        <span x-text="lang === 'es' ? 'Enlaces Rápidos' : 'Quick Links'">Enlaces Rápidos</span>
+                    </h4>
+                    <nav class="flex flex-col gap-2">
+                        <a href="#inicio" class="text-slate-400 hover:text-primary transition-colors duration-300 text-sm" x-text="translations[lang].nav.home">INICIO</a>
+                        <a href="#sobremi" class="text-slate-400 hover:text-primary transition-colors duration-300 text-sm" x-text="translations[lang].nav.about">SOBRE MI</a>
+                        <a href="#skills" class="text-slate-400 hover:text-primary transition-colors duration-300 text-sm" x-text="translations[lang].nav.skills">SKILLS</a>
+                        <a href="#portfolio" class="text-slate-400 hover:text-primary transition-colors duration-300 text-sm" x-text="translations[lang].nav.portfolio">PORTFOLIO</a>
+                        <a href="#contacto" class="text-slate-400 hover:text-primary transition-colors duration-300 text-sm" x-text="translations[lang].nav.contact">CONTACTO</a>
+                    </nav>
+                </div>
+
+                <!-- Social Media Column -->
+                <div class="text-center md:text-right">
+                    <h4 class="text-white font-heading font-bold mb-4 text-lg">
+                        <span x-text="lang === 'es' ? 'Sígueme' : 'Follow Me'">Sígueme</span>
+                    </h4>
+                    <div class="flex justify-center md:justify-end items-center gap-4">
+                        <a href="https://www.facebook.com/profile.php?id=630147647"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="group flex items-center justify-center w-12 h-12 rounded-full border-2 border-slate-700 hover:border-primary text-slate-400 hover:text-white bg-slate-800/50 hover:bg-primary/20 backdrop-blur-sm transition-all duration-300 hover:scale-110"
+                           aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="https://github.com/Rafalopezdel"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="group flex items-center justify-center w-12 h-12 rounded-full border-2 border-slate-700 hover:border-primary text-slate-400 hover:text-white bg-slate-800/50 hover:bg-primary/20 backdrop-blur-sm transition-all duration-300 hover:scale-110"
+                           aria-label="GitHub">
+                            <i class="fa-brands fa-github text-lg"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/rafael-lópez-delgado"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="group flex items-center justify-center w-12 h-12 rounded-full border-2 border-slate-700 hover:border-primary text-slate-400 hover:text-white bg-slate-800/50 hover:bg-primary/20 backdrop-blur-sm transition-all duration-300 hover:scale-110"
+                           aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in text-lg"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- footer -->
-    <footer class="footer">
-        <a href="#inicio" class="footer__arriba">
-            <i class="fa-solid fa-angles-up"></i>
+            <!-- Divider -->
+            <div class="border-t border-slate-800 mb-8"></div>
+
+            <!-- Copyright -->
+            <div class="text-center text-slate-400 text-sm">
+                <p>
+                    © <span x-text="new Date().getFullYear()">2025</span> Rafael López.
+                    <span x-text="lang === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'">Todos los derechos reservados.</span>
+                </p>
+                <p class="mt-2 text-xs text-slate-500">
+                    <span x-text="lang === 'es' ? 'Hecho con' : 'Made with'">Hecho con</span>
+                    <i class="fa-solid fa-heart text-primary mx-1"></i>
+                    <span x-text="lang === 'es' ? 'y mucho café' : 'and lots of coffee'">y mucho café</span>
+                    ☕
+                </p>
+            </div>
+        </div>
+
+        <!-- Back to Top Button -->
+        <a href="#inicio"
+           id="backToTop"
+           class="fixed bottom-8 right-8 z-50 flex items-center justify-center w-14 h-14 bg-primary hover:bg-primary-light text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 invisible hover:scale-110 group"
+           aria-label="Back to top">
+            <i class="fa-solid fa-arrow-up text-xl group-hover:-translate-y-1 transition-transform duration-300"></i>
         </a>
-        <div class="footer__redes">
-            <a class="footer__a" href="https://www.facebook.com/profile.php?id=630147647"><i
-                    class="fa-brands fa-facebook-f"></i></a>
-            <a class="footer__a" href="https://github.com/Rafalopezdel"><i class="fa-brands fa-github"></i></a>
-            <a class="footer__a" href="https://www.linkedin.com/in/rafael-lópez-delgado"><i
-                    class="fa-brands fa-linkedin-in"></i></a>
-        </div>
     </footer>
 
-    <div id="toast" class="toast">✅ Mensaje enviado correctamente.</div>
-    <script src="script.js"></script>
+    <!-- Toast Notification -->
+    <div id="toast"
+         class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 px-6 py-4 bg-slate-900 dark:bg-slate-800 text-white rounded-xl shadow-2xl border border-primary/30 opacity-0 invisible transition-all duration-500 transform translate-y-4"
+         x-text="translations[lang]?.contact?.toast">
+        ✅ Mensaje enviado correctamente.
+    </div>
+
+    <!-- AOS (Animate On Scroll) JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Main App Logic -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- Animations -->
+    <script src="assets/js/animations.js"></script>
+
+    <!-- Debug Script (Temporary) -->
+    <script>
+        document.addEventListener('alpine:init', () => {
+            console.log('Alpine initialized');
+            console.log('Initial lang:', localStorage.getItem('lang'));
+            console.log('Initial theme:', localStorage.getItem('theme'));
+        });
+    </script>
+
+    <!-- Original Script (Temporary - will be removed in later phases) -->
+    <!-- <script src="script.js"></script> -->
+    <!-- COMENTADO: script.js interfiere con Alpine.js borrando las clases de Tailwind -->
 
 </body>
 
