@@ -115,7 +115,7 @@
                 <!-- Desktop Navigation -->
                 <nav class="hidden lg:flex items-center space-x-1" id="nav">
                     <a href="#inicio"
-                       @click="seleccionar()"
+                       
                        class="nav-link group relative px-4 py-2 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
                        :class="{ 'text-primary': activeSection === 'inicio' }">
                         <span x-text="translations[lang]?.nav?.home || 'INICIO'">INICIO</span>
@@ -123,7 +123,7 @@
                     </a>
 
                     <a href="#sobremi"
-                       @click="seleccionar()"
+                       
                        class="nav-link group relative px-4 py-2 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
                        :class="{ 'text-primary': activeSection === 'sobremi' }">
                         <span x-text="translations[lang]?.nav?.about || 'SOBRE MI'">SOBRE MI</span>
@@ -131,7 +131,7 @@
                     </a>
 
                     <a href="#skills"
-                       @click="seleccionar()"
+                       
                        class="nav-link group relative px-4 py-2 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
                        :class="{ 'text-primary': activeSection === 'skills' }">
                         <span x-text="translations[lang]?.nav?.skills || 'SKILLS'">SKILLS</span>
@@ -139,7 +139,7 @@
                     </a>
 
                     <a href="#curriculum"
-                       @click="seleccionar()"
+                       
                        class="nav-link group relative px-4 py-2 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
                        :class="{ 'text-primary': activeSection === 'curriculum' }">
                         <span x-text="translations[lang]?.nav?.curriculum || 'CURRICULUM'">CURRICULUM</span>
@@ -147,7 +147,7 @@
                     </a>
 
                     <a href="#portfolio"
-                       @click="seleccionar()"
+                       
                        class="nav-link group relative px-4 py-2 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
                        :class="{ 'text-primary': activeSection === 'portfolio' }">
                         <span x-text="translations[lang]?.nav?.portfolio || 'PORTFOLIO'">PORTFOLIO</span>
@@ -155,7 +155,7 @@
                     </a>
 
                     <a href="#contacto"
-                       @click="seleccionar()"
+                       
                        class="nav-link group relative px-4 py-2 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
                        :class="{ 'text-primary': activeSection === 'contacto' }">
                         <span x-text="translations[lang]?.nav?.contact || 'CONTACTO'">CONTACTO</span>
@@ -202,8 +202,7 @@
                             class="flex items-center justify-center w-10 h-10 rounded-lg bg-primary hover:bg-primary-light text-white transition-all duration-300"
                             aria-label="Toggle menu"
                             :aria-expanded="menuOpen">
-                        <i x-show="!menuOpen" class="fa-solid fa-bars text-lg"></i>
-                        <i x-show="menuOpen" class="fa-solid fa-times text-lg"></i>
+                        <i class="fa-solid text-lg" :class="menuOpen ? 'fa-times' : 'fa-bars'"></i>
                     </button>
                 </div>
             </div>
@@ -211,50 +210,57 @@
 
         <!-- Mobile Navigation Menu -->
         <div x-show="menuOpen"
-             class="lg:hidden border-t border-slate-800/50 bg-slate-900/98 dark:bg-slate-950/98 backdrop-blur-lg transition-all duration-200"
+             :style="menuOpen ? 'display: block !important;' : 'display: none;'"
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-2"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-2"
+             class="lg:hidden border-t border-slate-800/50 bg-slate-900/98 dark:bg-slate-950/98 backdrop-blur-lg"
              @click.away="menuOpen = false">
 
-            <nav class="px-4 py-6 space-y-2">
+            <nav class="px-4 py-6 space-y-2" style="display: block !important;">
                 <a href="#inicio"
-                   @click="menuOpen = false; seleccionar()"
+                   @click="menuOpen = false"
                    class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300"
                    :class="{ 'bg-primary/10 text-primary': activeSection === 'inicio' }">
-                    <span x-text="translations[lang]?.nav?.home || 'INICIO'">INICIO</span>
+                    <span x-text="translations[lang].nav.home || 'INICIO'">INICIO</span>
                 </a>
 
                 <a href="#sobremi"
-                   @click="menuOpen = false; seleccionar()"
+                   @click="menuOpen = false"
                    class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300"
                    :class="{ 'bg-primary/10 text-primary': activeSection === 'sobremi' }">
-                    <span x-text="translations[lang]?.nav?.about || 'SOBRE MI'">SOBRE MI</span>
+                    <span x-text="translations[lang].nav.about || 'SOBRE MI'">SOBRE MI</span>
                 </a>
 
                 <a href="#skills"
-                   @click="menuOpen = false; seleccionar()"
+                   @click="menuOpen = false"
                    class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300"
                    :class="{ 'bg-primary/10 text-primary': activeSection === 'skills' }">
-                    <span x-text="translations[lang]?.nav?.skills || 'SKILLS'">SKILLS</span>
+                    <span x-text="translations[lang].nav.skills || 'SKILLS'">SKILLS</span>
                 </a>
 
                 <a href="#curriculum"
-                   @click="menuOpen = false; seleccionar()"
+                   @click="menuOpen = false"
                    class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300"
                    :class="{ 'bg-primary/10 text-primary': activeSection === 'curriculum' }">
-                    <span x-text="translations[lang]?.nav?.curriculum || 'CURRICULUM'">CURRICULUM</span>
+                    <span x-text="translations[lang].nav.curriculum || 'CURRICULUM'">CURRICULUM</span>
                 </a>
 
                 <a href="#portfolio"
-                   @click="menuOpen = false; seleccionar()"
+                   @click="menuOpen = false"
                    class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300"
                    :class="{ 'bg-primary/10 text-primary': activeSection === 'portfolio' }">
-                    <span x-text="translations[lang]?.nav?.portfolio || 'PORTFOLIO'">PORTFOLIO</span>
+                    <span x-text="translations[lang].nav.portfolio || 'PORTFOLIO'">PORTFOLIO</span>
                 </a>
 
                 <a href="#contacto"
-                   @click="menuOpen = false; seleccionar()"
+                   @click="menuOpen = false"
                    class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300"
                    :class="{ 'bg-primary/10 text-primary': activeSection === 'contacto' }">
-                    <span x-text="translations[lang]?.nav?.contact || 'CONTACTO'">CONTACTO</span>
+                    <span x-text="translations[lang].nav.contact || 'CONTACTO'">CONTACTO</span>
                 </a>
             </nav>
         </div>
@@ -890,7 +896,7 @@
 
                     <!-- Image Container -->
                     <div class="relative h-64 md:h-72 lg:h-80 overflow-hidden">
-                        <img src="assets/img/authApp1.jpg"
+                        <img src="assets/img/whatsappAsistant.jpg"
                              alt="Dental WhatsApp Assistant - AI Chatbot with Claude & Firebase"
                              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
@@ -909,6 +915,7 @@
 
                         <!-- Tech Stack Tags -->
                         <div class="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">NodeJs</span>
                             <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">Claude AI</span>
                             <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">Firebase</span>
                             <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">WhatsApp API</span>
@@ -972,7 +979,7 @@
 
                     <!-- Image Container -->
                     <div class="relative h-64 md:h-72 lg:h-80 overflow-hidden">
-                        <img src="assets/img/webCorporativa4.jpg"
+                        <img src="assets/img/webCorporativaW1.jpg"
                              alt="WordPress Divi Corporate Site - Professional Business Website"
                              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
@@ -1013,7 +1020,7 @@
 
                     <!-- Image Container -->
                     <div class="relative h-64 md:h-72 lg:h-80 overflow-hidden">
-                        <img src="assets/img/gifsApp1.jpg"
+                        <img src="assets/img/webCorporativa4.jpg"
                              alt="React Corporate Website - Modern SPA with Tailwind"
                              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
@@ -1336,15 +1343,6 @@
 
     <!-- Animations -->
     <script src="assets/js/animations.js"></script>
-
-    <!-- Debug Script (Temporary) -->
-    <script>
-        document.addEventListener('alpine:init', () => {
-            console.log('Alpine initialized');
-            console.log('Initial lang:', localStorage.getItem('lang'));
-            console.log('Initial theme:', localStorage.getItem('theme'));
-        });
-    </script>
 
     <!-- Original Script (Temporary - will be removed in later phases) -->
     <!-- <script src="script.js"></script> -->
