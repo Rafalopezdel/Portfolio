@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal portfolio website built with Alpine.js and Tailwind CSS. It's a static site hosted on GitHub Pages at https://rafalopezdel.github.io/Portfolio/. The site supports bilingual content (Spanish/English) and showcases projects, skills, and professional experience.
+This is a personal portfolio website built with Alpine.js and Tailwind CSS. It's a static site hosted at https://portfoliorafael.lopezoft.co/. The site supports bilingual content (Spanish/English) and showcases projects, skills, and professional experience.
 
 ## Current State
 
@@ -293,10 +293,11 @@ The contact form uses FormSubmit.co as a third-party email service:
 
 ## Deployment
 
-The site is deployed to GitHub Pages:
-- **URL**: https://rafalopezdel.github.io/Portfolio/
+The site is deployed to:
+- **Primary URL**: https://portfoliorafael.lopezoft.co/ (GoDaddy hosting)
+- **GitHub Pages**: https://rafalopezdel.github.io/Portfolio/ (backup)
 - **Branch**: main
-- Any push to main automatically updates the live site
+- Any push to main automatically updates GitHub Pages
 
 ## Content Language & Translations
 

@@ -1,6 +1,6 @@
 # 🌐 Portfolio Web - Rafael López
 
-[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://rafalopezdel.github.io/Portfolio/)
+[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://portfoliorafael.lopezoft.co/)
 [![GitHub Pages](https://img.shields.io/badge/hosted-GitHub%20Pages-blue.svg)](https://pages.github.com/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
@@ -159,11 +159,11 @@ Usa en HTML:
 
 ## 🌐 Despliegue
 
-El sitio está configurado para desplegarse automáticamente en GitHub Pages:
+El sitio está desplegado en:
 
-1. **Push a main**: Cualquier cambio en la rama `main` se despliega automáticamente
-2. **URL en vivo**: https://rafalopezdel.github.io/Portfolio/
-3. **Configuración**: GitHub Pages → Source: main branch → root directory
+1. **URL principal**: https://portfoliorafael.lopezoft.co/ (GoDaddy hosting)
+2. **GitHub Pages**: https://rafalopezdel.github.io/Portfolio/ (backup)
+3. **Push a main**: Cualquier cambio en la rama `main` se despliega automáticamente en GitHub Pages
 
 ### Deploy Manual
 ```bash
@@ -178,7 +178,7 @@ git push origin main
 - **Email**: [rafalopezdel@gmail.com](mailto:rafalopezdel@gmail.com)
 - **LinkedIn**: [rafael-lópez-delgado](https://www.linkedin.com/in/rafael-lópez-delgado)
 - **GitHub**: [@Rafalopezdel](https://github.com/Rafalopezdel)
-- **Website**: [rafalopezdel.github.io/Portfolio](https://rafalopezdel.github.io/Portfolio/)
+- **Website**: [portfoliorafael.lopezoft.co](https://portfoliorafael.lopezoft.co/)
 
 ## 🤝 Contribuciones
 

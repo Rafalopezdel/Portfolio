@@ -1,0 +1,27 @@
+# Documentation files (not needed in repository)
+CLAUDE.md
+INSTRUCCIONES-GODADDY.txt
+
+# Backup files
+*.old.*
+*.old
+*.bak
+
+# Deployment files
+Portfolio-GoDaddy.zip
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.log
