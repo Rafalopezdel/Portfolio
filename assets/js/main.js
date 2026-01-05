@@ -135,8 +135,8 @@ function initCVDownload() {
   if (downloadButton) {
     downloadButton.addEventListener('click', function () {
       const enlace = document.createElement('a');
-      enlace.href = 'assets/pdf/HojaDeVidaRafaelLopez2025.pdf';
-      enlace.download = 'HojaDeVidaRafaelLopez2025.pdf';
+      enlace.href = 'assets/pdf/CV_Rafael_Lopez_Full_Stack_Developer_2026.pdf';
+      enlace.download = 'CV_Rafael_Lopez_Full_Stack_Developer_2026.pdf';
       enlace.target = '_blank';
       enlace.click();
     });
