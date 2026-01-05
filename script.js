@@ -13,8 +13,8 @@ function mostrarOcultarMenu(){
 // descargar CV con el boton
 document.getElementById('descargarCV').addEventListener('click', function () {
     const enlace = document.createElement('a');
-    enlace.href = 'assets/pdf/HojaDeVidaRafaelLopez2025.pdf'; // Ruta al PDF
-    enlace.download = 'HojaDeVidaRafaelLopez2025.pdf'; // Nombre con el que se descargará
+    enlace.href = 'assets/pdf/CV_Rafael_Lopez_Full_Stack_Developer_2026.pdf'; // Ruta al PDF
+    enlace.download = 'CV_Rafael_Lopez_Full_Stack_Developer_2026.pdf'; // Nombre con el que se descargará
     enlace.target = '_blank'; // Opcional: abrir en nueva pestaña
     enlace.click();
   });
