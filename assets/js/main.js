@@ -198,6 +198,7 @@ function mostrarToast() {
 
 /**
  * Initialize contact form submission
+ * Uses AJAX with FormSubmit.co for better UX (no page reload)
  */
 function initContactForm() {
   const form = document.getElementById("formularioContacto");

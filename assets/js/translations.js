@@ -21,7 +21,8 @@ const translations = {
     // Hero Section
     hero: {
       title: "RAFAEL LÓPEZ",
-      subtitle: "Ingeniero Industrial - Frontend Developer",
+      subtitle: "Full Stack Developer | MERN Stack • WordPress • IA Solutions",
+      tagline: "Creando experiencias web modernas e inteligentes con IA",
       viewProjects: "Ver Proyectos",
       contactMe: "Contáctame",
       scroll: "Desliza"
@@ -31,7 +32,7 @@ const translations = {
     about: {
       title: "Sobre Mí",
       intro: "Hola, soy Rafael López.",
-      description: "Profesional en Ingeniería Industrial con formación en desarrollo web y programación de aplicaciones. Cuento con habilidades técnicas en lenguajes como HTML, CSS y JavaScript, así como experiencia en el uso de herramientas y frameworks modernos como Angular, React, Node.js, Express, MongoDB, Bootstrap y GitHub. Mi perfil combina una sólida base académica con competencias prácticas que me permiten contribuir eficientemente al desarrollo de soluciones web innovadoras y funcionales.",
+      description: "Full Stack Developer con +3 años de experiencia construyendo aplicaciones web modernas y escalables. Especializado en MERN Stack (MongoDB, Express, React, Node.js), WordPress, y desarrollo de soluciones inteligentes con IA.\n\nMi experiencia incluye desde la creación de sitios corporativos en WordPress hasta sistemas complejos como chatbots con Claude AI integrados a WhatsApp Business API, automatizando procesos empresariales y mejorando la experiencia de usuarios finales.\n\nMi formación en Ingeniería Industrial me aporta una perspectiva única: no solo desarrollo código limpio y eficiente, sino que optimizo procesos, resuelvo problemas de negocio y mejoro la productividad mediante soluciones tecnológicas innovadoras.",
       personalDataTitle: "Datos Personales",
       birthday: "Cumpleaños",
       phone: "Teléfono",
@@ -39,7 +40,7 @@ const translations = {
       website: "Website",
       address: "Dirección",
       position: "Cargo",
-      positionValue: "Desarrollador Web Junior",
+      positionValue: "Full Stack Developer",
       interestsTitle: "Intereses",
       interests: {
         music: "MUSICA",
@@ -70,11 +71,14 @@ const translations = {
         angular: "Angular",
         react: "React",
         nodejs: "NodeJS",
-        communication: "Comunicación",
-        teamwork: "Trabajo en Equipo",
-        creativity: "Creatividad",
-        dedication: "Dedicación",
-        logic: "Logica Programación"
+        problemSolving: "Resolución de Problemas",
+        codeReview: "Code Review & Documentación",
+        agile: "Metodologías Ágiles",
+        technicalComm: "Comunicación Técnica",
+        projectMgmt: "Gestión de Proyectos",
+        processOpt: "Optimización de Procesos",
+        adaptability: "Adaptabilidad",
+        continuousLearning: "Aprendizaje Continuo"
       }
     },
 
@@ -109,16 +113,16 @@ const translations = {
           description: "Por mi formación académica, puedo desempeñarme como un profesional capaz de investigar, innovar y optimizar procesos de producción y servicios, buscando altos rendimientos económicos, financieros y sociales, así como mejorar la productividad, calidad y competitividad en las organizaciones."
         },
         lopezoft: {
-          title: "Frontend Developer Junior",
+          title: "Full Stack Developer",
           institution: "Lopezoft Soluciones Informáticas",
-          year: "2022 - Continúo",
-          description: "Apoyo y desarrollo de diferentes aplicaciones web con niveles de complejidad variada como Home Pages en WordPress, hasta aplicaciones de mayor complejidad utilizando Angular y React como Frameworks, entre otros desarrollos utilizando lenguajes como HTML, CSS (Saas) y JavaScript (Typescript) en el Frontend y herramientas como NodeJS y PHP en el lado del servidor trabajando con bases de datos SQL(MySQL) y NoSQL(MongoDB)."
+          year: "2022 - Presente",
+          description: "Desarrollo aplicaciones web full-stack para clientes de diversos sectores utilizando tecnologías modernas y siguiendo mejores prácticas de la industria.\n\n• Implementé chatbot inteligente con Claude AI integrado a WhatsApp Business API y Dentalink, automatizando gestión de citas dentales y reduciendo carga operativa del personal administrativo\n• Desarrollé 5+ sitios web corporativos con WordPress/Divi y React/Tailwind CSS, optimizados para SEO y rendimiento\n• Construí sistema de autenticación JWT en Angular/Nest con guards, renovación de tokens y manejo seguro de sesiones\n• Creé aplicación colaborativa MERN Stack (calendario de eventos) con CRUD completo, Redux Toolkit y persistencia en MongoDB Atlas\n• Trabajo con metodologías ágiles, Git/GitHub para control de versiones, y despliegue en Firebase y GitHub Pages\n\nStack: React, Angular, Node.js, Express, MongoDB, Firebase, TypeScript, WordPress, Tailwind CSS"
         },
         g3: {
           title: "Gerente General",
-          institution: "G3 seguridad",
+          institution: "G3 Seguridad",
           year: "2016 - 2022",
-          description: "Creación, desarrollo y gestión de una organización encargada de distribuir hardware de seguridad electrónica a nivel nacional con sede en 5 diferentes ciudades, atendiendo las necesidades y problemas surgidos durante todo el proceso comercial brindando soluciones eficientes tanto para los clientes como para la organización."
+          description: "Fundé y dirigí empresa de distribución de hardware de seguridad electrónica con operaciones en 5 ciudades a nivel nacional.\n\n• Lideré equipos multidisciplinarios en ventas, logística y operaciones, desarrollando habilidades de gestión que hoy aplico en proyectos de desarrollo de software\n• Optimicé procesos comerciales y operativos, reduciendo tiempos de entrega y mejorando satisfacción del cliente mediante análisis de datos y automatización\n• Gestioné proyectos complejos desde la planificación hasta la ejecución, coordinando recursos y resolviendo problemas críticos bajo presión\n• Negocié con proveedores y clientes, fortaleciendo capacidades de comunicación técnica y toma de decisiones estratégicas\n\nSkills transferibles: Gestión de proyectos, liderazgo, optimización de procesos, resolución de problemas, pensamiento analítico"
         },
         servientrega: {
           title: "Analista - Practicante",
@@ -184,7 +188,7 @@ const translations = {
       },
       info: {
         location: "CC Fiducentro Local Verde 33",
-        call: "Llamanos: (+57) 320 4686643",
+        call: "Llamanos: (+57) 300 6436473",
         email: "Email: rafalopezdel@gmail.com"
       },
       toast: "✅ Mensaje enviado correctamente."
@@ -447,8 +451,8 @@ const translations = {
           desc: "Ofertas de servicios detalladas con descripciones y beneficios"
         },
         portfolio: {
-          title: "Portfolio/Galería",
-          desc: "Muestra de proyectos pasados e historias de éxito de clientes"
+          title: "Tarjetas de Empleados",
+          desc: "Perfiles digitales de empleados accesibles mediante URL única o código QR"
         },
         blog: {
           title: "Blog",
@@ -673,7 +677,8 @@ const translations = {
     // Hero Section
     hero: {
       title: "RAFAEL LÓPEZ",
-      subtitle: "Industrial Engineer - Frontend Developer",
+      subtitle: "Full Stack Developer | MERN Stack • WordPress • AI Solutions",
+      tagline: "Creating modern and intelligent web experiences with AI",
       viewProjects: "View Projects",
       contactMe: "Contact Me",
       scroll: "Scroll"
@@ -683,7 +688,7 @@ const translations = {
     about: {
       title: "About Me",
       intro: "Hello, I'm Rafael López.",
-      description: "Industrial Engineering professional with training in web development and application programming. I have technical skills in languages such as HTML, CSS, and JavaScript, as well as experience using modern tools and frameworks such as Angular, React, Node.js, Express, MongoDB, Bootstrap, and GitHub. My profile combines a solid academic foundation with practical skills that allow me to efficiently contribute to the development of innovative and functional web solutions.",
+      description: "Full Stack Developer with +3 years of experience building modern and scalable web applications. Specialized in MERN Stack (MongoDB, Express, React, Node.js), WordPress, and developing intelligent solutions with AI.\n\nMy experience ranges from creating corporate websites in WordPress to complex systems like chatbots with Claude AI integrated with WhatsApp Business API, automating business processes and improving end-user experience.\n\nMy background in Industrial Engineering gives me a unique perspective: I not only develop clean and efficient code, but also optimize processes, solve business problems, and improve productivity through innovative technological solutions.",
       personalDataTitle: "Personal Information",
       birthday: "Birthday",
       phone: "Phone",
@@ -691,7 +696,7 @@ const translations = {
       website: "Website",
       address: "Address",
       position: "Position",
-      positionValue: "Junior Web Developer",
+      positionValue: "Full Stack Developer",
       interestsTitle: "Interests",
       interests: {
         music: "MUSIC",
@@ -722,11 +727,14 @@ const translations = {
         angular: "Angular",
         react: "React",
         nodejs: "NodeJS",
-        communication: "Communication",
-        teamwork: "Teamwork",
-        creativity: "Creativity",
-        dedication: "Dedication",
-        logic: "Programming Logic"
+        problemSolving: "Problem Solving",
+        codeReview: "Code Review & Documentation",
+        agile: "Agile/Scrum Methodologies",
+        technicalComm: "Technical Communication",
+        projectMgmt: "Project Management",
+        processOpt: "Process Optimization",
+        adaptability: "Adaptability",
+        continuousLearning: "Continuous Learning"
       }
     },
 
@@ -761,16 +769,16 @@ const translations = {
           description: "Through my academic training, I can perform as a professional capable of researching, innovating, and optimizing production and service processes, seeking high economic, financial, and social returns, as well as improving productivity, quality, and competitiveness in organizations."
         },
         lopezoft: {
-          title: "Junior Frontend Developer",
+          title: "Full Stack Developer",
           institution: "Lopezoft IT Solutions",
           year: "2022 - Present",
-          description: "Support and development of different web applications with varying levels of complexity such as Home Pages in WordPress, to more complex applications using Angular and React as Frameworks, among other developments using languages such as HTML, CSS (Sass) and JavaScript (Typescript) in the Frontend and tools such as NodeJS and PHP on the server side working with SQL(MySQL) and NoSQL(MongoDB) databases."
+          description: "Develop full-stack web applications for clients across various industries using modern technologies and following industry best practices.\n\n• Implemented intelligent chatbot with Claude AI integrated with WhatsApp Business API and Dentalink, automating dental appointment management and reducing administrative staff workload\n• Developed 5+ corporate websites with WordPress/Divi and React/Tailwind CSS, optimized for SEO and performance\n• Built JWT authentication system in Angular/Nest with guards, token renewal, and secure session management\n• Created collaborative MERN Stack application (event calendar) with full CRUD, Redux Toolkit, and MongoDB Atlas persistence\n• Work with Agile methodologies, Git/GitHub for version control, and deployment on Firebase and GitHub Pages\n\nStack: React, Angular, Node.js, Express, MongoDB, Firebase, TypeScript, WordPress, Tailwind CSS"
         },
         g3: {
           title: "General Manager",
           institution: "G3 Security",
           year: "2016 - 2022",
-          description: "Creation, development and management of an organization in charge of distributing electronic security hardware nationwide with headquarters in 5 different cities, attending to the needs and problems arising during the entire commercial process providing efficient solutions for both clients and the organization."
+          description: "Founded and managed electronic security hardware distribution company with operations in 5 cities nationwide.\n\n• Led multidisciplinary teams in sales, logistics, and operations, developing management skills that I now apply to software development projects\n• Optimized commercial and operational processes, reducing delivery times and improving customer satisfaction through data analysis and automation\n• Managed complex projects from planning to execution, coordinating resources and solving critical problems under pressure\n• Negotiated with suppliers and clients, strengthening technical communication and strategic decision-making capabilities\n\nTransferable skills: Project management, leadership, process optimization, problem-solving, analytical thinking"
         },
         servientrega: {
           title: "Analyst - Intern",
@@ -836,7 +844,7 @@ const translations = {
       },
       info: {
         location: "CC Fiducentro Local Verde 33",
-        call: "Call us: (+57) 320 4686643",
+        call: "Call us: (+57) 300 6436473",
         email: "Email: rafalopezdel@gmail.com"
       },
       toast: "✅ Message sent successfully."
@@ -1096,8 +1104,8 @@ const translations = {
           desc: "Detailed description of services offered with icons, benefits, and inquiry forms"
         },
         portfolio: {
-          title: "Portfolio",
-          desc: "Gallery of completed projects with filters by category and modal view"
+          title: "Employee Cards",
+          desc: "Digital employee profiles accessible via unique URL or QR code"
         },
         blog: {
           title: "Blog",
