@@ -120,3 +120,21 @@ sobre blanco es ilegible a 16 px. Ver la entrada de la fase A en `BITACORA.md`.
 Todo lo que se muestra va en **WebP** (calidad 82, ancho máximo 1600 px), con JPG de
 respaldo solo para la foto de perfil vía `<picture>`. En la fase A esto llevó `assets/img`
 de ~10 MB a 832 KB.
+
+## Imágenes de los proyectos (preparadas 2026-08-31, para la fase D)
+
+| Archivo | Proyecto | Origen |
+|---|---|---|
+| `jprAcademy1.webp` | JPR Academy | Captura del sitio en vivo, reutilizada de `apps/lopezoft/apps/web/public/img/casos/` |
+| `cafeMontelargo1.webp` | Café Montelargo | Ídem |
+| `whatsappChat.webp` | Asistente WhatsApp | Ídem. **Conversación real con el nombre del odontólogo ya difuminado.** Retrato 560×1192: va en la galería del detalle, no en la tarjeta |
+| `gcpfm1.webp` | GCPFM | **Captura propia** de `https://gcpfm.co.uk` (2026-08-31). El hero es un slider: hay que esperar a que termine la transición o salen dos diapositivas superpuestas |
+| `whatsappAsistant.webp` | Asistente WhatsApp | La que ya estaba: composición apaisada, sirve para la tarjeta |
+
+⛔ **Reglas de privacidad que aplican a estas imágenes** (de `apps/lopezoft/_spec/casos.md`):
+
+- **Ningún nombre, teléfono ni detalle de cita de un paciente.** La captura de WhatsApp vale
+  porque el nombre del odontólogo está difuminado y el interlocutor es un número de prueba.
+  Si algún día se sustituye, hay que volver a comprobarlo pixel a pixel.
+- **El precio que paga Café Montelargo no aparece en ningún sitio**, ni en imagen ni en texto.
+
