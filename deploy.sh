@@ -34,6 +34,21 @@ if grep -rq 'cdn\.tailwindcss\.com' index.html projects/; then
 fi
 [[ -f assets/js/tailwind.3.4.17.min.js ]] || { echo "ERROR: falta assets/js/tailwind.3.4.17.min.js"; exit 1; }
 
+# El .htaccess cachea CSS y JS UN MES. Sin sellar la version, quien ya visito el
+# sitio sigue viendo los estilos viejos durante 30 dias despues de desplegar.
+# `?v=` solo aparece en los assets propios (custom.css, estilo.css, translations.js,
+# main.js, animations.js): por eso basta con reescribir el valor, sin retroreferencia.
+sellar_version() {
+  local stamp="$1"
+  local n=0
+  for f in index.html projects/project*.html; do
+    [[ -f "$f" ]] || continue
+    sed -i "s/?v=[0-9A-Za-z]*/?v=${stamp}/g" "$f"
+    n=$((n+1))
+  done
+  echo "    $n archivos sellados con ?v=$stamp"
+}
+
 if [[ "${1:-}" == "--dry-run" ]]; then
   echo "==> Se subiría a $SRV:$DOCROOT"
   tar czf - "${INCLUIR[@]}" | tar tzf - | sed 's/^/    /'
@@ -42,6 +57,11 @@ if [[ "${1:-}" == "--dry-run" ]]; then
   exit 0
 fi
 
+echo "==> 0. Sellando la versión de los assets propios"
+sellar_version "$(date +%Y%m%d%H%M)"
+echo "    (queda escrito en los HTML del repo: commitéalo junto al resto)"
+
+echo
 echo "==> 1. Respaldo del sitio actual en el servidor"
 ssh "$SRV" "cd '$DOCROOT' && tar czf '$BAK' . && ls -la '$BAK'"
 

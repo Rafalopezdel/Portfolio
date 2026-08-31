@@ -31,6 +31,11 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://portfoliorafael.lopezoft.co/assets/img/calendarApp1.webp">
 
+    <!-- Tipografía de marca: Montserrat (titulares) + Inter (cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
         integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
@@ -47,7 +52,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/custom.css?v=202608311300">
 
     <!-- Tailwind Config -->
     <script>
@@ -56,14 +61,24 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#1CB698',
-                        'primary-light': '#10B981',
-                        'primary-dark': '#059669',
+                        // Acento ADAPTATIVO: la variable cambia según la superficie
+                        // (ver assets/css/custom.css). Azul sobre claro, cian sobre oscuro,
+                        // porque #2563EB sobre navy da 2,5:1 — prohibido por _spec/marca.md.
+                        primary: 'rgb(var(--acento) / <alpha-value>)',
+                        'primary-light': 'rgb(var(--acento-2) / <alpha-value>)',
+                        'primary-dark': '#1E3A8A',
+                        // FIJOS: fondos rellenos que llevan texto blanco encima.
+                        brand: '#2563EB',
+                        'brand-deep': '#1E3A8A',
+                        'brand-cyan': '#38BDF8',
+                        navy: '#0D1B2A',
+                        ink: '#64748B',
+                        mist: '#F3F4F6',
                     },
                     fontFamily: {
-                        heading: ['Righteous', 'cursive'],
-                        body: ['Work Sans', 'sans-serif'],
-                    }
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        body: ['Inter', 'system-ui', 'sans-serif'],
+                    },
                 }
             }
         }
@@ -73,7 +88,7 @@
 <body class="font-body bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-300">
 
     <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-800">
+    <header class="surface-dark fixed top-0 left-0 right-0 z-50 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div class="flex items-center justify-between">
                 <a href="../index.html#portfolio"
@@ -103,7 +118,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 overflow-hidden">
+    <section class="surface-dark relative pt-32 pb-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 overflow-hidden">
         <!-- Decorative Background -->
         <div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary-light/10"></div>
         <div class="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
@@ -400,7 +415,7 @@
     <section class="py-16 px-6 bg-gradient-to-br from-slate-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
         <div class="max-w-5xl mx-auto text-center" data-aos="fade-up" data-aos-duration="1000">
             <a href="../index.html#portfolio"
-               class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-primary-light text-white rounded-full font-bold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+               class="inline-flex items-center gap-3 px-8 py-4 bg-brand text-white rounded-full font-bold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
                 <i class="fa-solid fa-arrow-left"></i>
                 <span x-text="translations[lang].projectDetail.backToPortfolio">Back to Portfolio</span>
             </a>
@@ -417,7 +432,7 @@
     </footer>
 
     <!-- Translations -->
-    <script src="../assets/js/translations.js"></script>
+    <script src="../assets/js/translations.js?v=202608311300"></script>
 
     <!-- Scripts -->
     <script>

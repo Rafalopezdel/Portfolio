@@ -34,12 +34,16 @@ Qué hace, en orden:
 
 1. **Guardias previas.** Aborta si algún HTML apunta a `cdn.tailwindcss.com` o si falta el
    Tailwind local (ver Trampa 1).
-2. **Respaldo en el servidor:** `~/backup-portfolio-AAAA-MM-DD-HHMM.tgz` con el sitio actual.
-3. **Sube** `index.html`, `estilo.css`, `script.js`, `.htaccess`, `assets/` y `projects/`
+2. **Sella `?v=<fecha+hora>`** en `custom.css`, `estilo.css`, `translations.js`, `main.js` y
+   `animations.js`. Sin esto, el `.htaccess` cachea CSS y JS **un mes** y quien ya visitó
+   el sitio no vería el cambio en 30 días (Trampa 4). **Deja el cambio escrito en los HTML
+   del repo: hay que commitearlo.**
+3. **Respaldo en el servidor:** `~/backup-portfolio-AAAA-MM-DD-HHMM.tgz` con el sitio actual.
+4. **Sube** `index.html`, `estilo.css`, `script.js`, `.htaccess`, `assets/` y `projects/`
    por `tar` sobre SSH. **No sube** `docs/`, `README.md`, `CLAUDE.md`, `deploy.sh`, `.git/`
    ni los `*.old.*`.
-4. **Permisos:** directorios `755`, archivos `644`. (Lo que había estaba en `666`/`777`.)
-5. **Verifica en vivo** que el HTML servido apunta al Tailwind local.
+5. **Permisos:** directorios `755`, archivos `644`. (Lo que había estaba en `666`/`777`.)
+6. **Verifica en vivo** que el HTML servido apunta al Tailwind local.
 
 **Es aditivo: no borra en el servidor lo que borres en el repo.** Tras un despliegue que
 elimina archivos, hay que limpiarlos a mano. Para ver qué sobra en producción:
@@ -131,7 +135,27 @@ regla, pero el hábito vale igual:
 curl -s https://portfoliorafael.lopezoft.co/RUTA | head -c 200
 ```
 
-### 4. ⚠️ Si sale `Shell access is not enabled on your account!`
+### 4. 🔴 El `.htaccess` cachea CSS y JS un mes
+
+```apache
+ExpiresByType text/css        "access plus 1 month"
+ExpiresByType application/javascript "access plus 1 month"
+```
+
+Un cambio de estilos **no lo ve** quien ya visitó el sitio, hasta 30 días después. Y no da
+ningún síntoma: el `curl` trae el CSS nuevo, el navegador usa el viejo de su caché.
+Costó media hora en la fase B creyendo que el CSS estaba mal.
+
+**Por eso `deploy.sh` sella `?v=` automáticamente.** Si algún día se añade otro asset propio,
+hay que darle su `?v=` a mano la primera vez; a partir de ahí el script lo mantiene.
+
+Para comprobar qué versión hay en vivo:
+
+```bash
+curl -sS https://portfoliorafael.lopezoft.co/ | grep -o '?v=[0-9]*' | sort -u
+```
+
+### 5. ⚠️ Si sale `Shell access is not enabled on your account!`
 
 **No es la llave.** La autenticación funcionó; el shell está en `noshell`. El interruptor
 maestro vive en el **panel de GoDaddy**, no en cPanel:

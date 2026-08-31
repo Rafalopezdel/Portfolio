@@ -35,6 +35,11 @@
     <meta name="twitter:description" content="Full Stack Developer. Construyo y opero plataformas en producción: asistentes con IA sobre WhatsApp, e-commerce headless con pagos locales y sitios corporativos.">
     <meta name="twitter:image" content="https://portfoliorafael.lopezoft.co/assets/img/og.jpg">
 
+    <!-- Tipografía de marca: Montserrat (titulares) + Inter (cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
         integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
@@ -44,7 +49,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Translations - MUST load before Alpine.js -->
-    <script src="assets/js/translations.js"></script>
+    <script src="assets/js/translations.js?v=202608311300"></script>
 
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
@@ -66,13 +71,23 @@
                 },
                 extend: {
                     colors: {
-                        primary: '#1CB698',
-                        'primary-light': '#10B981',
-                        'primary-dark': '#059669',
+                        // Acento ADAPTATIVO: la variable cambia según la superficie
+                        // (ver assets/css/custom.css). Azul sobre claro, cian sobre oscuro,
+                        // porque #2563EB sobre navy da 2,5:1 — prohibido por _spec/marca.md.
+                        primary: 'rgb(var(--acento) / <alpha-value>)',
+                        'primary-light': 'rgb(var(--acento-2) / <alpha-value>)',
+                        'primary-dark': '#1E3A8A',
+                        // FIJOS: fondos rellenos que llevan texto blanco encima.
+                        brand: '#2563EB',
+                        'brand-deep': '#1E3A8A',
+                        'brand-cyan': '#38BDF8',
+                        navy: '#0D1B2A',
+                        ink: '#64748B',
+                        mist: '#F3F4F6',
                     },
                     fontFamily: {
-                        heading: ['Righteous', 'cursive'],
-                        body: ['Work Sans', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        body: ['Inter', 'system-ui', 'sans-serif'],
                     },
                 }
             }
@@ -80,10 +95,10 @@
     </script>
 
     <!-- Custom CSS (Variables & Overrides) -->
-    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/custom.css?v=202608311300">
 
     <!-- Original CSS (Temporary - will be removed in later phases) -->
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="estilo.css?v=202608311300">
 
     <!-- Alpine.js Cloak -->
     <style>
@@ -147,7 +162,7 @@
         }"
         @scroll.window="scrolled = window.pageYOffset > 50"
         :class="{ 'header-scrolled': scrolled }"
-        class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-800/50 dark:border-slate-700/50">
+        class="surface-dark fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-800/50 dark:border-slate-700/50">
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
@@ -248,7 +263,7 @@
                     </button>
 
                     <button @click="menuOpen = !menuOpen"
-                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-primary hover:bg-primary-light text-white transition-all duration-300"
+                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-brand hover:bg-brand-deep text-white transition-all duration-300"
                             aria-label="Toggle menu"
                             :aria-expanded="menuOpen">
                         <i class="fa-solid text-lg" :class="menuOpen ? 'fa-times' : 'fa-bars'"></i>
@@ -326,7 +341,7 @@
     <div class="h-20"></div>
 
     <!-- HERO SECTION -->
-    <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+    <section id="inicio" class="surface-dark relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
 
         <!-- Animated Background Gradient -->
         <div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary-light/10 animate-gradient-shift"></div>
@@ -419,13 +434,13 @@
                  data-aos-duration="1000"
                  data-aos-delay="1000">
                 <a href="#portfolio"
-                   class="group relative px-8 py-4 bg-gradient-to-r from-primary to-primary-light text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/50">
+                   class="group relative px-8 py-4 bg-brand text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/50">
                     <span class="relative z-10" x-text="translations[lang]?.hero?.viewProjects || 'Ver Proyectos'">Ver Proyectos</span>
-                    <div class="absolute inset-0 bg-gradient-to-r from-primary-light to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 bg-brand-deep opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </a>
 
                 <a href="#contacto"
-                   class="px-8 py-4 border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                   class="px-8 py-4 border-2 border-primary text-primary hover:bg-brand hover:text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg">
                     <span x-text="translations[lang]?.hero?.contactMe || 'Contáctame'">Contáctame</span>
                 </a>
             </div>
@@ -573,10 +588,10 @@
                  data-aos-duration="1000"
                  data-aos-delay="600">
                 <button id="descargarCV"
-                        class="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-primary-light text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/50">
+                        class="group relative inline-flex items-center gap-3 px-8 py-4 bg-brand text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/50">
                     <span class="relative z-10" x-text="translations[lang]?.about?.downloadCV">Descargar CV</span>
                     <i class="fa-solid fa-download relative z-10 group-hover:animate-bounce"></i>
-                    <div class="absolute inset-0 bg-gradient-to-r from-primary-light to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 bg-brand-deep opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </button>
             </div>
         </div>
@@ -608,91 +623,91 @@
                         <span x-text="translations[lang]?.skills?.technical">Technical Skills</span>
                     </h3>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="300">
                             JavaScript
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="350">
                             HTML & CSS
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="400">
                             TypeScript
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="450">
                             React
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="500">
                             Angular
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="550">
                             Node.js
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="600">
                             Express.js
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="650">
                             MongoDB
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="700">
                             MySQL
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="750">
                             Nest.js
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="775">
                             Next.js
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="800">
                             WordPress & Divi
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="825">
                             Firebase
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="850">
                             Tailwind CSS
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="850">
                             Bootstrap
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="900">
                             Git & GitHub
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="950">
                             REST APIs
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="1000">
                             Responsive Design
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="1025">
                             Claude AI API
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="1050">
                             WhatsApp Business API
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="1075">
                             Redux Toolkit
                         </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
+                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                               data-aos="fade-up" data-aos-delay="1100">
                             JWT Authentication
                         </span>
@@ -1242,10 +1257,10 @@
 
                         <!-- Submit Button -->
                         <button type="submit"
-                                class="group relative w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-primary to-primary-light text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/50 flex items-center justify-center gap-3">
+                                class="group relative w-full sm:w-auto px-8 py-4 bg-brand text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/50 flex items-center justify-center gap-3">
                             <span class="relative z-10" x-text="translations[lang]?.contact?.form.send">Enviar Mensaje</span>
                             <i class="fa-solid fa-paper-plane relative z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"></i>
-                            <div class="absolute inset-0 bg-gradient-to-r from-primary-light to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute inset-0 bg-brand-deep opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </button>
                     </form>
                 </div>
@@ -1324,7 +1339,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="relative bg-slate-900 dark:bg-slate-950 pt-16 pb-8 overflow-hidden">
+    <footer class="surface-dark relative bg-slate-900 dark:bg-slate-950 pt-16 pb-8 overflow-hidden">
 
         <!-- Decorative Background -->
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
@@ -1406,7 +1421,7 @@
         <!-- Back to Top Button -->
         <a href="#inicio"
            id="backToTop"
-           class="fixed bottom-8 right-8 z-50 flex items-center justify-center w-14 h-14 bg-primary hover:bg-primary-light text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 invisible hover:scale-110 group"
+           class="fixed bottom-8 right-8 z-50 flex items-center justify-center w-14 h-14 bg-brand hover:bg-brand-deep text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 invisible hover:scale-110 group"
            aria-label="Back to top">
             <i class="fa-solid fa-arrow-up text-xl group-hover:-translate-y-1 transition-transform duration-300"></i>
         </a>
@@ -1415,7 +1430,7 @@
         <a href="https://wa.me/573006436473"
            target="_blank"
            rel="noopener noreferrer"
-           class="fixed bottom-8 left-8 z-50 flex items-center justify-center w-14 h-14 bg-primary hover:bg-primary-light text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
+           class="fixed bottom-8 left-8 z-50 flex items-center justify-center w-14 h-14 bg-brand hover:bg-brand-deep text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
            aria-label="Contact via WhatsApp">
             <i class="fa-brands fa-whatsapp text-2xl group-hover:rotate-12 transition-transform duration-300"></i>
         </a>
@@ -1432,10 +1447,10 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <!-- Main App Logic -->
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js?v=202608311300"></script>
 
     <!-- Animations -->
-    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/animations.js?v=202608311300"></script>
 
     <!-- Original Script (Temporary - will be removed in later phases) -->
     <!-- <script src="script.js"></script> -->

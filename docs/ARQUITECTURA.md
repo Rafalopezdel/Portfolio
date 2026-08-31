@@ -88,6 +88,55 @@ Nada más. Las páginas de `projects/` llevan un único scope en `<html>` con `t
 | `translations?.[lang]?.nav?.home` | Encadenamiento opcional que oculta errores reales. `translations.js` se carga primero, no hace falta |
 | Scopes anidados con estado | El estado vive en `<body>` y punto |
 
+## Sistema visual (fase B, 2026-08-31)
+
+Tipografía y paleta salen de `apps/lopezoft/_spec/marca.md`. **No se improvisan.**
+
+| | |
+|---|---|
+| Titulares | **Montserrat** 600/700 (`font-heading`) |
+| Cuerpo | **Inter** 400/500/600/700 (`font-body`) |
+| Carga | `<link>` con `preconnect` en el `<head>` de cada HTML — **no** un `@import` dentro del CSS, que bloquea el render |
+
+### El acento cambia según la superficie, no según el tema
+
+La regla de marca es dura: **`#2563EB` sobre navy da 2,5:1 y no se usa.** Sobre fondo oscuro
+el acento es el cian `#38BDF8` (8,12:1). Como el sitio mezcla secciones claras, oscuras y
+que cambian con el tema, los tokens `primary` y `primary-light` **leen variables CSS**:
+
+```js
+// tailwind.config (los 5 HTML)
+primary:         'rgb(var(--acento) / <alpha-value>)',
+'primary-light': 'rgb(var(--acento-2) / <alpha-value>)',
+```
+
+```css
+/* assets/css/custom.css */
+:root                       { --acento: 37 99 235;  --acento-2: 56 189 248; }   /* claro */
+.dark, [data-theme="dark"]  { --acento: 56 189 248; --acento-2: 125 211 252; }  /* oscuro */
+.surface-dark               { --acento: 56 189 248; --acento-2: 125 211 252; }  /* SIEMPRE oscura */
+```
+
+**`.surface-dark`** marca lo que es oscuro pase lo que pase con el tema: el `<header>`, el
+hero `#inicio`, el `<footer>` de la portada, y en las páginas de proyecto el header y el hero.
+Sin esa clase, en modo claro el acento saldría azul sobre navy — el caso prohibido.
+
+### Los tokens FIJOS son para fondos rellenos
+
+`brand` (#2563EB), `brand-deep` (#1E3A8A) y `brand-cyan` (#38BDF8) **no** cambian.
+
+⚠️ **Un fondo relleno con texto blanco encima nunca usa `primary`.** Sobre superficie oscura
+`primary` es cian, y blanco sobre cian da 1,9:1. Por eso los botones sólidos (CTA del hero,
+"Descargar CV", "Enviar mensaje", los de las páginas de proyecto) usan `bg-brand
+hover:bg-brand-deep text-white` — blanco sobre `#2563EB` da 5,17:1 en cualquier fondo.
+
+### Versionado de assets (`?v=`)
+
+El `.htaccess` cachea CSS y JS **un mes**. Sin versionar, quien ya visitó el sitio seguiría
+viendo los estilos viejos 30 días después de desplegar. **`deploy.sh` sella `?v=<fecha+hora>`
+automáticamente antes de subir** y deja el cambio escrito en los HTML del repo: hay que
+commitearlo junto al resto. Pasó de verdad durante la fase B.
+
 ## Las trampas de este proyecto
 
 1. **`estilo.css` heredado oculta el `<nav>`.** Por eso el menú móvil lleva

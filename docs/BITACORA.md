@@ -2,6 +2,46 @@
 
 > Entrada nueva **arriba**. Formato en `CLAUDE.md §4`.
 
+## 2026-08-31 — Fase B: tipografía y paleta de marca
+
+- **Qué se hizo:**
+  - **Righteous + Work Sans → Montserrat + Inter**, en los 5 HTML, en `estilo.css` y en
+    `custom.css`. Las fuentes se cargan ahora con `<link>` + `preconnect`; antes venían de un
+    `@import` dentro de `estilo.css`, que obliga al navegador a descargar y parsear el CSS
+    entero antes de siquiera pedirlas.
+  - **Paleta teal → paleta de marca Lopezoft.** 28 colores literales sustituidos en
+    `estilo.css`, variables de `custom.css` actualizadas y `tailwind.config` reescrito en los
+    5 HTML.
+  - **Acento adaptativo por superficie** con variables CSS (detalle en `ARQUITECTURA.md`).
+    Evitó tener que editar a mano más de 300 usos de `primary` y, sobre todo, evita el caso
+    prohibido por `marca.md`: azul #2563EB sobre navy, 2,5:1.
+  - **Botones sólidos a color fijo** (`bg-brand`): sobre superficie oscura el acento es cian
+    y blanco sobre cian es ilegible. De paso, el CTA dejó de ser un degradado y quedó sólido
+    — se ve más serio.
+  - **Versionado `?v=` de los assets propios**, sellado automáticamente por `deploy.sh`.
+- **Archivos tocados:** `index.html`, `projects/project{1..5}.html`, `assets/css/custom.css`,
+  `estilo.css`, `deploy.sh`, `docs/ARQUITECTURA.md`.
+- **¿Desplegado?:** **sí**, verificado en vivo en claro y en oscuro. Respaldo previo:
+  `~/backup-portfolio-2026-08-31-1300.tgz`.
+- **Siguiente paso:** fase C — hero, "Sobre mí", skills y currículum.
+
+### Dos cosas que costaron y no deben repetirse
+
+1. 🔴 **El `.htaccess` cachea CSS/JS un mes.** Media hora perdida creyendo que las variables
+   CSS no funcionaban: el navegador servía la hoja vieja. Por eso existe ahora el sellado
+   `?v=` en `deploy.sh`. **Si un cambio de estilo "no se ve", sospecha de la caché antes que
+   del CSS.**
+2. ⚠️ **Un `sed` con retroreferencia generado desde Python perdió el ``** y habría borrado
+   el nombre del archivo en vez de cambiarle la versión. Se detectó probándolo en un sandbox
+   antes de usarlo. La versión final no usa retroreferencia: `?v=` solo aparece en los assets
+   propios, así que basta con reescribir el valor.
+
+### ⬜ Pendiente resuelto de la fase A
+
+✅ **Las 40 imágenes huérfanas del servidor, borradas** (autorizado por Rafael el 2026-08-31).
+`assets/img` en producción: **11 MB → 832 KB**.
+
+
 ## 2026-08-31 — Fase A: identidad visual, metadatos y peso
 
 Primera de las cinco fases del rediseño (ver "Plan de rediseño" al final de este archivo).
@@ -51,7 +91,7 @@ borrado remoto quedó bloqueado por el clasificador de permisos. Comando en
 | Fase | Qué | Estado |
 |---|---|---|
 | **A** | Favicon, foto, metadatos, Open Graph, imágenes a WebP | ✅ 2026-08-31 |
-| **B** | Montserrat + Inter y paleta de marca, en `index.html` **y** las 5 páginas de `projects/` (el `tailwind.config` está duplicado en cada una) | ⬜ |
+| **B** | Montserrat + Inter y paleta de marca, en `index.html` **y** las 5 páginas de `projects/` (el `tailwind.config` está duplicado en cada una) | ✅ 2026-08-31 |
 | **C** | Hero, "Sobre mí", skills en chips, currículum reordenado. ES y EN en el mismo cambio | ⬜ |
 | **D** | Los 4 proyectos: 3 páginas nuevas (JPR Academy, Café Montelargo, GCPFM), reescritura del asistente, retiro de CalendarioApp y Website Corporativa, borrado de `project5.html` del repo y del servidor. Fila secundaria con `lopezoft.co` y `nutrexcol.com` | ⬜ |
 | **E** | **Hoja de vida**: regenerar el CV en PDF para que concuerde con el portafolio (mismo posicionamiento, mismos proyectos, mismas cifras) y sustituir el de 4 MB | ⬜ |

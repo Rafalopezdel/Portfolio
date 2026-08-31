@@ -4,13 +4,44 @@
    ======================================== */
 
 /* ========================================
+   ACENTO ADAPTATIVO A LA SUPERFICIE
+   ----------------------------------------
+   Los tokens `primary` y `primary-light` de Tailwind leen estas variables
+   (ver el tailwind.config de cada HTML). No son un capricho: la paleta de marca
+   (apps/lopezoft/_spec/marca.md) prohíbe el azul #2563EB sobre navy — da 2,5:1.
+   Sobre superficie oscura el acento es el cian #38BDF8, que da 8,12:1.
+
+   Tres ámbitos:
+     :root         → superficie clara (modo claro)
+     .dark         → superficie oscura (modo oscuro)
+     .surface-dark → SIEMPRE oscura, da igual el tema: hero, header y footer
+   ======================================== */
+:root {
+  --acento: 37 99 235;        /* #2563EB azul  · 5,17:1 sobre blanco */
+  --acento-2: 56 189 248;     /* #38BDF8 cian  · segundo tono del degradado */
+}
+
+.dark,
+[data-theme="dark"] {
+  --acento: 56 189 248;       /* #38BDF8 cian  · 8,12:1 sobre #0D1B2A */
+  --acento-2: 125 211 252;    /* #7DD3FC       · degradado sobre oscuro */
+}
+
+.surface-dark,
+.dark .surface-dark,
+[data-theme="dark"] .surface-dark {
+  --acento: 56 189 248;
+  --acento-2: 125 211 252;
+}
+
+/* ========================================
    CSS VARIABLES - LIGHT THEME (DEFAULT)
    ======================================== */
 :root {
   /* Primary Colors */
-  --color-primary: #1CB698;
-  --color-primary-light: #10B981;
-  --color-primary-dark: #059669;
+  --color-primary: #2563EB;
+  --color-primary-light: #38BDF8;
+  --color-primary-dark: #1E3A8A;
 
   /* Background Colors */
   --color-bg-primary: #FFFFFF;
@@ -35,7 +66,7 @@
 
   /* Gradients */
   --gradient-hero: linear-gradient(135deg, #F9FAFB 0%, #E5E7EB 100%);
-  --gradient-primary: linear-gradient(135deg, #1CB698 0%, #10B981 100%);
+  --gradient-primary: linear-gradient(135deg, #2563EB 0%, #38BDF8 100%);
 }
 
 /* ========================================
@@ -43,9 +74,9 @@
    ======================================== */
 [data-theme="dark"] {
   /* Primary Colors */
-  --color-primary: #10B981;
-  --color-primary-light: #34D399;
-  --color-primary-dark: #059669;
+  --color-primary: #38BDF8;
+  --color-primary-light: #7DD3FC;
+  --color-primary-dark: #1E3A8A;
 
   /* Background Colors */
   --color-bg-primary: #0F172A;
@@ -70,7 +101,7 @@
 
   /* Gradients */
   --gradient-hero: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-  --gradient-primary: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+  --gradient-primary: linear-gradient(135deg, #38BDF8 0%, #7DD3FC 100%);
 }
 
 /* ========================================
@@ -88,7 +119,7 @@ html {
 }
 
 body {
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   line-height: 1.6;
@@ -114,7 +145,7 @@ a {
    TYPOGRAPHY
    ======================================== */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Righteous', cursive;
+  font-family: 'Montserrat', system-ui, sans-serif;
   color: var(--color-text-primary);
   line-height: 1.2;
 }

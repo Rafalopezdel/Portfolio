@@ -1,8 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Work+Sans:wght@100;300;400;600;800&display=swap');
+/* Las fuentes se cargan con <link> en el <head> de cada HTML.
+   Un @import dentro del CSS bloquea el render: el navegador debe
+   descargar y parsear este archivo antes de siquiera pedirlas. */
 
 * {
     box-sizing: border-box;
-    font-family: 'Work Sans';
+    font-family: 'Inter';
     margin: 0;
     padding: 0;
 }
@@ -32,9 +34,9 @@ html {
 }
 
 .menu__logo a {
-    font-family: 'Righteous';
+    font-family: 'Montserrat';
     font-size: 36px;
-    color: #1CB698;
+    color: #2563EB;
     text-decoration: none;
 }
 
@@ -53,11 +55,11 @@ html {
 }
 
 .menu__li a:hover {
-    color: #1CB698;
+    color: #2563EB;
 }
 
 .nav-responsive {
-    background-color: #1CB698;
+    background-color: #2563EB;
     color: #fff;
     padding: 5px 10px;
     border-radius: 5px;
@@ -87,7 +89,7 @@ html {
 
 .inicio__img {
     margin-top: 40px;
-    border: 10px solid #1CB698;
+    border: 10px solid #2563EB;
     display: block;
     width: 80%;
     margin: auto;
@@ -97,7 +99,7 @@ html {
 .inicio__h1 {
     margin-top: 40px;
     font-size: 42px;
-    font-family: 'Righteous';
+    font-family: 'Montserrat';
 }
 
 .inicio__h2 {
@@ -120,7 +122,7 @@ html {
 }
 
 .inicio__redes a:hover {
-    background-color: #1CB698;
+    background-color: #2563EB;
 }
 
 /* sobre mi */
@@ -137,7 +139,7 @@ html {
 
 .sobremi__h2 {
     font-size: 48px;
-    font-family: 'Righteous';
+    font-family: 'Montserrat';
     text-align: center;
     padding: 20px 0;
 
@@ -151,7 +153,7 @@ html {
 }
 
 .sobremi__p span {
-    color: #1CB698;
+    color: #2563EB;
     font-weight: bold;
 }
 
@@ -165,7 +167,7 @@ html {
 
 .sobremi__h3 {
     font-size: 28px;
-    font-family: 'Righteous';
+    font-family: 'Montserrat';
     margin-bottom: 25px;
 }
 
@@ -181,13 +183,13 @@ html {
 
 .sobremi__li strong {
     display: inline-block;
-    color: #1CB698;
+    color: #2563EB;
     width: 130px;
     margin-bottom: 3px;
 }
 
 .sobremi__li span {
-    background-color: #1CB698;
+    background-color: #2563EB;
     padding: 3px;
     font-weight: bold;
     border-radius: 5px;
@@ -213,7 +215,7 @@ html {
 }
 
 .sobremi__interes:hover {
-    background-color: #1CB698;
+    background-color: #2563EB;
 }
 
 .sobremi__interes i {
@@ -241,7 +243,7 @@ html {
     left: 0;
     width: 0;
     height: 100%;
-    background-color: #1CB698;
+    background-color: #2563EB;
     z-index: -1;
     transition: 1s;
 }
@@ -291,7 +293,7 @@ html {
 .skills__dominio li span {
     height: 40px;
     width: 40px;
-    background-color: #1CB698;
+    background-color: #2563EB;
     border-radius: 50px;
     line-height: 40px;
     text-align: center;
@@ -301,7 +303,7 @@ html {
 
 .skills__h2 {
     font-size: 48px;
-    font-family: 'Righteous';
+    font-family: 'Montserrat';
     text-align: center;
     padding: 20px 0;
 }
@@ -317,7 +319,7 @@ html {
 
 .skills__h3 {
     font-size: 28px;
-    font-family: 'Righteous';
+    font-family: 'Montserrat';
     margin-bottom: 25px;
 }
 
@@ -336,7 +338,7 @@ html {
 }
 
 .skills__progreso {
-    background-color: #1CB698;
+    background-color: #2563EB;
     position: absolute;
     top: 0;
     left: 0;
@@ -347,7 +349,7 @@ html {
     position: absolute;
     height: 40px;
     width: 40px;
-    background-color: #1CB698;
+    background-color: #2563EB;
     border-radius: 50px;
     line-height: 40px;
     text-align: center;
@@ -521,7 +523,7 @@ html {
 
 .curriculum__h2 {
     font-size: 48px;
-    font-family: 'Righteous';
+    font-family: 'Montserrat';
     text-align: center;
     padding: 20px 0;
 
@@ -539,7 +541,7 @@ html {
 
 .curriculum__h3 {
     font-size: 28px;
-    font-family: 'Righteous';
+    font-family: 'Montserrat';
     margin-bottom: 25px;
 }
 
@@ -564,7 +566,7 @@ html {
 }
 
 .curriculum__casa {
-    color: #1CB698;
+    color: #2563EB;
     font-size: 22px;
     font-weight: bold;
     display: block;
@@ -572,7 +574,7 @@ html {
 
 .curriculum__fecha {
     display: block;
-    color: #1CB698;
+    color: #2563EB;
     margin-bottom: 10px;
 }
 
@@ -581,18 +583,18 @@ html {
 }
 
 .curriculum__fila .izq {
-    border-right: 2px solid #1CB698;
+    border-right: 2px solid #2563EB;
     margin-right: 20px;
 }
 
 .curriculum__fila .der {
-    border-left: 2px solid #1CB698;
+    border-left: 2px solid #2563EB;
     margin-left: 20px;
 }
 
 .curriculum__item .conectori {
     height: 2px;
-    background-color: #1CB698;
+    background-color: #2563EB;
     width: 47px;
     position: absolute;
     top: 50%;
@@ -605,7 +607,7 @@ html {
     height: 10px;
     width: 10px;
     border-radius: 50%;
-    background-color: #1CB698;
+    background-color: #2563EB;
     float: right;
     position: relative;
     bottom: 4px;
@@ -613,7 +615,7 @@ html {
 
 .curriculum__item .conectord {
     height: 2px;
-    background-color: #1CB698;
+    background-color: #2563EB;
     width: 47px;
     position: absolute;
     top: 50%;
@@ -626,7 +628,7 @@ html {
     height: 10px;
     width: 10px;
     border-radius: 50%;
-    background-color: #1CB698;
+    background-color: #2563EB;
     float: left;
     position: relative;
     bottom: 4px;
@@ -646,7 +648,7 @@ html {
 
 .portfolio__h2 {
     font-size: 48px;
-    font-family: 'Righteous';
+    font-family: 'Montserrat';
     text-align: center;
     padding: 20px 0;
 }
@@ -715,7 +717,7 @@ html {
 
 .contacto__h2 {
     font-size: 48px;
-    font-family: 'Righteous';
+    font-family: 'Montserrat';
     text-align: center;
     padding: 20px 0;
 }
@@ -762,7 +764,7 @@ html {
     left: 0;
     width: 0;
     height: 100%;
-    background-color: #1CB698;
+    background-color: #2563EB;
     z-index: -1;
     transition: 1s;
 }
@@ -794,7 +796,7 @@ html {
 }
 
 .contacto__li i {
-    color: #1CB698;
+    color: #2563EB;
     display: inline-block;
     margin-right: 20px;
 }
@@ -850,14 +852,14 @@ html {
 }
 
 .footer__a:hover {
-    background-color: #1CB698;
+    background-color: #2563EB;
 }
 
 .footer__arriba {
     display: block;
     width: 50px;
     height: 50px;
-    background-color: #1CB698;
+    background-color: #2563EB;
     color: #fff;
     position: absolute;
     left: 50%;
@@ -873,7 +875,7 @@ html {
     display: block;
     width: 50px;
     height: 50px;
-    background-color: #1CB698;
+    background-color: #2563EB;
     color: #fff;
     position: absolute;
     left: 10%;
@@ -889,7 +891,7 @@ html {
 }
 
 .curriculum__h3 {
-    color: #1CB698;
+    color: #2563EB;
     font-size: 45px;
     font-weight: bold;
     display: flex;
@@ -899,7 +901,7 @@ html {
 
 .curriculum__item a {
     text-align: none;
-    color: #1CB698;
+    color: #2563EB;
     transition: .5s;
 }
 
