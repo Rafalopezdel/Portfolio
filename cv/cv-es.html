@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>CV — Rafael López Delgado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cv.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <div class="nombre">Rafael López Delgado</div>
+  <div class="rol">Full Stack Developer</div>
+  <div class="contacto">
+    <div>
+      <span>rafalopezdel@gmail.com</span>
+      <span>(+57) 300 643 6473</span>
+      <span>Pereira, Colombia</span>
+    </div>
+    <div>
+      <span><a href="https://portfoliorafael.lopezoft.co">portfoliorafael.lopezoft.co</a></span>
+      <span><a href="https://github.com/Rafalopezdel">github.com/Rafalopezdel</a></span>
+      <span><a href="https://www.linkedin.com/in/rafael-lópez-delgado">linkedin.com/in/rafael-lópez-delgado</a></span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <h2>Perfil</h2>
+  <p class="perfil">
+    Full Stack Developer con cuatro años construyendo aplicaciones web y, sobre todo,
+    operándolas después de entregarlas. Hoy mantengo en producción un asistente con IA que
+    agenda citas médicas todos los días, una tienda migrada fuera de Shopify y una plataforma
+    de formación con control de cupos y pagos. Trabajo el ciclo completo —Next.js y React en
+    el frontend, Node y PostgreSQL en el backend, y la infraestructura que lo sostiene—.
+    Mi formación en Ingeniería Industrial es la razón por la que empiezo por el problema del
+    negocio y no por el framework.
+  </p>
+</section>
+
+<section>
+  <h2>Experiencia</h2>
+
+  <div class="puesto">
+    <div class="puesto-cab">
+      <h3>Full Stack Developer · Fundador</h3>
+      <span class="fechas">Jul 2022 — Presente</span>
+    </div>
+    <div class="empresa">Lopezoft · Pereira, Colombia</div>
+    <ul>
+      <li>Construyo y opero las plataformas de los clientes de la empresa de principio a fin:
+        producto, código, despliegue e infraestructura. <strong>Cuatro sistemas en producción hoy</strong>
+        en salud, formación, comercio electrónico y facilities management, en Colombia y Reino Unido.</li>
+      <li>Responsable de la operación: despliegues, respaldos diarios, certificados SSL, monitoreo
+        y <strong>auditoría de registros de producción</strong> — que es donde aparecen las fallas
+        que no dan síntoma.</li>
+      <li>Diseño de la arquitectura y de los modelos de datos, integración con APIs de terceros
+        (pasarelas de pago, mensajería, sistemas de gestión del cliente) y automatización de
+        procesos de negocio.</li>
+      <li>Trato directo con el cliente en todo el ciclo: levantamiento, propuesta, entrega,
+        capacitación y soporte. Varios de los sistemas los administra el propio cliente sin
+        depender de mí.</li>
+    </ul>
+  </div>
+
+  <div class="puesto">
+    <div class="puesto-cab">
+      <h3>Fundador y Gerente General</h3>
+      <span class="fechas">Dic 2015 — Feb 2022</span>
+    </div>
+    <div class="empresa">G3 Seguridad · Pereira, Colombia</div>
+    <ul>
+      <li>Fundé y dirigí una distribuidora de hardware de seguridad electrónica con
+        <strong>operación en cinco ciudades</strong> del país.</li>
+      <li>Lideré los equipos de ventas, logística y administración, y respondí por la operación
+        completa del negocio y su nómina.</li>
+      <li>Negocié con proveedores nacionales e internacionales y optimicé los procesos comerciales
+        y logísticos de la empresa.</li>
+    </ul>
+  </div>
+
+  <div class="puesto">
+    <div class="puesto-cab">
+      <h3>Analista de procesos (practicante)</h3>
+      <span class="fechas">May 2014 — Ene 2015</span>
+    </div>
+    <div class="empresa">Servientrega S.A. · Pereira, Colombia</div>
+    <ul>
+      <li>Estudio de tiempos y movimientos en el área de logística. Desarrollé un algoritmo que
+        medía tiempo y esfuerzo de entrega por zona regional para implementar un modelo de pago
+        por productividad.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Proyectos destacados</h2>
+
+  <div class="proyecto">
+    <div class="proyecto-cab">
+      <h3>Asistente de WhatsApp con IA — clínica odontológica</h3>
+      <span class="proyecto-url">proyecto privado</span>
+    </div>
+    <div class="proyecto-stack">Claude AI (tool calling) · WhatsApp Business API · Dentalink API · Firebase Cloud Functions · Firestore · React</div>
+    <p>Asistente que conversa en lenguaje natural y <strong>escribe en la agenda real</strong> de la
+      clínica: registra pacientes, agenda, modifica y cancela citas respetando duración, sillón y
+      horario. En operación diaria durante todo 2026. Auditando sus registros de producción detecté
+      <strong>25 mensajes no entregados a 12 pacientes en 7 días</strong> que el panel daba por
+      enviados; lo corregí con reintentos automáticos, alertas al administrador, recuperación
+      programada y trazabilidad del motivo real de cada fallo.</p>
+  </div>
+
+  <div class="proyecto">
+    <div class="proyecto-cab">
+      <h3>JPR Academy — plataforma de formación</h3>
+      <span class="proyecto-url">jprdesigntraining.com</span>
+    </div>
+    <div class="proyecto-stack">Next.js 15 · Payload CMS 3 · PostgreSQL · Wompi · Bunny Stream · Cal.com · n8n</div>
+    <p>Control de cupo por cohorte y por tipo de pase, con el acceso de cada alumno congelado al
+      pagar; pagos verificando la firma del webhook; área de miembros con contenido visible según
+      el pase; mejora de pase en autoservicio pagando solo la diferencia.
+      <strong>Vendió 9 de los 10 pases Elite de su primera cohorte</strong> y evitó una sobreventa
+      que un panel manual no habría detectado.</p>
+  </div>
+
+  <div class="proyecto">
+    <div class="proyecto-cab">
+      <h3>Café Montelargo — e-commerce headless</h3>
+      <span class="proyecto-url">cafemontelargo.com</span>
+    </div>
+    <div class="proyecto-stack">Next.js 15 · WordPress headless (WPGraphQL) · WooCommerce REST · Wompi · PostgreSQL · n8n · Vercel</div>
+    <p>Migración de Shopify a tienda propia. El total se recalcula en el servidor desde el catálogo
+      y los pedidos viven en PostgreSQL como fuente de verdad, con espejo a WooCommerce para que el
+      dueño administre sus cupones. Cinco automatizaciones de venta en producción.
+      <strong>Eliminó la comisión por venta y el recargo del 2%</strong> de la pasarela externa,
+      sin perder el dominio ni el correo.</p>
+  </div>
+
+  <div class="proyecto">
+    <div class="proyecto-cab">
+      <h3>GCP Facilities Management — Reino Unido</h3>
+      <span class="proyecto-url">gcpfm.co.uk</span>
+    </div>
+    <div class="proyecto-stack">WordPress · Divi · REST API · Python</div>
+    <p>Mantenimiento de un sitio corporativo de 28 páginas <strong>sin acceso a servidor, cPanel ni
+      DNS</strong>: todos los cambios se aplican por la REST API de WordPress con scripts propios en
+      Python. 192 llamadas a la acción normalizadas con verificación automática de cero fallos, y el
+      parpadeo de la cabecera diagnosticado y eliminado en las 28 páginas. Proyecto en inglés.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Stack técnico</h2>
+  <div class="stack-fila">
+    <div class="stack-grupo">Frontend</div>
+    <div class="stack-items">React · Next.js · Angular · TypeScript · JavaScript · Tailwind CSS · HTML5 y CSS3</div>
+  </div>
+  <div class="stack-fila">
+    <div class="stack-grupo">Backend y datos</div>
+    <div class="stack-items">Node.js · Express · Nest.js · PostgreSQL · MongoDB · MySQL · REST APIs · JWT</div>
+  </div>
+  <div class="stack-fila">
+    <div class="stack-grupo">IA y automatización</div>
+    <div class="stack-items">Claude AI API (tool calling) · WhatsApp Business API · Firebase Cloud Functions · n8n</div>
+  </div>
+  <div class="stack-fila">
+    <div class="stack-grupo">Infraestructura y CMS</div>
+    <div class="stack-items">Vercel · Docker · Firebase · WordPress headless · Divi · Git y GitHub</div>
+  </div>
+</section>
+
+<section>
+  <h2>Formación</h2>
+  <div class="linea-formacion">
+    <div class="que"><strong>Ingeniería Industrial</strong> — Universidad Tecnológica de Pereira · promedio 4.2/5.0, estudiante distinguido</div>
+    <div class="donde">2009 — 2014</div>
+  </div>
+  <div class="linea-formacion">
+    <div class="que"><strong>React de Cero a Experto</strong> — Udemy (Fernando Herrera)</div>
+    <div class="donde">2025</div>
+  </div>
+  <div class="linea-formacion">
+    <div class="que"><strong>Angular de Cero a Experto</strong> — Udemy (Fernando Herrera)</div>
+    <div class="donde">2022</div>
+  </div>
+  <div class="linea-formacion">
+    <div class="que"><strong>HTML, CSS y JavaScript</strong> — Udemy (Víctor Robles)</div>
+    <div class="donde">2021</div>
+  </div>
+</section>
+
+<section>
+  <h2>Idiomas</h2>
+  <div class="linea-formacion">
+    <div class="que"><strong>Español</strong> — nativo. &nbsp;&nbsp;<strong>Inglés</strong> — lectura técnica y comunicación escrita; trabajo hoy con un cliente en Reino Unido. Nivel conversacional en desarrollo.</div>
+    <div class="donde"></div>
+  </div>
+</section>
+
+<div class="pie">
+  Los cuatro casos, contados completos: portfoliorafael.lopezoft.co · Referencias disponibles a solicitud
+</div>
+
+</body>
+</html>

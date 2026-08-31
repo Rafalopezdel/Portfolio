@@ -107,16 +107,40 @@ Los pesos pesados de hoy: `fondo.jpg` (3,6 MB), `fondo1.png` (1,2 MB), `foto_fon
 grep -rn "fondo.jpg" index.html projects/ assets/css/ estilo.css
 ```
 
-## CV
+## CV (hoja de vida)
 
-Archivo: `assets/pdf/CV_Rafael_Lopez_Full_Stack_Developer_2026.pdf` (4 MB).
-El nombre está **escrito a mano en dos sitios** — si cambia el archivo, cambia los dos:
+**El PDF no se edita: se genera.** La fuente vive en `cv/` y **no se despliega**
+(`deploy.sh` sube una lista explícita de archivos y `cv/` no está en ella).
 
-```bash
-grep -rn "CV_Rafael_Lopez" assets/js/main.js index.html
+```
+cv/
+  cv-es.html      ← contenido en español
+  cv-en.html      ← contenido en inglés
+  cv.css          ← estilos de impresión A4, misma paleta y tipografía que el sitio
+  generar.sh      ← produce los dos PDF en assets/pdf/
 ```
 
-Lo dispara el botón `#descargarCV` desde `assets/js/main.js`.
+```bash
+bash cv/generar.sh
+```
+
+Salida: `assets/pdf/CV-Rafael-Lopez-Full-Stack-Developer-{ES,EN}.pdf`.
+El botón de descarga elige el idioma solo, leyendo `localStorage.getItem('lang')`
+(ver `assets/js/main.js`). Hay dos botones —hero y "Sobre mí"— y los dos se enganchan.
+
+### Tres cosas que no se negocian en el CV
+
+1. **Una sola columna.** Los ATS que usan las empresas para filtrar CV parsean mal las
+   maquetas a dos columnas: se comen media hoja. El diseño es de una columna a propósito.
+2. **Máximo 2 páginas** y **el texto tiene que ser extraíble**. `generar.sh` comprueba las
+   dos cosas y falla si no se cumplen — si el PDF sale con el texto rasterizado, ningún
+   filtro automático puede leerlo y el CV no llega a manos humanas.
+3. **Las mismas cifras que el portafolio.** Si cambia un número en `translations.js`
+   (`casos.*.resultado`), cambia también aquí. Un CV que dice algo distinto de la web es
+   peor que no tener web.
+
+⚠️ **`generar.sh` necesita red**: las fuentes vienen de Google Fonts. Sin conexión, Chrome
+cae a las del sistema y el PDF sale con otra tipografía sin avisar. Míralo antes de subirlo.
 
 ## Formulario de contacto
 

@@ -2,6 +2,51 @@
 
 > Entrada nueva **arriba**. Formato en `CLAUDE.md §4`.
 
+## 2026-08-31 — Fase E: la hoja de vida
+
+- **Qué se hizo:**
+  - **El CV se genera, ya no se edita a mano.** La fuente vive en `cv/` (`cv-es.html`,
+    `cv-en.html`, `cv.css`, `generar.sh`) y **no se despliega**. `bash cv/generar.sh` produce
+    los dos PDF con Chrome en modo headless, respetando el CSS de impresión.
+  - **De 3 páginas y 4 MB a 2 páginas y ~305 KB**, en español **e inglés**. Misma tipografía
+    (Montserrat + Inter) y misma paleta que el sitio: quien vea los dos ve un solo sistema.
+  - **Contenido alineado con el portafolio.** Fuera "+3 años de experiencia" (son cuatro) y
+    fuera la lista de proyectos de curso. Dentro: los cuatro casos con sus cifras —25 mensajes
+    a 12 pacientes, 9 de 10 pases Elite, el 2% de recargo eliminado, 192 CTA normalizadas— y
+    los dominios en vivo.
+  - **La experiencia describe el rol; los proyectos van en su propia sección.** Antes se
+    repetían en los dos sitios y la segunda página quedaba medio vacía.
+  - **El botón de descarga elige el idioma solo**, leyendo `localStorage.getItem('lang')`.
+    Los dos botones (hero y "Sobre mí") quedan enganchados.
+  - El PDF viejo, borrado del repo **y del servidor** (devuelve 404, comprobado).
+    `assets/pdf/` en producción: **4,6 MB → 616 KB**.
+- **Archivos tocados:** `cv/*` (nuevos), `assets/pdf/*`, `assets/js/main.js`,
+  `docs/{ARQUITECTURA,CONTENIDO}.md`.
+- **¿Desplegado?:** **sí**. Respaldo previo: `~/backup-portfolio-2026-08-31-1710.tgz`.
+
+### Tres decisiones de diseño del CV que conviene no deshacer
+
+1. **Una sola columna.** Los ATS parsean mal las maquetas a dos columnas. El CV más bonito
+   que no pasa el filtro no sirve de nada.
+2. **El texto tiene que ser extraíble.** `generar.sh` lo comprueba y falla si el PDF trae
+   menos de 3.000 caracteres legibles o si se pasa de 2 páginas. Chrome incrusta las fuentes
+   como Type3, que suena mal pero deja la capa de texto intacta: verificado, 5.491 caracteres
+   en la versión ES.
+3. **Las cifras del CV y las del portafolio son las mismas.** Si cambia una en
+   `translations.js`, hay que cambiarla aquí. Un CV que contradice la web hace daño.
+
+### Dato que hay que decidir
+
+⚠️ **El nivel de inglés.** El CV viejo decía *"Inglés: Básico (en desarrollo)"*. Lo redacté
+como **"lectura técnica y comunicación escrita; trabajo hoy con un cliente en Reino Unido.
+Nivel conversacional en desarrollo"** — que es honesto y respaldado por GCPFM. **Si el nivel
+real es distinto, hay que corregirlo**: es lo primero que se comprueba en una entrevista.
+
+⬜ **`script.js` quedó roto** (apunta al PDF eliminado). No rompe nada porque está comentado
+en todos los HTML, pero es código muerto que se sigue desplegando. Ver deuda 6 en
+`ARQUITECTURA.md`.
+
+
 ## 2026-08-31 — Fase D: los cuatro proyectos
 
 - **Qué se hizo:**
@@ -183,7 +228,7 @@ borrado remoto quedó bloqueado por el clasificador de permisos. Comando en
 | **B** | Montserrat + Inter y paleta de marca, en `index.html` **y** las 5 páginas de `projects/` (el `tailwind.config` está duplicado en cada una) | ✅ 2026-08-31 |
 | **C** | Hero, "Sobre mí", skills agrupados, currículum reordenado. ES y EN en el mismo cambio | ✅ 2026-08-31 |
 | **D** | Los 4 proyectos, con nombres de archivo con significado y una plantilla común. Fila secundaria con `lopezoft.co` y `nutrexcol.com` | ✅ 2026-08-31 |
-| **E** | **Hoja de vida**: regenerar el CV en PDF para que concuerde con el portafolio (mismo posicionamiento, mismos proyectos, mismas cifras) y sustituir el de 4 MB | ⬜ |
+| **E** | **Hoja de vida** regenerada desde `cv/`, en ES y EN, alineada con el portafolio | ✅ 2026-08-31 |
 
 **Proyectos elegidos para la fase D** (de los 6 revisados): Asistente WhatsApp con IA,
 JPR Academy, Café Montelargo y GCPFM. Fuera: CalendarioApp y Website Corporativa (proyectos

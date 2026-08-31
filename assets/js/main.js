@@ -132,12 +132,18 @@ function seleccionar() {
  */
 function initCVDownload() {
   // Hay mas de un boton de CV (hero y "Sobre mi"): se enganchan todos.
-  const CV = 'assets/pdf/CV_Rafael_Lopez_Full_Stack_Developer_2026.pdf';
+  // El PDF se elige por el idioma activo. Los dos se generan con cv/generar.sh.
+  const CV = {
+    es: 'assets/pdf/CV-Rafael-Lopez-Full-Stack-Developer-ES.pdf',
+    en: 'assets/pdf/CV-Rafael-Lopez-Full-Stack-Developer-EN.pdf'
+  };
   document.querySelectorAll('#descargarCV, [data-descargar-cv]').forEach(function (boton) {
     boton.addEventListener('click', function () {
+      const idioma = localStorage.getItem('lang') === 'en' ? 'en' : 'es';
+      const ruta = CV[idioma];
       const enlace = document.createElement('a');
-      enlace.href = CV;
-      enlace.download = CV.split('/').pop();
+      enlace.href = ruta;
+      enlace.download = ruta.split('/').pop();
       enlace.target = '_blank';
       enlace.click();
     });

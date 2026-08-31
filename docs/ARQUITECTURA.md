@@ -23,6 +23,7 @@ index.html            ← 1.393 líneas / 100 KB. TODA la página. Usar grep -n,
 estilo.css            ← BEM heredado. ⚠️ tiene reglas que ocultan <nav>
 script.js             ← COMENTADO en el HTML. No descomentar (regla 1 de CLAUDE.md)
 .htaccess             ← gzip, caché, forzar HTTPS, cabeceras de seguridad
+cv/                   ← FUENTE del CV (html + css + generar.sh). NO se despliega
 projects/asistente-whatsapp.html · jpr-academy.html
                       cafe-montelargo.html · gcpfm.html   ← misma plantilla, distinto contenido
 assets/
@@ -32,7 +33,7 @@ assets/
   js/animations.js    ← configuración de AOS
   js/tailwind.3.4.17.min.js
   img/                ← ~10 MB. Ver "Deuda conocida"
-  pdf/CV_Rafael_Lopez_Full_Stack_Developer_2026.pdf (4 MB)
+  pdf/CV-Rafael-Lopez-Full-Stack-Developer-{ES,EN}.pdf  ← generados desde cv/
 ```
 
 ### Secciones de `index.html` (línea aproximada)
@@ -157,11 +158,10 @@ commitearlo junto al resto. Pasó de verdad durante la fase B.
 | # | Qué | Impacto |
 |---|---|---|
 | 1 | **Tailwind Play CDN**: 407 KB de compilador que corre en cada visita, en vez de un `.css` compilado de unos pocos KB | **La deuda más grande que queda.** Arreglarla mete un paso de build en un sitio que no lo tiene: es una decisión, no un detalle |
-| 2 | **CV en PDF de 4 MB** | Descarga pesada. Se rehace en la fase E |
 | 3 | **Reglas muertas en `estilo.css`** (`.inicio`, `.contacto` y su tipografía) — el HTML usa Tailwind y esos selectores ya no casan con nada | Código muerto: 16 KB que se descargan y no pintan nada. Se puede borrar el archivo entero tras comprobar selector por selector |
 | 4 | `estilo.old.css` y `script.old.js` en disco (ignorados por git, no se despliegan) | Confusión al abrir la carpeta |
 | 5 | **`deploy.sh` es aditivo**: no borra en el servidor lo que se borra en el repo | Hay que limpiar a mano tras retirar archivos. Receta en `DESPLIEGUE.md` |
-| 6 | `script.js` sigue en el repo y se despliega, aunque está comentado en todos los HTML | 2,8 KB inútiles y una trampa esperando a que alguien lo descomente |
+| 6 | **`script.js` es código muerto y ahora además está roto**: está comentado en todos los HTML, y apunta al PDF de CV que se eliminó en la fase E. Se sigue desplegando | 2,8 KB inútiles y una trampa esperando a que alguien lo descomente. Borrarlo del repo, del `INCLUIR` de `deploy.sh` y del servidor cierra el asunto |
 
 ### Resuelto
 
@@ -175,4 +175,6 @@ commitearlo junto al resto. Pasó de verdad durante la fase B.
 - ✅ `projects/project5.html`, huérfano **y** roto, retirado.
 - ✅ Traducciones muertas (`authApp`, `playJavaScript`, `gifExpertApp`, `projectDetail`,
   `common`), eliminadas.
+- ✅ **Fase E** — hoja de vida regenerada: de 3 páginas y 4 MB a 2 páginas y ~305 KB, en
+  español e inglés, con la misma tipografía y paleta que el sitio.
 
