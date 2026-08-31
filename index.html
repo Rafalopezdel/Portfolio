@@ -6,6 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Rafael López — Full Stack Developer | IA aplicada y e-commerce</title>
+    <meta name="description" content="Full Stack Developer. Construyo y opero plataformas en producción: asistentes con IA sobre WhatsApp, e-commerce headless con pagos locales y sitios corporativos.">
+    <meta name="author" content="Rafael López">
+    <meta name="theme-color" content="#0D1B2A">
+    <link rel="canonical" href="https://portfoliorafael.lopezoft.co/">
+
+    <!-- Favicon (rutas relativas: funcionan en el dominio propio y en el espejo de GitHub Pages) -->
+    <link rel="icon" href="assets/img/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+    <!-- Open Graph / Twitter (og:image DEBE ser URL absoluta) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Rafael López">
+    <meta property="og:locale" content="es_CO">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:url" content="https://portfoliorafael.lopezoft.co/">
+    <meta property="og:title" content="Rafael López — Full Stack Developer | IA aplicada y e-commerce">
+    <meta property="og:description" content="Full Stack Developer. Construyo y opero plataformas en producción: asistentes con IA sobre WhatsApp, e-commerce headless con pagos locales y sitios corporativos.">
+    <meta property="og:image" content="https://portfoliorafael.lopezoft.co/assets/img/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Rafael López, Full Stack Developer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rafael López — Full Stack Developer | IA aplicada y e-commerce">
+    <meta name="twitter:description" content="Full Stack Developer. Construyo y opero plataformas en producción: asistentes con IA sobre WhatsApp, e-commerce headless con pagos locales y sitios corporativos.">
+    <meta name="twitter:image" content="https://portfoliorafael.lopezoft.co/assets/img/og.jpg">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
         integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
@@ -21,7 +50,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
 
     <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/tailwind.3.4.17.min.js"></script>
 
     <!-- Tailwind Custom Configuration -->
     <script>
@@ -61,7 +90,27 @@
         [x-cloak] { display: none !important; }
     </style>
 
-    <title>Rafael López | Frontend Developer & Industrial Engineer</title>
+
+    <!-- Datos estructurados: ayuda a que Google muestre nombre, rol y perfiles -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Rafael López",
+      "url": "https://portfoliorafael.lopezoft.co/",
+      "image": "https://portfoliorafael.lopezoft.co/assets/img/og.jpg",
+      "jobTitle": "Full Stack Developer",
+      "email": "mailto:rafalopezdel@gmail.com",
+      "worksFor": { "@type": "Organization", "name": "Lopezoft", "url": "https://lopezoft.co" },
+      "alumniOf": { "@type": "CollegeOrUniversity", "name": "Universidad Tecnológica de Pereira" },
+      "knowsAbout": ["Next.js", "React", "Node.js", "TypeScript", "Angular", "WordPress",
+                     "PostgreSQL", "Firebase", "Claude AI", "WhatsApp Business API"],
+      "sameAs": [
+        "https://github.com/Rafalopezdel",
+        "https://www.linkedin.com/in/rafael-lópez-delgado"
+      ]
+    }
+    </script>
 </head>
 
 <body x-data="{
@@ -293,9 +342,13 @@
             <div class="mb-8 inline-block" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
                 <div class="relative">
                     <div class="absolute inset-0 bg-gradient-to-br from-primary to-primary-light rounded-full blur-xl opacity-50 animate-pulse"></div>
-                    <img src="assets/img/foto.jpg"
-                         alt="Rafael López - Frontend Developer"
-                         class="relative w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 rounded-full border-4 border-primary shadow-2xl object-cover transform hover:scale-105 transition-transform duration-300">
+                    <picture>
+                        <source srcset="assets/img/rafael-avatar.webp" type="image/webp">
+                        <img src="assets/img/rafael-avatar.jpg"
+                             alt="Rafael López, Full Stack Developer"
+                             width="512" height="512" fetchpriority="high"
+                             class="relative w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 rounded-full border-4 border-primary shadow-2xl object-cover transform hover:scale-105 transition-transform duration-300">
+                    </picture>
                 </div>
             </div>
 
@@ -932,7 +985,7 @@
 
                     <!-- Image Container -->
                     <div class="relative h-64 md:h-72 lg:h-80 overflow-hidden">
-                        <img src="assets/img/whatsappAsistant.jpg"
+                        <img src="assets/img/whatsappAsistant.webp"
                              alt="Dental WhatsApp Assistant - AI Chatbot with Claude & Firebase"
                              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
@@ -974,7 +1027,7 @@
 
                     <!-- Image Container -->
                     <div class="relative h-64 md:h-72 lg:h-80 overflow-hidden">
-                        <img src="assets/img/calendarApp1.jpg"
+                        <img src="assets/img/calendarApp1.webp"
                              alt="CalendarioApp - MERN Stack Calendar Application"
                              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
@@ -1015,7 +1068,7 @@
 
                     <!-- Image Container -->
                     <div class="relative h-64 md:h-72 lg:h-80 overflow-hidden">
-                        <img src="assets/img/webCorporativaW1.jpg"
+                        <img src="assets/img/webCorporativaW1.webp"
                              alt="WordPress Divi Corporate Site - Professional Business Website"
                              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
@@ -1056,7 +1109,7 @@
 
                     <!-- Image Container -->
                     <div class="relative h-64 md:h-72 lg:h-80 overflow-hidden">
-                        <img src="assets/img/webCorporativa4.jpg"
+                        <img src="assets/img/webCorporativa4.webp"
                              alt="React Corporate Website - Modern SPA with Tailwind"
                              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
