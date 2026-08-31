@@ -138,41 +138,17 @@ const translations = {
 
     portfolio: {
       title: "PORTFOLIO",
-      projects: {
-        whatsappBot: {
-          title: "Asistente WhatsApp Dental",
-          tech: "Claude AI - Firebase",
-          description: "Chatbot inteligente para clínica dental con integración a Dentalink"
+      intro: "Cuatro sistemas en producción. Cada uno prueba algo distinto.",
+      verCaso: "Ver el caso",
+      otrosTitle: "Otros trabajos",
+      otros: {
+        lopezoft: {
+          title: "Lopezoft",
+          text: "El sitio de mi empresa. Next.js, con diseño, contenido e infraestructura propios."
         },
-        calendarApp: {
-          title: "CalendarioApp",
-          tech: "MERN Stack",
-          description: "Aplicación de calendario colaborativo con autenticación y gestión de eventos"
-        },
-        wordpressDivi: {
-          title: "Sitio Corporativo Divi",
-          tech: "WordPress - Divi",
-          description: "Página web corporativa profesional desarrollada con WordPress y Divi Builder"
-        },
-        webCorporativa: {
-          title: "Website Corporativa",
-          tech: "React",
-          description: "Sitio web corporativo moderno desarrollado con React y Tailwind CSS"
-        },
-        authApp: {
-          title: "AuthApp",
-          tech: "Angular - Nest",
-          description: "Sistema de autenticación robusto con JWT y guards de protección"
-        },
-        playJavaScript: {
-          title: "PlayJavaScriptApp",
-          tech: "Javascript",
-          description: "Aplicación interactiva para practicar conceptos de JavaScript vanilla"
-        },
-        gifExpertApp: {
-          title: "GifExpertApp",
-          tech: "React",
-          description: "Buscador de GIFs animados con integración a la API de Giphy"
+        nutrexcol: {
+          title: "Nutrexcol",
+          text: "Maquetación del sitio corporativo en WordPress, para una agencia."
         }
       }
     },
@@ -195,471 +171,235 @@ const translations = {
       },
       toast: "✅ Mensaje enviado correctamente."
     },
-
-    // Common
-    common: {
-      loading: "Cargando...",
-      error: "Hubo un error",
-      success: "Éxito"
-    },
-
-    // Project Detail Pages
-    projectDetail: {
-      backToPortfolio: "Volver al Portfolio",
-      projectOverview: "Descripción del Proyecto",
-      screenshots: "Capturas de Pantalla",
-      siteShowcase: "Muestra del Sitio",
-      keyFeatures: "Características Principales",
-      techStack: "Stack Tecnológico",
-      technicalHighlights: "Aspectos Técnicos Destacados",
-      componentStructure: "Estructura de Componentes",
-      websiteStructure: "Estructura del Sitio Web",
-      viewLiveSite: "Ver Sitio en Vivo",
-      visitSite: "Visitar Sitio",
-      projectLinks: "Enlaces del Proyecto",
-      viewOnGitHub: "Ver en GitHub",
-      liveDemo: "Demo en Vivo",
-      whyDivi: "¿Por qué Divi Builder?",
-      developmentWorkflow: "Flujo de Desarrollo",
-      keyIntegrations: "Integraciones Clave",
-      allRightsReserved: "Todos los derechos reservados.",
-      viewMoreProjects: "Ver Más Proyectos"
-    },
-
-    // Project 1: WhatsApp Assistant
-    project1: {
-      title: "Asistente WhatsApp Dental",
-      subtitle: "Chatbot inteligente con IA Claude para gestión automatizada de citas dentales",
-      overview: {
-        title: "Descripción del Proyecto",
-        p1: "Sistema avanzado de chatbot desarrollado con Claude AI que funciona como asistente virtual para una clínica dental, integrado directamente con WhatsApp Business API y el sistema de gestión Dentalink.",
-        p2: "El bot utiliza la capacidad de function calling de Claude AI para realizar operaciones específicas como consultar disponibilidad de citas, crear pacientes, modificar reservas y responder preguntas frecuentes de manera natural y contextual.",
-        p3: "Construido sobre Firebase Cloud Functions para garantizar escalabilidad y disponibilidad 24/7, con Firestore como base de datos para mantener el historial de conversaciones y el estado de cada sesión."
-      },
-      integrations: {
-        title: "Integraciones Clave",
-        whatsapp: {
-          title: "WhatsApp Business API",
-          desc: "Conexión directa con Meta para enviar y recibir mensajes de forma oficial"
-        },
-        dentalink: {
-          title: "API Dentalink",
-          desc: "Integración completa con el sistema de gestión dental para consultas y reservas"
-        },
-        claude: {
-          title: "Claude AI API",
-          desc: "Motor de inteligencia artificial con capacidad de function calling para entender intenciones"
-        },
-        firebase: {
-          title: "Firebase Cloud Functions",
-          desc: "Arquitectura serverless que escala automáticamente según la demanda"
-        },
-        firestore: {
-          title: "Firestore Database",
-          desc: "Base de datos NoSQL en tiempo real para gestionar sesiones y logs"
-        },
-        storage: {
-          title: "Firebase Storage",
-          desc: "Almacenamiento de archivos adjuntos y respaldos de conversaciones"
+    // ========================================
+    // CASOS — páginas de detalle de los 4 proyectos
+    // ========================================
+    casos: {
+      etiquetas: {
+        problema: "El problema",
+        solucion: "Lo que construí",
+        resultado: "El resultado",
+        stack: "Stack",
+        galeria: "Cómo se ve",
+        enlaces: "Enlaces",
+        verSitio: "Ver el sitio en vivo",
+        privado: "Proyecto privado de cliente",
+        privadoNota: "No hay demo pública: el sistema opera sobre datos de salud de pacientes reales. Puedo enseñarlo en una llamada.",
+        volver: "Volver al portafolio",
+        derechos: "Todos los derechos reservados.",
+        masProyectos: "Ver más proyectos",
+        grupos: {
+          frontend: "Frontend",
+          backend: "Backend y datos",
+          backend2: "Persistencia",
+          ai: "Integraciones",
+          infra: "Infraestructura"
         }
       },
-      features: {
-        title: "Características Principales",
-        memory: {
-          title: "Memoria Persistente",
-          desc: "Reconoce a los usuarios que regresan y los saluda por su nombre, manteniendo el contexto entre conversaciones"
-        },
-        logging: {
-          title: "Registro de Conversaciones",
-          desc: "Almacena todo el historial de mensajes en Firestore para análisis y mejora continua"
-        },
-        buffer: {
-          title: "Buffer de Mensajes",
-          desc: "Sistema de cola que procesa mensajes en orden y evita pérdidas durante picos de tráfico"
-        },
-        integration: {
-          title: "Integración de Datos",
-          desc: "Conexión bidireccional con Dentalink para consultar y actualizar información de pacientes y citas"
-        },
-        appointments: {
-          title: "Gestión de Citas",
-          desc: "Permite agendar, modificar y cancelar citas directamente desde WhatsApp de forma conversacional"
-        },
-        raceCondition: {
-          title: "Prevención de Condiciones de Carrera",
-          desc: "Implementa locks para evitar procesamiento simultáneo de mensajes del mismo usuario"
-        },
-        humanTransfer: {
-          title: "Sistema de Transferencia",
-          desc: "Derivación inteligente a operadores humanos cuando la situación lo requiere"
-        },
-        aiAssistant: {
-          title: "Asistente Personal",
-          desc: "Responde preguntas sobre servicios, horarios, ubicación y políticas de la clínica"
+
+      whatsapp: {
+        title: "Asistente de WhatsApp con IA",
+        subtitle: "Agenda citas reales en el sistema de una clínica odontológica, conversando en lenguaje natural",
+        tech: "Claude AI · WhatsApp Business API · Firebase",
+        card: "Un asistente que no toma recados: escribe en la agenda real de la clínica.",
+        problema: "Una clínica agenda por WhatsApp. Cada cita entra como un mensaje que alguien tiene que leer, buscar en el sistema, cuadrar con la agenda y responder. Fuera de horario no contesta nadie — y el paciente que no recibe respuesta llama a otra clínica.",
+        solucion: [
+          {
+            icon: "fa-comments",
+            title: "Conversación con acciones reales",
+            text: "Busca al paciente, lo registra si es nuevo, agenda, modifica y cancela. No toma recados: escribe en la agenda real respetando duración de cita, sillón disponible y horario de atención."
+          },
+          {
+            icon: "fa-plug",
+            title: "Integrado con el sistema que ya usaban",
+            text: "Se conecta a Dentalink, el software de gestión de la clínica. No hubo que cambiar la forma en que el equipo trabaja."
+          },
+          {
+            icon: "fa-brain",
+            title: "Memoria de pacientes recurrentes",
+            text: "Reconoce a quien ya escribió antes y retoma el contexto. Soporta imágenes, audio, video y documentos en los dos sentidos."
+          },
+          {
+            icon: "fa-bell",
+            title: "Recordatorio automático",
+            text: "El día antes de la cita, con botones de confirmar o cancelar. Menos ausencias sin aviso."
+          },
+          {
+            icon: "fa-headset",
+            title: "Traspaso a una persona",
+            text: "Cuando hace falta, un panel web permite que el equipo tome la conversación sin que el paciente note el cambio."
+          },
+          {
+            icon: "fa-triangle-exclamation",
+            title: "Qué pasa cuando falla",
+            text: "Si la IA falla, el sistema avisa al paciente, escala a un humano y alerta al técnico por WhatsApp. No se queda callado."
+          }
+        ],
+        resultado: {
+          intro: "En operación durante todo 2026, con uso diario. Pero lo que vale la pena contar no es que funcione, sino lo que apareció al auditar sus registros de producción: tres fallas que no dejaban rastro.",
+          puntos: [
+            "Recordatorios que no salieron. Una consulta a la agenda se demoró de más, el sistema entendió «no hay citas mañana» y nadie recibió aviso ese domingo.",
+            "Mensajes que WhatsApp aceptaba y luego descartaba: 25 mensajes no entregados a 12 pacientes en 7 días, mientras el panel los mostraba como enviados. Un paciente viajó a una cita cancelada porque los avisos nunca llegaron.",
+            "Imágenes que fallaban en silencio, incluida la que se envió como prueba."
+          ],
+          cierre: "Las tres se corrigieron: reintentos automáticos ante fallas de red, alerta al administrador cuando un recordatorio no sale, recuperación que reintenta sola una hora más tarde, marca en rojo en el panel con el motivo real, y aviso al agente antes de escribir si la ventana de WhatsApp ya se cerró.",
+          frase: "La parte difícil de la IA aplicada no es conversar. Es qué pasa cuando falla — y para enterarte de eso hay que estar leyendo los registros."
         }
       },
-      highlights: {
-        title: "Aspectos Técnicos Destacados",
-        serverless: "Arquitectura Serverless: Uso de Firebase Cloud Functions para escalabilidad automática sin gestión de infraestructura",
-        functionCalling: "AI Function Calling: Claude AI ejecuta funciones específicas como consultar citas, crear pacientes o modificar reservas",
-        raceCondition: "Prevención de Race Condition: Sistema de bloqueos para evitar citas duplicadas cuando múltiples mensajes llegan simultáneamente",
-        buffer: "Buffer Inteligente: Solo mantiene los últimos 10 mensajes en memoria para optimización de costos, historial completo en Firestore",
-        logging: "Logging Completo: Todas las interacciones registradas para auditorías de calidad y mejora continua del entrenamiento"
+
+      jpr: {
+        title: "JPR Academy",
+        subtitle: "Plataforma de formación con cupos limitados, pagos y video protegido",
+        tech: "Next.js · Payload CMS · PostgreSQL",
+        card: "Vender cupos contados es un problema de inventario, no de diseño.",
+        problema: "Vender mentorías y cursos con cupos limitados por tipo de pase es un problema de inventario, no de diseño. Cada cohorte tiene plazas contadas, hay pases con distintos niveles de acceso, y hay que cobrar en pesos y en dólares. Con una plantilla o una pasarela genérica eso se administra a mano — y a mano se sobrevende.",
+        solucion: [
+          {
+            icon: "fa-ticket",
+            title: "Control de cupo por cohorte y por pase",
+            text: "Cada tipo de pase tiene su precio, su cupo y su nivel de acceso. El acceso de cada alumno se congela en el momento de pagar."
+          },
+          {
+            icon: "fa-credit-card",
+            title: "Pagos con verificación de firma",
+            text: "Wompi para pesos colombianos, con validación de la firma en el webhook. Un pago no se da por bueno porque lo diga el navegador."
+          },
+          {
+            icon: "fa-lock",
+            title: "Área de miembros cerrada",
+            text: "Clases en vivo, grabaciones permanentes, material extendido y comunidad privada. Cada bloque se ve o no según el pase que compró el alumno."
+          },
+          {
+            icon: "fa-arrow-up-right-dots",
+            title: "Mejora de pase en autoservicio",
+            text: "Quien entró con el pase básico paga solo la diferencia y su acceso sube solo, sin que nadie toque el panel de administración."
+          },
+          {
+            icon: "fa-video",
+            title: "Video protegido",
+            text: "Las grabaciones se sirven desde Bunny Stream: no se pueden descargar ni compartir por enlace directo."
+          },
+          {
+            icon: "fa-shield-halved",
+            title: "Operación incluida",
+            text: "Correos transaccionales, respaldo diario de la base de datos, SSL renovado solo y agenda 1a1 con Cal.com."
+          }
+        ],
+        resultado: {
+          intro: "En producción en jprdesigntraining.com desde 2026.",
+          puntos: [
+            "9 de los 10 pases Elite de la primera cohorte de Dirección Visual, vendidos. Cifra autorizada por el cliente.",
+            "Se detectó y corrigió un error de sobreventa antes de que costara dinero: el sistema habría vendido una plaza Elite que ya no existía. Un panel manual no habría avisado.",
+            "La mejora de pase dejó de ser un trámite manual —acordarse de cambiar la versión y tres permisos, conciliar una transferencia— y pasó a ser una compra que se registra sola.",
+            "Un cambio pedido por el cliente el 30 de julio se desplegó y verificó en producción ese mismo día."
+          ],
+          cierre: "",
+          frase: "Le vendió 9 de 10 cupos de su primera cohorte con una plataforma propia, sin comisión por venta y sin sobrevender ni un puesto."
+        }
+      },
+
+      cafe: {
+        title: "Café Montelargo",
+        subtitle: "Salir de Shopify sin perder el dominio, el correo ni el control del catálogo",
+        tech: "Next.js · WordPress headless · Wompi",
+        card: "Migración a e-commerce propio, sin comisión por venta.",
+        problema: "La tienda vivía en Shopify. Shopify Payments no opera en Colombia, así que cada venta pagaba el plan mensual, la comisión de la pasarela local y, encima, un recargo adicional del 2% por usar una pasarela externa. Además, el catálogo y los pedidos quedaban dentro de una plataforma de la que salir cuesta trabajo.",
+        solucion: [
+          {
+            icon: "fa-store",
+            title: "Frontend propio, CMS conocido",
+            text: "La tienda es un Next.js propio; el catálogo se administra desde WordPress headless. El cliente edita con una herramienta que ya conocía y el visitante nunca ve WordPress."
+          },
+          {
+            icon: "fa-money-bill-transfer",
+            title: "Pagos locales, total recalculado en el servidor",
+            text: "Wompi con Nequi, PSE, botón Bancolombia y tarjetas. El total se vuelve a calcular desde el catálogo en el servidor: no se confía en lo que llega del navegador."
+          },
+          {
+            icon: "fa-database",
+            title: "PostgreSQL como fuente de verdad",
+            text: "Los pedidos viven en una base propia, con espejo hacia WooCommerce para que el dueño consulte pedidos y administre sus cupones sin pedirle nada a nadie."
+          },
+          {
+            icon: "fa-robot",
+            title: "Cinco automatizaciones en producción",
+            text: "Confirmación de pedido, aviso al administrador, bienvenida con cupón, recuperación de carrito abandonado y recompra a los 30 días. Corren solas en n8n."
+          },
+          {
+            icon: "fa-rotate",
+            title: "Rescate de pagos sin webhook",
+            text: "Si un webhook de la pasarela nunca llega, un proceso de conciliación recupera el pedido contra la API de la pasarela. Un pago aprobado no se pierde."
+          },
+          {
+            icon: "fa-shield-halved",
+            title: "Operación incluida",
+            text: "Respaldo diario de la base de datos a almacenamiento externo y SSL automático."
+          }
+        ],
+        resultado: {
+          intro: "En producción en cafemontelargo.com.",
+          puntos: [
+            "Migración completada a infraestructura propia, sin comisión por venta y sin perder el dominio ni el correo en el proceso.",
+            "Dejó de pagar el plan de Shopify y el recargo del 2% sobre cada venta, para siempre.",
+            "El cliente administra sus cupones y consulta sus pedidos por su cuenta. Menos dependencia del proveedor es mejor servicio.",
+            "Cinco automatizaciones de venta corriendo sin intervención."
+          ],
+          cierre: "",
+          frase: "Se salió de Shopify y dejó de pagar comisión por vender, sin perder el dominio, el correo ni el control de su catálogo."
+        }
+      },
+
+      gcpfm: {
+        title: "GCP Facilities Management",
+        subtitle: "Mantenimiento y automatización de un WordPress corporativo de 28 páginas, en Reino Unido",
+        tech: "WordPress · Divi · REST API · Python",
+        card: "Cambios masivos por API en un sitio sin acceso a servidor.",
+        problema: "Un sitio corporativo de 28 páginas en WordPress con Divi, y una restricción incómoda: no hay acceso a servidor, ni a cPanel, ni a DNS. Solo credenciales de WordPress. Con una lista de cambios que tocaba casi todas las páginas, hacerlo a mano una por una no era viable.",
+        solucion: [
+          {
+            icon: "fa-code",
+            title: "Todo por la REST API",
+            text: "Sin SSH ni WP-CLI disponibles, los cambios se aplican con scripts propios en Python contra la REST API de WordPress. Reproducibles y reversibles."
+          },
+          {
+            icon: "fa-check-double",
+            title: "Verificador antes de dar nada por bueno",
+            text: "192 llamadas a la acción normalizadas en las 28 páginas. Ningún cambio se registra como aceptado si el verificador devuelve un solo fallo."
+          },
+          {
+            icon: "fa-anchor",
+            title: "Anclas de sección en 24 páginas",
+            text: "Navegación interna coherente en todo el sitio, generada por script en vez de a mano."
+          },
+          {
+            icon: "fa-envelope",
+            title: "Dos formularios, no uno",
+            text: "El sitio tenía dos formularios de contacto distintos: uno vive en el Theme Builder de Divi y solo se edita a mano. Encontrarlo fue la mitad del trabajo; los dos entregan ya en el buzón correcto."
+          },
+          {
+            icon: "fa-bolt",
+            title: "Parpadeo de cabecera diagnosticado",
+            text: "La cabecera parpadeaba al cargar en todas las páginas. La causa era el Critical CSS de Divi, no el tema ni el contenido. Verificado en las 28 páginas."
+          },
+          {
+            icon: "fa-globe",
+            title: "Cliente internacional",
+            text: "Proyecto en inglés, con el cliente en Reino Unido y comunicación asíncrona."
+          }
+        ],
+        resultado: {
+          intro: "Tres tareas cerradas y verificadas en producción durante 2026.",
+          puntos: [
+            "192 llamadas a la acción normalizadas en 28 páginas, con verificación automática de cero fallos.",
+            "Los dos formularios de contacto entregando en el buzón correcto.",
+            "Parpadeo de cabecera eliminado y verificado página por página.",
+            "Los cambios masivos dejaron de ser trabajo manual: hoy son un script que se puede volver a correr."
+          ],
+          cierre: "",
+          frase: "Sin acceso al servidor, la API del propio WordPress fue suficiente para convertir 28 ediciones manuales en un script verificable."
+        }
       }
     },
-
-    // Project 2: CalendarApp
-    project2: {
-      title: "CalendarioApp",
-      subtitle: "Calendario colaborativo con autenticación",
-      overview: {
-        title: "Descripción del Proyecto",
-        p1: "Aplicación web full-stack que permite a los usuarios gestionar sus eventos y citas de manera eficiente. El sistema implementa autenticación segura con JWT y ofrece una experiencia colaborativa moderna donde múltiples usuarios pueden crear, ver y gestionar eventos en tiempo real.",
-        p2: "La interfaz fue desarrollada con React utilizando hooks modernos (useState, useEffect, useContext) para la gestión de estado y optimización de la experiencia de usuario. Se integró Redux Toolkit para el manejo de estado global, permitiendo sincronización fluida entre componentes y actualizaciones en tiempo real.",
-        p3: "El backend fue construido con Node.js y Express, implementando rutas RESTful para todas las operaciones CRUD. La autenticación se maneja con JWT (JSON Web Tokens), asegurando que solo usuarios autenticados puedan acceder a sus calendarios. Los datos se almacenan en MongoDB Atlas, ofreciendo escalabilidad y disponibilidad en la nube."
-      },
-      features: {
-        title: "Características Principales",
-        auth: {
-          title: "Autenticación Segura",
-          desc: "Sistema de login y registro basado en JWT con encriptación de contraseñas y rutas protegidas"
-        },
-        crud: {
-          title: "CRUD Completo de Eventos",
-          desc: "Crear, leer, actualizar y eliminar eventos con validación en tiempo real y sincronización instantánea con la base de datos"
-        },
-        collaborative: {
-          title: "Calendario Colaborativo",
-          desc: "Múltiples usuarios pueden ver y gestionar eventos, cada uno con su propio espacio de trabajo y permisos"
-        },
-        interface: {
-          title: "Interfaz Interactiva",
-          desc: "Calendario intuitivo con diferentes vistas (mensual, semanal, diaria) y creación de eventos mediante click y arrastre"
-        },
-        responsive: {
-          title: "Diseño Responsive",
-          desc: "Experiencia optimizada para escritorio, tablets y dispositivos móviles con layout adaptativo"
-        },
-        persistence: {
-          title: "Persistencia en la Nube",
-          desc: "Eventos almacenados en MongoDB Atlas, accesibles desde cualquier dispositivo con sincronización automática"
-        }
-      },
-      techStack: {
-        title: "Stack Tecnológico",
-        frontend: {
-          title: "Frontend",
-          items: {
-            react: "React 18 - UI basada en componentes con hooks modernos",
-            redux: "Redux Toolkit - Gestión de estado global y lógica de negocio",
-            reactBigCalendar: "React-Big-Calendar - Calendario visual interactivo",
-            axios: "Axios - Comunicación HTTP con backend",
-            sweetalert2: "SweetAlert2 - Alertas y notificaciones mejoradas para el usuario"
-          }
-        },
-        backend: {
-          title: "Backend",
-          items: {
-            node: "Node.js - Entorno de ejecución JavaScript",
-            express: "Express.js - Servidor web ligero y flexible",
-            jwt: "JWT - Autenticación basada en tokens",
-            bcrypt: "Bcrypt - Hashing de contraseñas y seguridad",
-            mongoose: "Mongoose - ODM de MongoDB con schemas"
-          }
-        },
-        tools: {
-          title: "Herramientas y Otros",
-          items: {
-            vite: "Vite - Herramienta de compilación rápida para desarrollo",
-            postman: "Postman - Pruebas y documentación de API",
-            git: "Git & GitHub - Control de versiones y colaboración",
-            npm: "NPM - Gestión de paquetes y dependencias"
-          }
-        },
-        database: {
-          title: "Base de Datos",
-          items: {
-            mongodb: "MongoDB Atlas - Base de datos NoSQL en la nube",
-            mongoose: "Mongoose - Modelado de objetos para MongoDB",
-            cloudBackup: "Cloud Backup - Respaldos automáticos y alta disponibilidad",
-            indexing: "Indexing - Optimización de consultas para mejor rendimiento"
-          }
-        }
-      },
-      highlights: {
-        title: "Aspectos Técnicos Destacados",
-        mernStack: "Stack MERN Completo: Desarrollo full con MongoDB, Express, React y Node.js en un solo proyecto",
-        jwt: "Autenticación JWT: Implementación segura con expiración de tokens y renovación automática",
-        redux: "Estado Centralizado: Redux Toolkit para flujo de aplicación predecible y debugging fácil",
-        restApi: "API RESTful: Backend siguiendo mejores prácticas con rutas apropiadas y métodos HTTP",
-        responsive: "100% Responsive: Diseño mobile-first que se adapta a cualquier tamaño de pantalla",
-        cloudDatabase: "MongoDB Atlas: Base de datos en la nube con escalabilidad automática y disponibilidad garantizada"
-      },
-      links: {
-        github: "Ver en GitHub",
-        demo: "Demo en Vivo"
-      }
-    },
-
-    // Project 3: WordPress Divi
-    project3: {
-      title: "Sitio Web Corporativo",
-      subtitle: "Sitio empresarial profesional con WordPress y Divi",
-      overview: {
-        title: "Descripción del Proyecto",
-        p1: "Este sitio web corporativo fue construido usando WordPress como sistema de gestión de contenido y Divi Builder como constructor visual de páginas, creando una presencia en línea profesional para un negocio moderno. El sitio presenta un diseño limpio y contemporáneo que refleja la identidad de marca de la empresa mientras proporciona una experiencia de usuario intuitiva en todos los dispositivos.",
-        p2: "Aprovechando la poderosa interfaz de arrastrar y soltar de Divi, el sitio web fue creado con layouts personalizados, animaciones y elementos interactivos que atraen a los visitantes y comunican efectivamente los servicios, valores y experiencia de la empresa.",
-        p3: "El proyecto incluye funcionalidad empresarial integral como escaparates de servicios, perfiles de equipo, testimonios de clientes, formularios de contacto, integración de blog y total responsividad móvil—todo optimizado para rendimiento y visibilidad en motores de búsqueda."
-      },
-      features: {
-        title: "Características Principales",
-        customDesign: {
-          title: "Diseño Personalizado con Divi",
-          desc: "Layouts completamente personalizados usando el editor visual de Divi Builder sin necesidad de código para actualizaciones de contenido"
-        },
-        responsive: {
-          title: "Totalmente Responsive",
-          desc: "Experiencia de visualización optimizada en todos los dispositivos - escritorio, tablet y móvil con personalizaciones específicas por dispositivo"
-        },
-        seo: {
-          title: "Optimización SEO",
-          desc: "Datos estructurados, meta tags y permalinks amigables con SEO integrados con el plugin Yoast SEO"
-        },
-        performance: {
-          title: "Optimizado para Rendimiento",
-          desc: "Tiempos de carga rápidos con optimización de imágenes, caché y minificación de código para mejor experiencia de usuario"
-        },
-        forms: {
-          title: "Formularios de Contacto",
-          desc: "Formularios de contacto integrados con protección anti-spam y notificaciones por email usando Contact Form 7"
-        },
-        security: {
-          title: "Seguridad y Mantenimiento",
-          desc: "Actualizaciones regulares, certificado SSL, protección contra malware y copias de seguridad automáticas para tranquilidad"
-        }
-      },
-      structure: {
-        title: "Estructura del Sitio Web",
-        home: {
-          title: "Página de Inicio",
-          desc: "Sección hero dinámica, servicios destacados, testimonios y llamados a la acción"
-        },
-        about: {
-          title: "Sobre Nosotros",
-          desc: "Historia de la empresa, misión, valores y perfiles de miembros del equipo"
-        },
-        services: {
-          title: "Servicios",
-          desc: "Ofertas de servicios detalladas con descripciones y beneficios"
-        },
-        portfolio: {
-          title: "Tarjetas de Empleados",
-          desc: "Perfiles digitales de empleados accesibles mediante URL única o código QR"
-        },
-        blog: {
-          title: "Blog",
-          desc: "Perspectivas de la industria, noticias de la empresa y contenido educativo"
-        },
-        contact: {
-          title: "Contacto",
-          desc: "Formularios de contacto, mapa de ubicación e información empresarial"
-        }
-      },
-      techStack: {
-        title: "Stack Tecnológico",
-        platform: {
-          title: "Plataforma Principal",
-          items: {
-            wordpress: "WordPress 6.x - Sistema de gestión de contenido",
-            php: "PHP 8.x - Lenguaje del lado del servidor",
-            mysql: "MySQL - Gestión de base de datos",
-            server: "Apache/Nginx - Servidor web"
-          }
-        },
-        design: {
-          title: "Herramientas de Diseño",
-          items: {
-            divi: "Divi Builder - Constructor visual de páginas",
-            theme: "Divi Theme - Tema premium de WordPress",
-            css: "Custom CSS - Estilos adicionales",
-            fonts: "Google Fonts - Tipografía"
-          }
-        },
-        plugins: {
-          title: "Plugins Esenciales",
-          items: {
-            yoast: "Yoast SEO - Optimización de búsqueda",
-            cf7: "Contact Form 7 - Formularios de contacto",
-            rocket: "WP Rocket - Caché y rendimiento",
-            wordfence: "Wordfence - Protección de seguridad"
-          }
-        },
-        hosting: {
-          title: "Hosting y Optimización",
-          items: {
-            ssl: "SSL Certificate - Encriptación HTTPS",
-            cdn: "CDN Integration - Entrega global rápida",
-            images: "Image Optimization - Formato WebP",
-            backups: "Automated Backups - Respaldos diarios"
-          }
-        }
-      },
-      highlights: {
-        title: "Aspectos Técnicos Destacados",
-        visual: "Personalización Visual: Divi Builder permite edición de arrastrar y soltar con vista previa en vivo y sin necesidad de conocimientos de código",
-        mobile: "Diseño Mobile-First: Breakpoints responsivos aseguran visualización perfecta en todos los tamaños de pantalla con optimizaciones específicas por dispositivo",
-        performance: "Optimizado para Rendimiento: Lazy loading de imágenes, minificación de código y caché del navegador logran tiempos de carga rápidos",
-        seo: "Mejores Prácticas SEO: Datos estructurados, sitemaps XML, meta descripciones y permalinks optimizados mejoran el ranking en búsquedas",
-        security: "Seguridad Reforzada: Actualizaciones regulares, escaneo de malware, protección de firewall y medidas de seguridad de inicio de sesión",
-        content: "Gestión de Contenido: Dashboard de WordPress fácil de usar permite a usuarios no técnicos actualizar contenido de forma independiente",
-        analytics: "Integración de Analytics: Google Analytics y Tag Manager proporcionan información sobre comportamiento de visitantes y rendimiento del sitio"
-      },
-      whyDivi: {
-        title: "¿Por qué Divi Builder?",
-        visual: {
-          title: "Edición Visual",
-          desc: "Ver cambios en tiempo real mientras construyes con la interfaz intuitiva del editor visual"
-        },
-        modules: {
-          title: "46+ Módulos",
-          desc: "Extensa biblioteca de módulos de contenido pre-construidos para cualquier necesidad de diseño"
-        },
-        speed: {
-          title: "Desarrollo Rápido",
-          desc: "Layouts y plantillas prediseñadas aceleran el tiempo de desarrollo del sitio"
-        }
-      },
-      visitNutrexcol: "Visitar Nutrexcol.com"
-    },
-
-    // Project 4: React Corporate
-    project4: {
-      title: "Sitio Web Corporativo",
-      subtitle: "Sitio empresarial moderno con React y Tailwind CSS",
-      overview: {
-        title: "Descripción del Proyecto",
-        p1: "Sitio web corporativo moderno desarrollado para Lopezoft, empresa de servicios tecnológicos. El sitio fue construido con React 18 utilizando componentes funcionales modernos y hooks para óptima gestión de estado y ciclo de vida. Tailwind CSS fue elegido como framework de estilos por su enfoque utility-first que permite desarrollo rápido y fácil personalización.",
-        p2: "El proyecto implementa una arquitectura modular con componentes reutilizables (Header, Hero, Services, Portfolio, Contact, Footer) que siguen principios de código limpio y separación de responsabilidades. Cada componente es independiente y puede ser fácilmente mantenido o modificado sin afectar el resto de la aplicación.",
-        p3: "Se utilizó Vite como herramienta de compilación, ofreciendo hot module reload instantáneo y desarrollo ultra-rápido. El resultado es un sitio web moderno, profesional y de alto rendimiento optimizado para SEO y accesibilidad."
-      },
-      features: {
-        title: "Características Principales",
-        components: {
-          title: "Arquitectura de Componentes",
-          desc: "Componentes modulares de React con elementos UI reutilizables y clara separación de responsabilidades"
-        },
-        tailwind: {
-          title: "Estilizado con Tailwind",
-          desc: "Framework CSS utility-first que proporciona sistema de diseño consistente y desarrollo rápido"
-        },
-        routing: {
-          title: "Enrutamiento del Lado del Cliente",
-          desc: "React Router v6 para navegación suave entre páginas sin recargas completas"
-        },
-        responsive: {
-          title: "Diseño Mobile-First",
-          desc: "Layout completamente responsive con el sistema de breakpoints de Tailwind asegurando visualización perfecta en todos los dispositivos"
-        },
-        performance: {
-          title: "Rendimiento Ultra-Rápido",
-          desc: "Herramienta de compilación Vite proporciona HMR instantáneo en desarrollo y builds de producción optimizados"
-        },
-        animations: {
-          title: "Animaciones Suaves",
-          desc: "Transiciones y transformaciones CSS para interacciones de usuario pulidas y micro-animaciones"
-        }
-      },
-      componentStructure: {
-        header: {
-          title: "Header/Navbar",
-          desc: "Navegación sticky con resaltado de link activo y menú hamburguesa móvil"
-        },
-        hero: {
-          title: "Sección Hero",
-          desc: "Sección de aterrizaje atractiva con fondos degradados y botones de llamada a la acción"
-        },
-        services: {
-          title: "Grid de Servicios",
-          desc: "Componentes de tarjeta reutilizables mostrando servicios con íconos y descripciones"
-        },
-        about: {
-          title: "Sección Sobre Nosotros",
-          desc: "Información de la empresa con miembros del equipo, misión y muestra de valores"
-        },
-        contact: {
-          title: "Formulario de Contacto",
-          desc: "Componente de formulario controlado con validación y manejo de envío"
-        },
-        footer: {
-          title: "Footer",
-          desc: "Footer multi-columna con enlaces, redes sociales e información de copyright"
-        }
-      },
-      techStack: {
-        title: "Stack Tecnológico",
-        core: {
-          title: "Framework Principal",
-          items: {
-            react: "React 18 - React más reciente con características concurrentes",
-            hooks: "React Hooks - useState, useEffect, hooks personalizados",
-            router: "React Router v6 - Enrutamiento del lado del cliente",
-            jsx: "JSX - Sintaxis JavaScript XML"
-          }
-        },
-        styling: {
-          title: "Sistema de Estilos",
-          items: {
-            tailwind: "Tailwind CSS - Framework utility-first",
-            postcss: "PostCSS - Procesamiento de CSS",
-            autoprefixer: "Autoprefixer - Compatibilidad con navegadores",
-            animations: "Custom Animations - Transiciones CSS"
-          }
-        },
-        tools: {
-          title: "Herramientas de Desarrollo",
-          items: {
-            vite: "Vite - Herramienta de compilación rápida y servidor dev",
-            eslint: "ESLint - Calidad y estándares de código",
-            prettier: "Prettier - Formateo de código",
-            git: "Git - Control de versiones"
-          }
-        },
-        libraries: {
-          title: "Bibliotecas Adicionales",
-          items: {
-            fontawesome: "Font Awesome - Biblioteca de íconos",
-            reacticons: "React Icons - Íconos adicionales",
-            formik: "Formik - Gestión de formularios (opcional)",
-            axios: "Axios - Peticiones HTTP (si es necesario)"
-          }
-        }
-      },
-      highlights: {
-        title: "Aspectos Técnicos Destacados",
-        patterns: "Patrones Modernos de React: Componentes funcionales, hooks y abstracciones de hooks personalizados para lógica reutilizable",
-        composition: "Composición de Componentes: Jerarquía de componentes bien estructurada con props drilling y patrones de composición",
-        utilities: "Utilidades Tailwind: Enfoque utility-first permite desarrollo rápido con tokens de diseño consistentes",
-        breakpoints: "Breakpoints Responsivos: Diseño mobile-first con sistema de breakpoints sm, md, lg, xl de Tailwind",
-        splitting: "Code Splitting: React.lazy() y Suspense para tamaños de bundle optimizados y cargas iniciales más rápidas",
-        vite: "Optimización de Build con Vite: HMR ultra-rápido en desarrollo y builds de producción optimizados con tree-shaking",
-        seo: "Amigable con SEO: Estructura HTML semántica, gestión de meta tags y jerarquía apropiada de encabezados"
-      },
-      workflow: {
-        fast: {
-          title: "Desarrollo Rápido",
-          desc: "Inicio instantáneo del servidor y HMR de Vite proporcionan feedback inmediato durante el desarrollo"
-        },
-        modular: {
-          title: "Componentes Modulares",
-          desc: "Cada componente es autocontenido haciendo que la base de código sea fácil de mantener y escalar"
-        },
-        optimized: {
-          title: "Build Optimizado",
-          desc: "Los builds de producción están optimizados con minificación, tree-shaking y chunking"
-        }
-      },
-      visitLopezoft: "Visitar Lopezoft.co"
-    }
   },
 
   // ========================================
@@ -796,41 +536,17 @@ const translations = {
 
     portfolio: {
       title: "PORTFOLIO",
-      projects: {
-        whatsappBot: {
-          title: "Dental WhatsApp Assistant",
-          tech: "Claude AI - Firebase",
-          description: "Intelligent chatbot for dental clinic with Dentalink integration"
+      intro: "Four systems in production. Each one proves something different.",
+      verCaso: "View the case",
+      otrosTitle: "Other work",
+      otros: {
+        lopezoft: {
+          title: "Lopezoft",
+          text: "My company's site. Next.js, with in-house design, content and infrastructure."
         },
-        calendarApp: {
-          title: "Calendar App",
-          tech: "MERN Stack",
-          description: "Collaborative calendar application with authentication and event management"
-        },
-        wordpressDivi: {
-          title: "Divi Corporate Site",
-          tech: "WordPress - Divi",
-          description: "Professional corporate website developed with WordPress and Divi Builder"
-        },
-        webCorporativa: {
-          title: "Corporate Website",
-          tech: "React",
-          description: "Modern corporate website developed with React and Tailwind CSS"
-        },
-        authApp: {
-          title: "Auth App",
-          tech: "Angular - Nest",
-          description: "Robust authentication system with JWT and protection guards"
-        },
-        playJavaScript: {
-          title: "Play JavaScript App",
-          tech: "Javascript",
-          description: "Interactive application to practice vanilla JavaScript concepts"
-        },
-        gifExpertApp: {
-          title: "Gif Expert App",
-          tech: "React",
-          description: "Animated GIF search engine with Giphy API integration"
+        nutrexcol: {
+          title: "Nutrexcol",
+          text: "Front-end build of the corporate WordPress site, for an agency."
         }
       }
     },
@@ -853,471 +569,235 @@ const translations = {
       },
       toast: "✅ Message sent successfully."
     },
-
-    // Common
-    common: {
-      loading: "Loading...",
-      error: "There was an error",
-      success: "Success"
-    },
-
-    // Project Detail Pages
-    projectDetail: {
-      backToPortfolio: "Back to Portfolio",
-      projectOverview: "Project Overview",
-      screenshots: "Screenshots",
-      siteShowcase: "Site Showcase",
-      keyFeatures: "Key Features",
-      techStack: "Technology Stack",
-      technicalHighlights: "Technical Highlights",
-      componentStructure: "Component Structure",
-      websiteStructure: "Website Structure",
-      viewLiveSite: "View Live Site",
-      visitSite: "Visit Site",
-      projectLinks: "Project Links",
-      viewOnGitHub: "View on GitHub",
-      liveDemo: "Live Demo",
-      whyDivi: "Why Divi Builder?",
-      developmentWorkflow: "Development Workflow",
-      keyIntegrations: "Key Integrations",
-      allRightsReserved: "All rights reserved.",
-      viewMoreProjects: "View More Projects"
-    },
-
-    // Project 1: WhatsApp Dental Assistant
-    project1: {
-      title: "Dental WhatsApp Assistant",
-      subtitle: "Intelligent chatbot with Claude AI for automated dental appointment management",
-      overview: {
-        title: "Project Overview",
-        p1: "Advanced chatbot system developed with Claude AI that integrates with WhatsApp Business API to provide a complete dental appointment management experience. The bot communicates naturally with patients, accesses the clinic's CRM in real time, and performs automated operations on the Dentalink platform.",
-        p2: "The bot uses Claude AI's function calling capability to execute specific functions such as checking available appointments, creating new appointments, and retrieving patient information from Dentalink. All interactions are logged in Firestore for auditing and continuous improvement.",
-        p3: "Built on Firebase Cloud Functions with serverless architecture, ensuring high availability and automatic scalability based on demand. The system implements conversation buffer to optimize costs and maintain conversational context."
-      },
-      integrations: {
-        title: "Key Integrations",
-        whatsapp: {
-          title: "WhatsApp Business API",
-          desc: "Direct connection with Meta to send and receive messages in real time. Handles text, images, and interactive buttons."
-        },
-        dentalink: {
-          title: "Dentalink API",
-          desc: "Complete integration with dental management platform for appointment queries, creation of new appointments, and real-time agenda verification."
-        },
-        claude: {
-          title: "Claude AI API",
-          desc: "Advanced AI engine with function calling to execute specific actions. Allows for natural conversations with intelligent decision making."
-        },
-        firebase: {
-          title: "Firebase Cloud Functions",
-          desc: "Serverless backend that processes messages and orchestrates all integrations. Automatic scalability and high availability."
-        },
-        firestore: {
-          title: "Cloud Firestore",
-          desc: "NoSQL database to store conversation history, user buffer, and interaction logs for analysis and improvement."
-        },
-        storage: {
-          title: "Cloud Storage",
-          desc: "Storage of multimedia files (images, PDFs) sent through WhatsApp for patient documentation and records."
+    // ========================================
+    // CASOS — project detail pages
+    // ========================================
+    casos: {
+      etiquetas: {
+        problema: "The problem",
+        solucion: "What I built",
+        resultado: "The result",
+        stack: "Stack",
+        galeria: "How it looks",
+        enlaces: "Links",
+        verSitio: "View the live site",
+        privado: "Private client project",
+        privadoNota: "There is no public demo: the system operates on real patient health data. I can walk you through it on a call.",
+        volver: "Back to portfolio",
+        derechos: "All rights reserved.",
+        masProyectos: "View more projects",
+        grupos: {
+          frontend: "Frontend",
+          backend: "Backend & data",
+          backend2: "Persistence",
+          ai: "Integrations",
+          infra: "Infrastructure"
         }
       },
-      features: {
-        title: "Key Features",
-        memory: {
-          title: "Persistent Memory",
-          desc: "Recognizes returning users and maintains conversational context across multiple interactions. Provides personalized experience based on history."
-        },
-        logging: {
-          title: "Conversation Logging",
-          desc: "Stores complete conversation history in Firestore for quality auditing, training improvement, and regulatory compliance."
-        },
-        buffer: {
-          title: "Conversation Buffer",
-          desc: "Optimizes costs by maintaining only relevant context in memory while storing complete history in database."
-        },
-        integration: {
-          title: "Real-time Dentalink Integration",
-          desc: "Accesses CRM directly to query available appointments, create new appointments, and verify patient information instantly."
-        },
-        appointments: {
-          title: "Automated Appointment Management",
-          desc: "Allows patients to check availability, schedule, reschedule, and cancel appointments without human intervention."
-        },
-        raceCondition: {
-          title: "Race Condition Handling",
-          desc: "Implements locks to prevent duplicate appointments when multiple messages arrive simultaneously from the same user."
-        },
-        humanTransfer: {
-          title: "Human Agent Transfer",
-          desc: "Detects when patients need human attention and smoothly transfers conversation to clinic staff."
-        },
-        aiAssistant: {
-          title: "Intelligent Dental Assistant",
-          desc: "Answers common questions about dental procedures, clinic services, costs, and operation hours with updated information."
+
+      whatsapp: {
+        title: "WhatsApp AI Assistant",
+        subtitle: "Books real appointments in a dental clinic's system, in natural conversation",
+        tech: "Claude AI · WhatsApp Business API · Firebase",
+        card: "An assistant that does not take messages: it writes into the clinic's real calendar.",
+        problema: "A clinic books appointments over WhatsApp. Every booking arrives as a message someone has to read, look up in the system, fit into the calendar and answer. Outside business hours nobody replies — and the patient who gets no answer calls another clinic.",
+        solucion: [
+          {
+            icon: "fa-comments",
+            title: "Conversation with real actions",
+            text: "It finds the patient, registers them if new, books, reschedules and cancels. It does not take messages: it writes into the real calendar, respecting appointment length, chair availability and opening hours."
+          },
+          {
+            icon: "fa-plug",
+            title: "Integrated with the system they already used",
+            text: "It connects to Dentalink, the clinic's management software. Nobody had to change how the team works."
+          },
+          {
+            icon: "fa-brain",
+            title: "Memory of returning patients",
+            text: "It recognises anyone who has written before and picks up the context. Images, audio, video and documents work in both directions."
+          },
+          {
+            icon: "fa-bell",
+            title: "Automatic reminder",
+            text: "Sent the day before the appointment, with confirm or cancel buttons. Fewer silent no-shows."
+          },
+          {
+            icon: "fa-headset",
+            title: "Handoff to a person",
+            text: "When needed, a web panel lets the team take over the conversation without the patient noticing the switch."
+          },
+          {
+            icon: "fa-triangle-exclamation",
+            title: "What happens when it fails",
+            text: "If the AI fails, the system tells the patient, escalates to a human and alerts the engineer over WhatsApp. It never just goes quiet."
+          }
+        ],
+        resultado: {
+          intro: "In operation throughout 2026, in daily use. But the part worth telling is not that it works — it is what showed up when I audited its production logs: three failures that left no trace.",
+          puntos: [
+            "Reminders that never went out. A calendar query took too long, the system read it as \"no appointments tomorrow\", and nobody was notified that Sunday.",
+            "Messages WhatsApp accepted and then dropped: 25 messages undelivered to 12 patients in 7 days, while the panel showed them as sent. One patient travelled to a cancelled appointment because the notices never arrived.",
+            "Images failing silently, including the one sent as a test."
+          ],
+          cierre: "All three were fixed: automatic retries on network failures, an alert to the administrator when a reminder does not go out, recovery that retries on its own an hour later, a red flag in the panel with the real reason a message failed, and a warning to the agent before writing if the WhatsApp window has already closed.",
+          frase: "The hard part of applied AI is not the conversation. It is what happens when it fails — and to find that out, someone has to be reading the logs."
         }
       },
-      highlights: {
-        title: "Technical Highlights",
-        serverless: "Serverless Architecture: Firebase Cloud Functions for automatic scalability and zero infrastructure maintenance",
-        functionCalling: "AI Function Calling: Claude AI executes specific functions (query_agenda, create_appointment) based on conversational context",
-        raceCondition: "Race Condition Prevention: Locking system to avoid duplicate appointments when users send multiple messages quickly",
-        buffer: "Smart Buffer: Only maintains the last 10 messages in memory for cost optimization, complete history in Firestore",
-        logging: "Complete Logging: All interactions recorded for quality audits and continuous training improvement"
+
+      jpr: {
+        title: "JPR Academy",
+        subtitle: "Training platform with limited seats, payments and protected video",
+        tech: "Next.js · Payload CMS · PostgreSQL",
+        card: "Selling counted seats is an inventory problem, not a design one.",
+        problema: "Selling mentorships and courses with seats limited per pass type is an inventory problem, not a design one. Every cohort has a fixed number of places, passes carry different access levels, and payments come in both pesos and dollars. With a template or a generic gateway that is managed by hand — and by hand, you oversell.",
+        solucion: [
+          {
+            icon: "fa-ticket",
+            title: "Seat control per cohort and per pass",
+            text: "Each pass type has its own price, seat count and access level. A student's access is frozen at the moment they pay."
+          },
+          {
+            icon: "fa-credit-card",
+            title: "Payments with signature verification",
+            text: "Wompi for Colombian pesos, with webhook signature validation. A payment is not trusted because the browser says so."
+          },
+          {
+            icon: "fa-lock",
+            title: "Gated members area",
+            text: "Live classes, permanent recordings, extended material and a private community. Each block is visible or not depending on the pass the student bought."
+          },
+          {
+            icon: "fa-arrow-up-right-dots",
+            title: "Self-service pass upgrade",
+            text: "Anyone who joined on the basic pass pays only the difference and their access lifts itself, with nobody touching the admin panel."
+          },
+          {
+            icon: "fa-video",
+            title: "Protected video",
+            text: "Recordings are served through Bunny Stream: they cannot be downloaded or shared by direct link."
+          },
+          {
+            icon: "fa-shield-halved",
+            title: "Operations included",
+            text: "Transactional email, daily database backups, auto-renewed SSL and 1-to-1 scheduling through Cal.com."
+          }
+        ],
+        resultado: {
+          intro: "Live at jprdesigntraining.com since 2026.",
+          puntos: [
+            "9 of the 10 Elite passes in the first Visual Direction cohort, sold. Figure authorised by the client.",
+            "An overselling bug was caught and fixed before it cost money: the system would have sold an Elite seat that no longer existed. A manual panel would not have flagged it.",
+            "Pass upgrades stopped being a manual errand —remembering to change the version and three permissions, reconciling a transfer— and became a purchase that records itself.",
+            "A change requested by the client on 30 July was deployed and verified in production the same day."
+          ],
+          cierre: "",
+          frase: "It sold 9 of 10 seats in its first cohort on an owned platform, with no per-sale commission and without overselling a single place."
+        }
+      },
+
+      cafe: {
+        title: "Café Montelargo",
+        subtitle: "Leaving Shopify without losing the domain, the email or control of the catalogue",
+        tech: "Next.js · Headless WordPress · Wompi",
+        card: "Migration to an owned storefront, with no per-sale commission.",
+        problema: "The store lived on Shopify. Shopify Payments does not operate in Colombia, so every sale paid the monthly plan, the local gateway commission and, on top of that, an extra 2% surcharge for using an external gateway. The catalogue and the orders were also locked inside a platform that is hard to leave.",
+        solucion: [
+          {
+            icon: "fa-store",
+            title: "Own front end, familiar CMS",
+            text: "The store is an owned Next.js app; the catalogue is managed from headless WordPress. The client edits with a tool they already knew, and the visitor never sees WordPress."
+          },
+          {
+            icon: "fa-money-bill-transfer",
+            title: "Local payments, total recalculated server-side",
+            text: "Wompi with Nequi, PSE, the Bancolombia button and cards. The total is recomputed from the catalogue on the server: what arrives from the browser is never trusted."
+          },
+          {
+            icon: "fa-database",
+            title: "PostgreSQL as the source of truth",
+            text: "Orders live in an owned database, mirrored to WooCommerce so the owner can look up orders and manage their own coupons without asking anyone."
+          },
+          {
+            icon: "fa-robot",
+            title: "Five automations in production",
+            text: "Order confirmation, admin notification, welcome email with coupon, abandoned-cart recovery and a 30-day repurchase nudge. They run on their own in n8n."
+          },
+          {
+            icon: "fa-rotate",
+            title: "Payment rescue without a webhook",
+            text: "If a gateway webhook never arrives, a reconciliation process recovers the order against the gateway API. An approved payment does not get lost."
+          },
+          {
+            icon: "fa-shield-halved",
+            title: "Operations included",
+            text: "Daily database backups to external storage and automatic SSL."
+          }
+        ],
+        resultado: {
+          intro: "Live at cafemontelargo.com.",
+          puntos: [
+            "Migration completed onto owned infrastructure, with no per-sale commission and without losing the domain or the email in the process.",
+            "The monthly Shopify plan and the 2% surcharge on every sale are gone, permanently.",
+            "The client manages their own coupons and looks up their own orders. Less dependence on the provider is better service.",
+            "Five sales automations running without intervention."
+          ],
+          cierre: "",
+          frase: "They left Shopify and stopped paying a commission to sell, without losing the domain, the email or control of their catalogue."
+        }
+      },
+
+      gcpfm: {
+        title: "GCP Facilities Management",
+        subtitle: "Maintaining and automating a 28-page corporate WordPress site in the United Kingdom",
+        tech: "WordPress · Divi · REST API · Python",
+        card: "Bulk changes through the API on a site with no server access.",
+        problema: "A 28-page corporate WordPress site running Divi, with an awkward constraint: no server access, no cPanel, no DNS. WordPress credentials and nothing else. With a change list touching almost every page, doing it by hand one page at a time was not viable.",
+        solucion: [
+          {
+            icon: "fa-code",
+            title: "Everything through the REST API",
+            text: "With no SSH or WP-CLI available, changes are applied by custom Python scripts against the WordPress REST API. Reproducible and reversible."
+          },
+          {
+            icon: "fa-check-double",
+            title: "A verifier before anything counts as done",
+            text: "192 calls to action normalised across the 28 pages. No change is recorded as accepted while the verifier returns a single failure."
+          },
+          {
+            icon: "fa-anchor",
+            title: "Section anchors on 24 pages",
+            text: "Consistent in-page navigation across the whole site, generated by script rather than by hand."
+          },
+          {
+            icon: "fa-envelope",
+            title: "Two forms, not one",
+            text: "The site had two different contact forms: one lives inside Divi's Theme Builder and can only be edited by hand. Finding it was half the job; both now deliver to the right inbox."
+          },
+          {
+            icon: "fa-bolt",
+            title: "Header flicker diagnosed",
+            text: "The header flickered on load across every page. The cause was Divi's Critical CSS, not the theme or the content. Verified on all 28 pages."
+          },
+          {
+            icon: "fa-globe",
+            title: "International client",
+            text: "Project run in English, with the client in the United Kingdom and asynchronous communication."
+          }
+        ],
+        resultado: {
+          intro: "Three pieces of work closed and verified in production during 2026.",
+          puntos: [
+            "192 calls to action normalised across 28 pages, with automated zero-failure verification.",
+            "Both contact forms delivering to the correct inbox.",
+            "Header flicker removed and verified page by page.",
+            "Bulk changes stopped being manual work: today they are a script that can be run again."
+          ],
+          cierre: "",
+          frase: "With no server access, the site's own WordPress API was enough to turn 28 manual edits into a verifiable script."
+        }
       }
     },
-
-    // Project 2: CalendarApp
-    project2: {
-      title: "CalendarApp",
-      subtitle: "Collaborative calendar with authentication",
-      overview: {
-        title: "Project Overview",
-        p1: "Full-stack web application that allows users to efficiently manage their events and appointments. The system implements secure authentication with JWT and offers a modern collaborative experience where multiple users can create, view, and manage events in real time.",
-        p2: "The interface was developed with React using modern hooks (useState, useEffect, useContext) for state management and user experience optimization. Redux Toolkit was integrated for global state management, enabling fluid synchronization between components and real-time updates.",
-        p3: "The backend was built with Node.js and Express, implementing RESTful routes for all CRUD operations. Authentication is handled with JWT (JSON Web Tokens), ensuring that only authenticated users can access their calendars. Data is stored in MongoDB Atlas, offering scalability and availability in the cloud."
-      },
-      features: {
-        title: "Key Features",
-        auth: {
-          title: "Secure Authentication",
-          desc: "JWT-based login and registration system with password encryption and protected routes"
-        },
-        crud: {
-          title: "Complete Event CRUD",
-          desc: "Create, read, update, and delete events with real-time validation and instant database synchronization"
-        },
-        collaborative: {
-          title: "Collaborative Calendar",
-          desc: "Multiple users can view and manage events, each with their own workspace and permissions"
-        },
-        interface: {
-          title: "Interactive Interface",
-          desc: "Intuitive calendar with different views (monthly, weekly, daily) and click-and-drag event creation"
-        },
-        responsive: {
-          title: "Responsive Design",
-          desc: "Optimized experience for desktops, tablets, and mobile devices with adaptive layout"
-        },
-        persistence: {
-          title: "Cloud Persistence",
-          desc: "Events stored in MongoDB Atlas, accessible from any device with automatic synchronization"
-        }
-      },
-      techStack: {
-        title: "Technology Stack",
-        frontend: {
-          title: "Frontend",
-          items: {
-            react: "React 18 - Component-based UI with modern hooks",
-            redux: "Redux Toolkit - Global state management and business logic",
-            reactBigCalendar: "React-Big-Calendar - Interactive visual calendar",
-            axios: "Axios - HTTP communication with backend",
-            sweetalert2: "SweetAlert2 - Enhanced user alerts and notifications"
-          }
-        },
-        backend: {
-          title: "Backend",
-          items: {
-            node: "Node.js - JavaScript runtime environment",
-            express: "Express.js - Lightweight and flexible web server",
-            jwt: "JWT - Token-based authentication",
-            bcrypt: "Bcrypt - Password hashing and security",
-            mongoose: "Mongoose - MongoDB ODM with schemas"
-          }
-        },
-        tools: {
-          title: "Tools and Others",
-          items: {
-            vite: "Vite - Fast build tool for development",
-            postman: "Postman - API testing and documentation",
-            git: "Git & GitHub - Version control and collaboration",
-            npm: "NPM - Package and dependency management"
-          }
-        },
-        database: {
-          title: "Database",
-          items: {
-            mongodb: "MongoDB Atlas - NoSQL cloud database",
-            mongoose: "Mongoose - Object modeling for MongoDB",
-            cloudBackup: "Cloud Backup - Automatic backups and high availability",
-            indexing: "Indexing - Query optimization for better performance"
-          }
-        }
-      },
-      highlights: {
-        title: "Technical Highlights",
-        mernStack: "Complete MERN Stack: Full development with MongoDB, Express, React, and Node.js in a single project",
-        jwt: "JWT Authentication: Secure implementation with token expiration and automatic renewal",
-        redux: "Centralized State: Redux Toolkit for predictable application flow and easy debugging",
-        restApi: "RESTful API: Backend following best practices with proper routes and HTTP methods",
-        responsive: "100% Responsive: Mobile-first design adapting to any screen size",
-        cloudDatabase: "MongoDB Atlas: Cloud database with automatic scalability and guaranteed availability"
-      },
-      links: {
-        github: "View on GitHub",
-        demo: "Live Demo"
-      }
-    },
-
-    // Project 3: WordPress + Divi Corporate Site
-    project3: {
-      title: "Corporate Website",
-      subtitle: "Professional business site with WordPress and Divi",
-      overview: {
-        title: "Project Overview",
-        p1: "Professional corporate website developed for Nutrexcol, a company in the nutritional supplements sector. The site was built using WordPress as a CMS and Divi Builder as the main design tool, allowing for flexible visual creation without the need to write code for layouts.",
-        p2: "The project implemented a completely custom design aligned with the company's visual identity, including specific sections for products, services, company information, and contact. Divi's advanced modules were used to create attractive interactive elements such as image carousels, accordions, call-to-action buttons, and optimized forms.",
-        p3: "Special emphasis was placed on SEO optimization with Yoast SEO, site loading speed with cache plugins and image optimization, and security with Wordfence. The result is a fast, secure, and professional website that effectively represents the brand in the digital environment."
-      },
-      features: {
-        title: "Key Features",
-        customDesign: {
-          title: "Custom Design",
-          desc: "Completely personalized visual identity aligned with brand, unique colors, typography, and layouts"
-        },
-        diviModules: {
-          title: "Advanced Divi Modules",
-          desc: "Use of 46+ native modules (carousels, galleries, forms, buttons) for rich interactive experience"
-        },
-        seo: {
-          title: "SEO Optimization",
-          desc: "Implementation of Yoast SEO with meta tags, sitemaps, structured data, and readability optimization"
-        },
-        performance: {
-          title: "Speed and Performance",
-          desc: "Optimized with WP Rocket (cache), Smush (images), and lazy loading for fast load times"
-        },
-        responsive: {
-          title: "Mobile Responsive",
-          desc: "Fluid design perfectly adapting to all devices (desktop, tablet, mobile) with specific adjustments"
-        },
-        security: {
-          title: "Security",
-          desc: "Protection with Wordfence (firewall), SSL certificate, automatic backups, and malware monitoring"
-        }
-      },
-      structure: {
-        title: "Website Structure",
-        home: {
-          title: "Home",
-          desc: "Hero section with call-to-action, featured product showcases, company benefits, and customer testimonials"
-        },
-        about: {
-          title: "About Us",
-          desc: "Company history, mission and vision, team, and certifications"
-        },
-        services: {
-          title: "Services",
-          desc: "Detailed description of services offered with icons, benefits, and inquiry forms"
-        },
-        portfolio: {
-          title: "Employee Cards",
-          desc: "Digital employee profiles accessible via unique URL or QR code"
-        },
-        blog: {
-          title: "Blog",
-          desc: "Articles about health, nutrition, and wellness with category organization and comments"
-        },
-        contact: {
-          title: "Contact",
-          desc: "Contact form, map, address, phone, email, and links to social media"
-        }
-      },
-      techStack: {
-        title: "Technology Stack",
-        platform: {
-          title: "Core Platform",
-          items: {
-            wordpress: "WordPress 6.x - Content management system",
-            php: "PHP 8.x - Server-side language",
-            mysql: "MySQL - Database management",
-            server: "Apache/Nginx - Web server"
-          }
-        },
-        design: {
-          title: "Design Tools",
-          items: {
-            divi: "Divi Builder - Visual page builder",
-            theme: "Divi Theme - Premium WordPress theme",
-            css: "Custom CSS - Additional styling",
-            fonts: "Google Fonts - Typography"
-          }
-        },
-        plugins: {
-          title: "Essential Plugins",
-          items: {
-            yoast: "Yoast SEO - Search optimization",
-            cf7: "Contact Form 7 - Contact forms",
-            rocket: "WP Rocket - Caching & performance",
-            wordfence: "Wordfence - Security protection"
-          }
-        },
-        hosting: {
-          title: "Hosting & Optimization",
-          items: {
-            ssl: "SSL Certificate - HTTPS encryption",
-            cdn: "CDN Integration - Fast global delivery",
-            images: "Image Optimization - WebP format",
-            backups: "Automated Backups - Daily snapshots"
-          }
-        }
-      },
-      highlights: {
-        title: "Technical Highlights",
-        visual: "Visual Customization: Divi Builder allows drag-and-drop editing with live preview and no coding knowledge required",
-        mobile: "Mobile-First Design: Responsive breakpoints ensure perfect display on all screen sizes with device-specific optimizations",
-        performance: "Performance Optimized: Image lazy loading, code minification, and browser caching achieve fast load times",
-        seo: "SEO Best Practices: Structured data, XML sitemaps, meta descriptions, and optimized permalinks improve search rankings",
-        security: "Security Hardened: Regular updates, malware scanning, firewall protection, and login security measures",
-        content: "Content Management: Easy-to-use WordPress dashboard allows non-technical users to update content independently",
-        analytics: "Analytics Integration: Google Analytics and Tag Manager provide insights into visitor behavior and site performance"
-      },
-      whyDivi: {
-        title: "Why Divi Builder?",
-        visual: {
-          title: "Visual Editing",
-          desc: "Build and modify the site in real-time seeing exactly how it will look, without writing code"
-        },
-        modules: {
-          title: "46+ Modules",
-          desc: "Pre-built components (buttons, forms, galleries, testimonials) ready to use and customize"
-        },
-        speed: {
-          title: "Fast Development",
-          desc: "Create professional websites 3x faster compared to developing from scratch with code"
-        }
-      },
-      visitNutrexcol: "Visit Nutrexcol.com"
-    },
-
-    // Project 4: React Corporate Website
-    project4: {
-      title: "Corporate Website",
-      subtitle: "Modern business site with React and Tailwind CSS",
-      overview: {
-        title: "Project Overview",
-        p1: "Modern corporate website developed for Lopezoft, a technology services company. The site was built with React 18 using modern functional components and hooks for optimal state and lifecycle management. Tailwind CSS was chosen as the styling framework for its utility-first approach that enables rapid development and easy customization.",
-        p2: "The project implements a modular architecture with reusable components (Header, Hero, Services, Portfolio, Contact, Footer) that follow clean code principles and separation of concerns. Each component is independent and can be easily maintained or modified without affecting the rest of the application.",
-        p3: "Vite was used as the build tool, offering instant hot module reload and ultra-fast development. The result is a modern, professional, and high-performance website optimized for SEO and accessibility."
-      },
-      features: {
-        title: "Key Features",
-        components: {
-          title: "Component Architecture",
-          desc: "Modular React components with reusable UI elements and clean separation of concerns"
-        },
-        tailwind: {
-          title: "Tailwind Styling",
-          desc: "Utility-first CSS framework providing consistent design system and rapid development"
-        },
-        routing: {
-          title: "Client-Side Routing",
-          desc: "React Router v6 for smooth navigation between pages without full page reloads"
-        },
-        responsive: {
-          title: "Mobile-First Design",
-          desc: "Fully responsive layout with Tailwind's breakpoint system ensuring perfect display on all devices"
-        },
-        performance: {
-          title: "Lightning-Fast Performance",
-          desc: "Vite build tool provides instant HMR in development and optimized production builds"
-        },
-        animations: {
-          title: "Smooth Animations",
-          desc: "CSS transitions and transforms for polished user interactions and micro-animations"
-        }
-      },
-      componentStructure: {
-        header: {
-          title: "Header/Navbar",
-          desc: "Sticky navigation with active link highlighting and mobile hamburger menu"
-        },
-        hero: {
-          title: "Hero Section",
-          desc: "Engaging landing section with gradient backgrounds and call-to-action buttons"
-        },
-        services: {
-          title: "Services Grid",
-          desc: "Reusable card components displaying services with icons and descriptions"
-        },
-        about: {
-          title: "About Section",
-          desc: "Company information with team members, mission, and values showcase"
-        },
-        contact: {
-          title: "Contact Form",
-          desc: "Controlled form component with validation and submission handling"
-        },
-        footer: {
-          title: "Footer",
-          desc: "Multi-column footer with links, social media, and copyright information"
-        }
-      },
-      techStack: {
-        title: "Technology Stack",
-        core: {
-          title: "Core Framework",
-          items: {
-            react: "React 18 - Latest React with concurrent features",
-            hooks: "React Hooks - useState, useEffect, custom hooks",
-            router: "React Router v6 - Client-side routing",
-            jsx: "JSX - JavaScript XML syntax"
-          }
-        },
-        styling: {
-          title: "Styling System",
-          items: {
-            tailwind: "Tailwind CSS - Utility-first framework",
-            postcss: "PostCSS - CSS processing",
-            autoprefixer: "Autoprefixer - Browser compatibility",
-            animations: "Custom Animations - CSS transitions"
-          }
-        },
-        tools: {
-          title: "Development Tools",
-          items: {
-            vite: "Vite - Fast build tool and dev server",
-            eslint: "ESLint - Code quality and standards",
-            prettier: "Prettier - Code formatting",
-            git: "Git - Version control"
-          }
-        },
-        libraries: {
-          title: "Additional Libraries",
-          items: {
-            fontawesome: "Font Awesome - Icon library",
-            reacticons: "React Icons - Additional icons",
-            formik: "Formik - Form management (optional)",
-            axios: "Axios - HTTP requests (if needed)"
-          }
-        }
-      },
-      highlights: {
-        title: "Technical Highlights",
-        patterns: "Modern React Patterns: Functional components, hooks, and custom hook abstractions for reusable logic",
-        composition: "Component Composition: Well-structured component hierarchy with props drilling and composition patterns",
-        utilities: "Tailwind Utilities: Utility-first approach enables rapid development with consistent design tokens",
-        breakpoints: "Responsive Breakpoints: Mobile-first design with Tailwind's sm, md, lg, xl breakpoint system",
-        splitting: "Code Splitting: React.lazy() and Suspense for optimized bundle sizes and faster initial loads",
-        vite: "Vite Build Optimization: Lightning-fast HMR in development and optimized production builds with tree-shaking",
-        seo: "SEO-Friendly: Semantic HTML structure, meta tags management, and proper heading hierarchy"
-      },
-      workflow: {
-        fast: {
-          title: "Fast Development",
-          desc: "Vite's instant server start and HMR provide immediate feedback during development"
-        },
-        modular: {
-          title: "Modular Components",
-          desc: "Each component is self-contained making the codebase easy to maintain and scale"
-        },
-        optimized: {
-          title: "Optimized Build",
-          desc: "Production builds are optimized with minification, tree-shaking, and chunking"
-        }
-      },
-      visitLopezoft: "Visit Lopezoft.co"
-    }
   }
 };
 

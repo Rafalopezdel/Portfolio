@@ -2,6 +2,53 @@
 
 > Entrada nueva **arriba**. Formato en `CLAUDE.md §4`.
 
+## 2026-08-31 — Fase D: los cuatro proyectos
+
+- **Qué se hizo:**
+  - **Cuatro casos, no seis.** En el portafolio quedan: **Asistente de WhatsApp con IA**,
+    **JPR Academy**, **Café Montelargo** y **GCPFM**. Cada uno prueba algo distinto —IA
+    aplicada, plataforma con pagos y cupos, e-commerce headless, cliente internacional—.
+  - **Fuera** CalendarioApp y Website Corporativa (proyectos de curso, superados por los
+    reales) y `project5.html`, que además estaba roto: apuntaba a `webCorporativa1.png`,
+    un archivo que nunca existió.
+  - **Nutrexcol y lopezoft.co** pasan a una fila secundaria "Otros trabajos", como enlaces.
+    Nutrexcol no es tarjeta: solo se maquetó, no se opera, y `casos.md` lo descarta como caso.
+  - **Nombres de archivo con significado**: `projects/asistente-whatsapp.html`,
+    `jpr-academy.html`, `cafe-montelargo.html`, `gcpfm.html`. Ya no hay que abrir
+    `project3.html` para averiguar de qué proyecto habla.
+  - **Una sola plantilla.** Las cuatro páginas viejas habían divergido (una tenía
+    "Integraciones clave", otra "¿Por qué Divi?"), así que mantenerlas era mantener cuatro
+    estructuras. Las nuevas son idénticas en forma: *El problema → Lo que construí →
+    El resultado → Stack y galería → Enlace al sitio*. Esa estructura sale de
+    `apps/lopezoft/_spec/casos.md` y es la que un reclutador puede leer en diagonal.
+  - **Traducciones**: los bloques `project1..project4` se sustituyen por un único `casos`
+    con los cuatro. De paso se eliminaron `projectDetail` y `common`, que quedaron
+    huérfanos. **`translations.js`: 67 KB → 42,5 KB.**
+- **Archivos tocados:** `index.html`, `assets/js/translations.js`,
+  `projects/{asistente-whatsapp,jpr-academy,cafe-montelargo,gcpfm}.html` (nuevos),
+  `projects/project{1..5}.html` (eliminados), `scripts/verificar-traducciones.js`.
+- **¿Desplegado?:** **sí**. Las cinco páginas viejas **borradas también del servidor** y
+  comprobado que devuelven 404. Respaldo previo: `~/backup-portfolio-2026-08-31-1350.tgz`.
+- **Siguiente paso:** fase E — la hoja de vida.
+
+### Reglas de privacidad aplicadas
+
+- **La clínica odontológica no se nombra.** El caso se cuenta con cifras agregadas
+  (25 mensajes a 12 pacientes en 7 días) y sin un solo dato de paciente. La página dice
+  explícitamente que no hay demo pública porque opera sobre datos de salud.
+- **El precio que paga Café Montelargo no aparece**, ni como cifra ni como rango.
+- La captura de WhatsApp que se usa lleva el nombre del odontólogo difuminado en origen.
+
+### Dos cosas que aparecieron
+
+1. **`fa-user-headset` es un icono de Font Awesome Pro**, no de la versión gratuita: salía
+   un cuadro vacío. Se cambió por `fa-headset`. Hay un chequeo rápido para esto en
+   `docs/CONTENIDO.md` — mide si la clase tiene glifo antes de darla por buena.
+2. **El verificador de traducciones marcaba como error un valor vacío legítimo.** Tres casos
+   no tienen párrafo de cierre y su clave `cierre` está vacía **en los dos idiomas**, que es
+   deliberado. Ahora solo avisa cuando está vacío en **una sola** rama, que es el fallo real.
+
+
 ## 2026-08-31 — Fase C: contenido
 
 - **Qué se hizo (ES y EN en el mismo cambio):**
@@ -135,7 +182,7 @@ borrado remoto quedó bloqueado por el clasificador de permisos. Comando en
 | **A** | Favicon, foto, metadatos, Open Graph, imágenes a WebP | ✅ 2026-08-31 |
 | **B** | Montserrat + Inter y paleta de marca, en `index.html` **y** las 5 páginas de `projects/` (el `tailwind.config` está duplicado en cada una) | ✅ 2026-08-31 |
 | **C** | Hero, "Sobre mí", skills agrupados, currículum reordenado. ES y EN en el mismo cambio | ✅ 2026-08-31 |
-| **D** | Los 4 proyectos: 3 páginas nuevas (JPR Academy, Café Montelargo, GCPFM), reescritura del asistente, retiro de CalendarioApp y Website Corporativa, borrado de `project5.html` del repo y del servidor. Fila secundaria con `lopezoft.co` y `nutrexcol.com` | ⬜ |
+| **D** | Los 4 proyectos, con nombres de archivo con significado y una plantilla común. Fila secundaria con `lopezoft.co` y `nutrexcol.com` | ✅ 2026-08-31 |
 | **E** | **Hoja de vida**: regenerar el CV en PDF para que concuerde con el portafolio (mismo posicionamiento, mismos proyectos, mismas cifras) y sustituir el de 4 MB | ⬜ |
 
 **Proyectos elegidos para la fase D** (de los 6 revisados): Asistente WhatsApp con IA,

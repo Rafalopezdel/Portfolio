@@ -42,25 +42,53 @@ blanco en las cuatro páginas de proyecto y nadie lo había notado.
 
 ## Añadir o cambiar un proyecto
 
-Un proyecto vive en **cuatro sitios**:
+Desde la fase D hay **cuatro casos** y todos comparten la misma estructura:
 
-1. **Tarjeta** en `index.html`, sección `#portfolio` (`grep -n 'id="portfolio"' index.html`).
-   Cada tarjeta lleva `onclick="window.location.href='projects/projectN.html'"`, la imagen,
-   y `x-text="translations[lang].portfolio.projects.CLAVE.title"` / `.tech`.
-2. **Textos de la tarjeta** en `translations.js` → `portfolio.projects.CLAVE`
-   (`title`, `tech`, `description`), en `es` y en `en`.
-3. **Página de detalle** `projects/projectN.html`. Se copia de una existente: llevan un único
-   scope Alpine en `<html>` con `theme` y `lang`, y su propio `tailwind.config` inline.
-4. **Textos de la página** en `translations.js` → `projectN` (`title`, `subtitle`, `overview`,
-   `features`, `stack`…), en `es` y en `en`.
+```
+El problema  →  Lo que construí  →  El resultado  →  Stack y galería  →  Enlace al sitio
+```
 
-Y las **imágenes** en `assets/img/`.
+Esa forma viene de `apps/lopezoft/_spec/casos.md` y no es decorativa: es la que permite
+leer el caso en diagonal y quedarse con la cifra. **Si añades un caso, respétala.**
 
-⚠️ **`projects/project5.html` existe pero no está enlazado desde ninguna parte** y no tiene
-traducciones. O se conecta o se borra (del repo **y** del servidor, ver `DESPLIEGUE.md`).
+| Archivo | Clave en `translations.js` |
+|---|---|
+| `projects/asistente-whatsapp.html` | `casos.whatsapp` |
+| `projects/jpr-academy.html` | `casos.jpr` |
+| `projects/cafe-montelargo.html` | `casos.cafe` |
+| `projects/gcpfm.html` | `casos.gcpfm` |
 
-⚠️ Cambiar un color o un breakpoint obliga a tocar el `tailwind.config` de `index.html`
-**y el de las 5 páginas de `projects/`**. Están duplicados.
+**Los nombres de archivo llevan el nombre del proyecto, no un número.** Antes eran
+`project1.html`…`project5.html` y había que abrirlos para saber de qué hablaban.
+
+Un caso vive en **tres sitios**:
+
+1. **La página** `projects/<slug>.html`. Cópiala de una existente: las cuatro son idénticas
+   salvo el `slug`, los chips del hero, el stack, la galería y el enlace.
+2. **Los textos** en `translations.js` → `casos.<clave>`, en `es` **y** en `en`:
+   `title`, `subtitle`, `tech`, `card`, `problema`, `solucion[]`, `resultado{}`.
+3. **La tarjeta** en `index.html`, sección `#portfolio`. Lee de `casos.<clave>` — no
+   dupliques los textos.
+
+Y la imagen en `assets/img/` (WebP, ver más abajo).
+
+### Cuántos casos
+
+**Cuatro.** El reclutador juzga por el más débil que ve: un quinto proyecto flojo baja el
+promedio de los cuatro buenos. Lo que no llegue a caso va a la fila **"Otros trabajos"**
+como enlace (`portfolio.otros` en `translations.js`).
+
+### ⚠️ Font Awesome: la versión gratuita no tiene todos los iconos
+
+Los iconos de `casos.<clave>.solucion[].icon` se pintan con `:class`. Si eliges uno que
+solo existe en Font Awesome **Pro**, no da error: sale un **cuadro vacío**. Pasó con
+`fa-user-headset` en la fase D. Compruébalo en la consola del navegador:
+
+```js
+const p = document.createElement('i'); document.body.appendChild(p);
+p.className = 'fa-solid fa-el-icono-que-quieras';
+getComputedStyle(p, '::before').content;   // '"\uXXXX"' = existe · 'none' = no existe
+```
 
 ## Imágenes
 

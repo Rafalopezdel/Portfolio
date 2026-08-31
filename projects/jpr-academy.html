@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es" x-data="{ theme: localStorage.getItem('theme') || 'light', lang: localStorage.getItem('lang') || 'es' }"
+      :data-theme="theme"
+      x-init="document.documentElement.setAttribute('lang', lang)">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title x-text="translations[lang].casos.jpr.title + ' — Rafael López'">Rafael López</title>
+    <meta name="description" content="">
+    <meta name="theme-color" content="#0D1B2A">
+    <link rel="canonical" href="https://portfoliorafael.lopezoft.co/projects/jpr-academy.html">
+
+    <!-- Favicon -->
+    <link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon-192.png">
+    <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Rafael López">
+    <meta property="og:url" content="https://portfoliorafael.lopezoft.co/projects/jpr-academy.html">
+    <meta property="og:image" content="https://portfoliorafael.lopezoft.co/assets/img/jprAcademy1.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://portfoliorafael.lopezoft.co/assets/img/jprAcademy1.webp">
+
+    <!-- Tipografía de marca: Montserrat (titulares) + Inter (cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Tailwind servido desde el propio dominio: el CDN no resuelve en algunas redes -->
+    <script src="../assets/js/tailwind.3.4.17.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        // Acento ADAPTATIVO segun la superficie (ver assets/css/custom.css)
+                        primary: 'rgb(var(--acento) / <alpha-value>)',
+                        'primary-light': 'rgb(var(--acento-2) / <alpha-value>)',
+                        'primary-dark': '#1E3A8A',
+                        // FIJOS: fondos rellenos con texto blanco encima
+                        brand: '#2563EB',
+                        'brand-deep': '#1E3A8A',
+                        'brand-cyan': '#38BDF8',
+                        navy: '#0D1B2A',
+                        ink: '#64748B',
+                        mist: '#F3F4F6',
+                    },
+                    fontFamily: {
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        body: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <script src="../assets/js/translations.js?v=devD2"></script>
+    <link rel="stylesheet" href="../assets/css/custom.css?v=devD2">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <style>[x-cloak] { display: none !important; }</style>
+</head>
+
+<body class="font-body bg-white dark:bg-slate-900 transition-colors duration-300"
+      x-init="document.documentElement.setAttribute('data-theme', theme); theme === 'dark' ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')">
+
+    <!-- Cabecera -->
+    <header class="surface-dark fixed top-0 left-0 right-0 z-50 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <a href="../index.html#portfolio"
+                   class="group flex items-center gap-2 text-slate-300 hover:text-primary transition-colors duration-300">
+                    <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform duration-300"></i>
+                    <span class="font-semibold" x-text="translations[lang].casos.etiquetas.volver">Volver al portafolio</span>
+                </a>
+
+                <div class="flex items-center gap-2">
+                    <button @click="lang = lang === 'es' ? 'en' : 'es'; localStorage.setItem('lang', lang); document.documentElement.setAttribute('lang', lang)"
+                            class="flex items-center gap-2 px-3 py-2 rounded-full border-2 border-slate-700 hover:border-primary text-slate-300 hover:text-white transition-all duration-300"
+                            :title="lang === 'es' ? 'Switch to English' : 'Cambiar a Español'"
+                            aria-label="Toggle language">
+                        <i class="fa-solid fa-globe text-base" aria-hidden="true"></i>
+                        <span class="text-xs font-bold tracking-wider" x-text="lang === 'es' ? 'EN' : 'ES'">EN</span>
+                    </button>
+
+                    <button @click="theme = theme === 'light' ? 'dark' : 'light'; localStorage.setItem('theme', theme); document.documentElement.setAttribute('data-theme', theme); theme === 'dark' ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')"
+                            class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-slate-700 hover:border-primary text-slate-300 hover:text-primary transition-all duration-300"
+                            aria-label="Toggle theme">
+                        <i class="fa-solid" :class="theme === 'dark' ? 'fa-sun' : 'fa-moon'"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="surface-dark relative pt-32 pb-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary-light/10"></div>
+        <div class="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl"></div>
+
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-heading font-bold text-white mb-5"
+                x-text="translations[lang].casos.jpr.title"></h1>
+            <p class="text-lg sm:text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed"
+               x-text="translations[lang].casos.jpr.subtitle"></p>
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3">
+                <span class="px-4 py-2 bg-primary/20 text-primary border border-primary/30 rounded-full text-sm font-semibold">Next.js 15</span>
+                <span class="px-4 py-2 bg-primary/20 text-primary border border-primary/30 rounded-full text-sm font-semibold">Payload CMS 3</span>
+                <span class="px-4 py-2 bg-primary/20 text-primary border border-primary/30 rounded-full text-sm font-semibold">PostgreSQL</span>
+                <span class="px-4 py-2 bg-primary/20 text-primary border border-primary/30 rounded-full text-sm font-semibold">Wompi</span>
+                <span class="px-4 py-2 bg-primary/20 text-primary border border-primary/30 rounded-full text-sm font-semibold">Bunny Stream</span>
+                <span class="px-4 py-2 bg-primary/20 text-primary border border-primary/30 rounded-full text-sm font-semibold">Cal.com</span>
+                <span class="px-4 py-2 bg-primary/20 text-primary border border-primary/30 rounded-full text-sm font-semibold">n8n</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- El problema -->
+    <section class="py-16 sm:py-20 bg-white dark:bg-slate-900">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+                <i class="fa-solid fa-circle-question text-primary"></i>
+                <span x-text="translations[lang].casos.etiquetas.problema">El problema</span>
+            </h2>
+            <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed"
+               x-text="translations[lang].casos.jpr.problema"></p>
+        </div>
+    </section>
+
+    <!-- Lo que construi -->
+    <section class="py-16 sm:py-20 bg-slate-50 dark:bg-slate-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold text-slate-900 dark:text-white mb-10">
+                <i class="fa-solid fa-screwdriver-wrench text-primary"></i>
+                <span x-text="translations[lang].casos.etiquetas.solucion">Lo que construí</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="flex items-start gap-4 p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                    <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 dark:bg-primary/20 border border-primary/30">
+                        <i class="fa-solid" :class="translations[lang].casos.jpr.solucion[0].icon"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-heading font-bold text-slate-900 dark:text-white mb-1"
+                            x-text="translations[lang].casos.jpr.solucion[0].title"></h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                           x-text="translations[lang].casos.jpr.solucion[0].text"></p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                    <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 dark:bg-primary/20 border border-primary/30">
+                        <i class="fa-solid" :class="translations[lang].casos.jpr.solucion[1].icon"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-heading font-bold text-slate-900 dark:text-white mb-1"
+                            x-text="translations[lang].casos.jpr.solucion[1].title"></h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                           x-text="translations[lang].casos.jpr.solucion[1].text"></p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                    <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 dark:bg-primary/20 border border-primary/30">
+                        <i class="fa-solid" :class="translations[lang].casos.jpr.solucion[2].icon"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-heading font-bold text-slate-900 dark:text-white mb-1"
+                            x-text="translations[lang].casos.jpr.solucion[2].title"></h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                           x-text="translations[lang].casos.jpr.solucion[2].text"></p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                    <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 dark:bg-primary/20 border border-primary/30">
+                        <i class="fa-solid" :class="translations[lang].casos.jpr.solucion[3].icon"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-heading font-bold text-slate-900 dark:text-white mb-1"
+                            x-text="translations[lang].casos.jpr.solucion[3].title"></h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                           x-text="translations[lang].casos.jpr.solucion[3].text"></p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                    <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 dark:bg-primary/20 border border-primary/30">
+                        <i class="fa-solid" :class="translations[lang].casos.jpr.solucion[4].icon"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-heading font-bold text-slate-900 dark:text-white mb-1"
+                            x-text="translations[lang].casos.jpr.solucion[4].title"></h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                           x-text="translations[lang].casos.jpr.solucion[4].text"></p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                    <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 dark:bg-primary/20 border border-primary/30">
+                        <i class="fa-solid" :class="translations[lang].casos.jpr.solucion[5].icon"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-heading font-bold text-slate-900 dark:text-white mb-1"
+                            x-text="translations[lang].casos.jpr.solucion[5].title"></h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                           x-text="translations[lang].casos.jpr.solucion[5].text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- El resultado -->
+    <section class="py-16 sm:py-20 bg-white dark:bg-slate-900">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+                <i class="fa-solid fa-chart-line text-primary"></i>
+                <span x-text="translations[lang].casos.etiquetas.resultado">El resultado</span>
+            </h2>
+
+            <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6"
+               x-text="translations[lang].casos.jpr.resultado.intro"></p>
+
+            <ul class="space-y-4 text-slate-700 dark:text-slate-300 mb-6">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check text-primary mt-1.5 flex-shrink-0"></i>
+                        <span x-text="translations[lang].casos.jpr.resultado.puntos[0]"></span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check text-primary mt-1.5 flex-shrink-0"></i>
+                        <span x-text="translations[lang].casos.jpr.resultado.puntos[1]"></span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check text-primary mt-1.5 flex-shrink-0"></i>
+                        <span x-text="translations[lang].casos.jpr.resultado.puntos[2]"></span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check text-primary mt-1.5 flex-shrink-0"></i>
+                        <span x-text="translations[lang].casos.jpr.resultado.puntos[3]"></span>
+                    </li>
+            </ul>
+
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-8"
+               x-show="translations[lang].casos.jpr.resultado.cierre"
+               x-text="translations[lang].casos.jpr.resultado.cierre"></p>
+
+            <blockquote class="border-l-4 border-primary pl-6 py-2">
+                <p class="text-lg sm:text-xl font-heading font-semibold text-slate-900 dark:text-white leading-snug"
+                   x-text="translations[lang].casos.jpr.resultado.frase"></p>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- Stack y galeria -->
+    <section class="py-16 sm:py-20 bg-slate-50 dark:bg-slate-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
+
+                <div>
+                    <h2 class="flex items-center gap-3 text-2xl font-heading font-bold text-slate-900 dark:text-white mb-8">
+                        <i class="fa-solid fa-layer-group text-primary"></i>
+                        <span x-text="translations[lang].casos.etiquetas.stack">Stack</span>
+                    </h2>
+                    <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xs font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400 mb-3"
+                            x-text="translations[lang].casos.etiquetas.grupos.frontend"></h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-full text-sm">Next.js 15 (App Router)</span>
+                            <span class="px-3 py-1.5 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-full text-sm">TypeScript</span>
+                            <span class="px-3 py-1.5 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-full text-sm">Tailwind CSS</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xs font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400 mb-3"
+                            x-text="translations[lang].casos.etiquetas.grupos.backend"></h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-full text-sm">Payload CMS 3</span>
+                            <span class="px-3 py-1.5 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-full text-sm">PostgreSQL</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xs font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400 mb-3"
+                            x-text="translations[lang].casos.etiquetas.grupos.ai"></h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-full text-sm">Wompi</span>
+                            <span class="px-3 py-1.5 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-full text-sm">Gumroad</span>
+                            <span class="px-3 py-1.5 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-full text-sm">Cal.com</span>
+                            <span class="px-3 py-1.5 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-full text-sm">n8n</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xs font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400 mb-3"
+                            x-text="translations[lang].casos.etiquetas.grupos.infra"></h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-full text-sm">Bunny Stream</span>
+                            <span class="px-3 py-1.5 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-full text-sm">VPS + Coolify</span>
+                            <span class="px-3 py-1.5 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-full text-sm">Docker</span>
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="flex items-center gap-3 text-2xl font-heading font-bold text-slate-900 dark:text-white mb-8">
+                        <i class="fa-solid fa-image text-primary"></i>
+                        <span x-text="translations[lang].casos.etiquetas.galeria">Cómo se ve</span>
+                    </h2>
+                    <div class="space-y-4">
+                    <figure class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
+                        <img src="../assets/img/jprAcademy1.webp" alt="Página de modalidades de JPR Academy" loading="lazy" class="w-full h-auto">
+                    </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enlaces -->
+    <section class="py-16 sm:py-20 bg-white dark:bg-slate-900">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <a href="https://jprdesigntraining.com" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-3 px-8 py-4 bg-brand hover:bg-brand-deep text-white font-semibold rounded-full transition-all duration-300 hover:scale-105">
+                <span x-text="translations[lang].casos.etiquetas.verSitio">Ver el sitio en vivo</span>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+            <p class="mt-4 text-sm text-slate-500 dark:text-slate-400">jprdesigntraining.com</p>
+        </div>
+    </section>
+
+    <!-- Pie -->
+    <footer class="surface-dark bg-slate-900 dark:bg-slate-950 py-10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <a href="../index.html#portfolio"
+               class="inline-flex items-center gap-2 text-primary hover:text-white font-semibold transition-colors duration-300">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span x-text="translations[lang].casos.etiquetas.masProyectos">Ver más proyectos</span>
+            </a>
+            <p class="mt-6 text-sm text-slate-500">
+                &copy; <span x-text="new Date().getFullYear()"></span> Rafael López ·
+                <span x-text="translations[lang].casos.etiquetas.derechos">Todos los derechos reservados.</span>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

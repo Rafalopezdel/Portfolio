@@ -23,10 +23,11 @@ index.html            ← 1.393 líneas / 100 KB. TODA la página. Usar grep -n,
 estilo.css            ← BEM heredado. ⚠️ tiene reglas que ocultan <nav>
 script.js             ← COMENTADO en el HTML. No descomentar (regla 1 de CLAUDE.md)
 .htaccess             ← gzip, caché, forzar HTTPS, cabeceras de seguridad
-projects/project1..5.html
+projects/asistente-whatsapp.html · jpr-academy.html
+                      cafe-montelargo.html · gcpfm.html   ← misma plantilla, distinto contenido
 assets/
   css/custom.css      ← variables y overrides
-  js/translations.js  ← ES/EN. 67 KB. Se carga SIN defer (debe existir antes que Alpine)
+  js/translations.js  ← ES/EN. 42 KB. Se carga SIN defer (debe existir antes que Alpine)
   js/main.js          ← formulario, CV, scroll, toast. AppState.init() COMENTADO
   js/animations.js    ← configuración de AOS
   js/tailwind.3.4.17.min.js
@@ -38,16 +39,16 @@ assets/
 
 | Línea | Sección |
 |---|---|
-| 1–65 | `<head>`: CDNs, `tailwind.config`, `<title>` |
-| 66–115 | `<body x-data>` — estado global (`theme`, `lang`) |
-| 116–279 | Header: nav desktop + menú móvil + toggles |
-| 280 | `#inicio` (hero: foto, nombre, subtítulo, redes, CTAs) |
-| 393 | `#sobremi` (descripción, datos personales, intereses, botón CV) |
-| 533 | `#skills` (barras técnicas y profesionales) |
-| 703 | `#curriculum` (educación + experiencia) |
-| 908 | `#portfolio` (4 tarjetas de proyecto) |
-| 1096 | `#contacto` (formulario FormSubmit) |
-| 1355+ | Botón "arriba" + toast |
+| 1–129 | `<head>`: metadatos, favicon, Open Graph, JSON-LD, `tailwind.config` |
+| 131 | `<body x-data>` — estado global (`theme`, `lang`) |
+| 157 | Header: nav de escritorio + menú móvil + selectores |
+| 344 | `#inicio` — hero: foto, afirmación, franja «En producción hoy», CTAs |
+| 490 | `#sobremi` — descripción, datos de contacto, «Qué construyo», botón CV |
+| 655 | `#skills` — stack agrupado por área + «Cómo trabajo» |
+| 764 | `#curriculum` — experiencia (izquierda) + formación (derecha) |
+| 969 | `#portfolio` — 4 tarjetas de caso + «Otros trabajos» |
+| 1141 | `#contacto` — formulario FormSubmit |
+| 1319 | Pie, botón «arriba» y toast |
 
 **Los números se mueven al editar.** Confirma siempre con
 `grep -n 'id="portfolio"' index.html` antes de fiarte de la tabla.
@@ -151,27 +152,27 @@ commitearlo junto al resto. Pasó de verdad durante la fase B.
 5. **Tailwind Play CDN no es para producción** — lo dice él mismo por consola. Compila el
    CSS en cada carga (407 KB de compilador). Ver "Deuda conocida".
 
-## Deuda conocida (actualizado 2026-08-31, tras la fase A)
+## Deuda conocida (revisada 2026-08-31, tras la fase D)
 
 | # | Qué | Impacto |
 |---|---|---|
-| 1 | **Tailwind Play CDN** (407 KB de compilador en cada visita) en vez de un `.css` compilado de pocos KB | Rendimiento y aviso por consola. Es la deuda más grande que queda |
-| 2 | **`projects/project5.html` es huérfano y está roto**: ningún enlace apunta a él, no tiene traducciones, y sus `<img>` apuntan a `webCorporativa{1,2,3}.png`, que **no existen** (solo hay `.webp`) | Página muerta indexable. Se retira en la fase D |
-| 3 | **CV en PDF de 4 MB** | Descarga pesada innecesaria. Se rehace en la fase E |
-| 4 | Traducciones sin usar en `translations.js`: `authApp`, `playJavaScript`, `gifExpertApp` | Ruido |
-| 5 | `estilo.old.css` y `script.old.js` en disco (ignorados por git) | Confusión |
-| 6 | **Reglas muertas en `estilo.css`**: `.inicio` y `.contacto` (con sus `background-image`) ya no se aplican — el HTML usa Tailwind. Apuntan a imágenes borradas | Código muerto. Revisar en la fase B |
-| 7 | **`deploy.sh` es aditivo**: no borra en el servidor lo que se borra en el repo | Quedan 40 imágenes muertas en producción (~7 MB). No se sirven a nadie, pero ocupan. Comando de limpieza en `DESPLIEGUE.md` |
+| 1 | **Tailwind Play CDN**: 407 KB de compilador que corre en cada visita, en vez de un `.css` compilado de unos pocos KB | **La deuda más grande que queda.** Arreglarla mete un paso de build en un sitio que no lo tiene: es una decisión, no un detalle |
+| 2 | **CV en PDF de 4 MB** | Descarga pesada. Se rehace en la fase E |
+| 3 | **Reglas muertas en `estilo.css`** (`.inicio`, `.contacto` y su tipografía) — el HTML usa Tailwind y esos selectores ya no casan con nada | Código muerto: 16 KB que se descargan y no pintan nada. Se puede borrar el archivo entero tras comprobar selector por selector |
+| 4 | `estilo.old.css` y `script.old.js` en disco (ignorados por git, no se despliegan) | Confusión al abrir la carpeta |
+| 5 | **`deploy.sh` es aditivo**: no borra en el servidor lo que se borra en el repo | Hay que limpiar a mano tras retirar archivos. Receta en `DESPLIEGUE.md` |
+| 6 | `script.js` sigue en el repo y se despliega, aunque está comentado en todos los HTML | 2,8 KB inútiles y una trampa esperando a que alguien lo descomente |
 
-### Resuelto en la fase A (2026-08-31)
+### Resuelto
 
-- ✅ Favicon completo (`.ico` + 32/192 px + apple-touch-icon), generado desde el isotipo de
-  Lopezoft sobre teja navy — la Z azul sobre blanco desaparecía a 16 px.
-- ✅ `<meta name="description">`, canonical, `theme-color`, Open Graph, Twitter Card y
-  datos estructurados `Person` (JSON-LD).
-- ✅ `og.jpg` 1200×630 compuesto (foto + Montserrat/Inter + paleta de marca).
-- ✅ `<title>` coherente: ya no dice "Frontend Developer & Industrial Engineer".
-- ✅ Foto del hero sustituida por la de Lopezoft, con `<picture>` WebP + JPG de respaldo.
-- ✅ **`assets/img` de ~10 MB a 832 KB**: 13 imágenes a WebP y 26 sin uso eliminadas.
-- ✅ Tailwind con **ruta relativa** en los 5 HTML — la ruta absoluta rompía el espejo de
-  GitHub Pages, que sirve desde `/Portfolio/`.
+- ✅ **Fase A** — favicon, metadatos, Open Graph, foto, `assets/img` de 10 MB a 832 KB.
+- ✅ **Fase B** — tipografía y paleta de marca; acento adaptativo por superficie.
+- ✅ **Fase C** — hero, "Sobre mí", skills agrupados, currículum.
+- ✅ **Fase D** — cuatro casos con plantilla común y nombres con significado;
+  `translations.js` de 67 KB a 42 KB; las 5 páginas viejas borradas del repo **y** del
+  servidor (devuelven 404, comprobado).
+- ✅ Las 40 imágenes huérfanas del servidor, borradas (2026-08-31).
+- ✅ `projects/project5.html`, huérfano **y** roto, retirado.
+- ✅ Traducciones muertas (`authApp`, `playJavaScript`, `gifExpertApp`, `projectDetail`,
+  `common`), eliminadas.
+

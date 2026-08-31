@@ -49,7 +49,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Translations - MUST load before Alpine.js -->
-    <script src="assets/js/translations.js?v=202608311331"></script>
+    <script src="assets/js/translations.js?v=202608311350"></script>
 
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
@@ -95,10 +95,10 @@
     </script>
 
     <!-- Custom CSS (Variables & Overrides) -->
-    <link rel="stylesheet" href="assets/css/custom.css?v=202608311331">
+    <link rel="stylesheet" href="assets/css/custom.css?v=202608311350">
 
     <!-- Original CSS (Temporary - will be removed in later phases) -->
-    <link rel="stylesheet" href="estilo.css?v=202608311331">
+    <link rel="stylesheet" href="estilo.css?v=202608311350">
 
     <!-- Alpine.js Cloak -->
     <style>
@@ -968,192 +968,176 @@
     <!-- PORTFOLIO SECTION -->
     <section id="portfolio" class="relative py-20 lg:py-32 bg-white dark:bg-slate-900 overflow-hidden">
 
-        <!-- Decorative Background -->
-        <div class="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+        <div class="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
 
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <!-- Section Title -->
-            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-12 md:mb-16 text-slate-900 dark:text-white px-4"
-                data-aos="fade-down"
-                data-aos-duration="1000"
-                x-text="translations[lang]?.portfolio?.title">
-                PORTFOLIO
-            </h2>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-4 text-slate-900 dark:text-white px-4"
+                data-aos="fade-down" data-aos-duration="1000"
+                x-text="translations[lang].portfolio.title">PORTFOLIO</h2>
 
-            <!-- Projects Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
+            <p class="text-center text-base sm:text-lg text-slate-600 dark:text-slate-400 mb-12 md:mb-16 px-4"
+               data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"
+               x-text="translations[lang].portfolio.intro"></p>
 
-                <!-- Project 1: WhatsApp Bot Dental -->
-                <div class="group relative bg-slate-50 dark:bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-2 cursor-pointer"
-                     data-aos="fade-up"
-                     data-aos-duration="1000"
-                     data-aos-delay="200"
-                     onclick="window.location.href='projects/project1.html'">
+            <!-- Los cuatro casos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                <a href="projects/asistente-whatsapp.html"
+                   class="group relative block rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                   data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
 
-                    <!-- Image Container -->
-                    <div class="relative h-64 md:h-72 lg:h-80 overflow-hidden">
+                    <div class="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-900">
                         <img src="assets/img/whatsappAsistant.webp"
-                             alt="Dental WhatsApp Assistant - AI Chatbot with Claude & Firebase"
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
-                    </div>
-
-                    <!-- Content Overlay -->
-                    <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <h3 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-2"
-                            x-text="translations[lang]?.portfolio?.projects.whatsappBot.title">
-                            Asistente WhatsApp Dental
-                        </h3>
-                        <p class="text-sm text-slate-300 mb-4"
-                           x-text="translations[lang]?.portfolio?.projects.whatsappBot.tech">
-                            Claude AI - Firebase
-                        </p>
-
-                        <!-- Tech Stack Tags -->
-                        <div class="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">NodeJs</span>
-                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">Claude AI</span>
-                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">Firebase</span>
-                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">WhatsApp API</span>
-                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">Dentalink</span>
+                             :alt="translations[lang].casos.whatsapp.title"
+                             loading="lazy"
+                             class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/20 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+                            <h3 class="text-xl sm:text-2xl font-heading font-bold text-white mb-1"
+                                x-text="translations[lang].casos.whatsapp.title"></h3>
+                            <p class="text-sm font-medium text-brand-cyan"
+                               x-text="translations[lang].casos.whatsapp.tech"></p>
                         </div>
                     </div>
 
-                    <!-- View Project Icon -->
-                    <div class="absolute top-4 right-4 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-                        <i class="fa-solid fa-arrow-right text-white text-lg"></i>
+                    <div class="p-5 sm:p-6">
+                        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-4"
+                           x-text="translations[lang].casos.whatsapp.card"></p>
+                        <span class="inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:gap-3 transition-all duration-300">
+                            <span x-text="translations[lang].portfolio.verCaso">Ver el caso</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </span>
                     </div>
-                </div>
+                </a>
 
-                <!-- Project 2: CalendarApp -->
-                <div class="group relative bg-slate-50 dark:bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-2 cursor-pointer"
-                     data-aos="fade-up"
-                     data-aos-duration="1000"
-                     data-aos-delay="300"
-                     onclick="window.location.href='projects/project2.html'">
+                <a href="projects/jpr-academy.html"
+                   class="group relative block rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                   data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
 
-                    <!-- Image Container -->
-                    <div class="relative h-64 md:h-72 lg:h-80 overflow-hidden">
-                        <img src="assets/img/calendarApp1.webp"
-                             alt="CalendarioApp - MERN Stack Calendar Application"
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
-                    </div>
-
-                    <!-- Content Overlay -->
-                    <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <h3 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-2"
-                            x-text="translations[lang]?.portfolio?.projects.calendarApp.title">
-                            CalendarioApp
-                        </h3>
-                        <p class="text-sm text-slate-300 mb-4"
-                           x-text="translations[lang]?.portfolio?.projects.calendarApp.tech">
-                            MERN Stack
-                        </p>
-
-                        <!-- Tech Stack Tags -->
-                        <div class="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">MongoDB</span>
-                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">Express</span>
-                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">React</span>
-                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">Node.js</span>
+                    <div class="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-900">
+                        <img src="assets/img/jprAcademy1.webp"
+                             :alt="translations[lang].casos.jpr.title"
+                             loading="lazy"
+                             class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/20 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+                            <h3 class="text-xl sm:text-2xl font-heading font-bold text-white mb-1"
+                                x-text="translations[lang].casos.jpr.title"></h3>
+                            <p class="text-sm font-medium text-brand-cyan"
+                               x-text="translations[lang].casos.jpr.tech"></p>
                         </div>
                     </div>
 
-                    <!-- View Project Icon -->
-                    <div class="absolute top-4 right-4 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-                        <i class="fa-solid fa-arrow-right text-white text-lg"></i>
+                    <div class="p-5 sm:p-6">
+                        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-4"
+                           x-text="translations[lang].casos.jpr.card"></p>
+                        <span class="inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:gap-3 transition-all duration-300">
+                            <span x-text="translations[lang].portfolio.verCaso">Ver el caso</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </span>
                     </div>
-                </div>
+                </a>
 
-                <!-- Project 3: WordPress Divi Corporate Site -->
-                <div class="group relative bg-slate-50 dark:bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-2 cursor-pointer"
-                     data-aos="fade-up"
-                     data-aos-duration="1000"
-                     data-aos-delay="400"
-                     onclick="window.location.href='projects/project3.html'">
+                <a href="projects/cafe-montelargo.html"
+                   class="group relative block rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                   data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
 
-                    <!-- Image Container -->
-                    <div class="relative h-64 md:h-72 lg:h-80 overflow-hidden">
-                        <img src="assets/img/webCorporativaW1.webp"
-                             alt="WordPress Divi Corporate Site - Professional Business Website"
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
-                    </div>
-
-                    <!-- Content Overlay -->
-                    <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <h3 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-2"
-                            x-text="translations[lang]?.portfolio?.projects.wordpressDivi.title">
-                            Sitio Corporativo Divi
-                        </h3>
-                        <p class="text-sm text-slate-300 mb-4"
-                           x-text="translations[lang]?.portfolio?.projects.wordpressDivi.tech">
-                            WordPress - Divi
-                        </p>
-
-                        <!-- Tech Stack Tags -->
-                        <div class="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">WordPress</span>
-                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">Divi Builder</span>
-                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">PHP</span>
-                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">MySQL</span>
+                    <div class="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-900">
+                        <img src="assets/img/cafeMontelargo1.webp"
+                             :alt="translations[lang].casos.cafe.title"
+                             loading="lazy"
+                             class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/20 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+                            <h3 class="text-xl sm:text-2xl font-heading font-bold text-white mb-1"
+                                x-text="translations[lang].casos.cafe.title"></h3>
+                            <p class="text-sm font-medium text-brand-cyan"
+                               x-text="translations[lang].casos.cafe.tech"></p>
                         </div>
                     </div>
 
-                    <!-- View Project Icon -->
-                    <div class="absolute top-4 right-4 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-                        <i class="fa-solid fa-arrow-right text-white text-lg"></i>
+                    <div class="p-5 sm:p-6">
+                        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-4"
+                           x-text="translations[lang].casos.cafe.card"></p>
+                        <span class="inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:gap-3 transition-all duration-300">
+                            <span x-text="translations[lang].portfolio.verCaso">Ver el caso</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </span>
                     </div>
-                </div>
+                </a>
 
-                <!-- Project 4: React Corporate Website -->
-                <div class="group relative bg-slate-50 dark:bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-2 cursor-pointer"
-                     data-aos="fade-up"
-                     data-aos-duration="1000"
-                     data-aos-delay="500"
-                     onclick="window.location.href='projects/project4.html'">
+                <a href="projects/gcpfm.html"
+                   class="group relative block rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                   data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
 
-                    <!-- Image Container -->
-                    <div class="relative h-64 md:h-72 lg:h-80 overflow-hidden">
-                        <img src="assets/img/webCorporativa4.webp"
-                             alt="React Corporate Website - Modern SPA with Tailwind"
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
-                    </div>
-
-                    <!-- Content Overlay -->
-                    <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <h3 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-2"
-                            x-text="translations[lang]?.portfolio?.projects.webCorporativa.title">
-                            Website Corporativa
-                        </h3>
-                        <p class="text-sm text-slate-300 mb-4"
-                           x-text="translations[lang]?.portfolio?.projects.webCorporativa.tech">
-                            React
-                        </p>
-
-                        <!-- Tech Stack Tags -->
-                        <div class="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">React</span>
-                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">React Router</span>
-                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">Tailwind</span>
-                            <span class="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-semibold">Vite</span>
+                    <div class="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-900">
+                        <img src="assets/img/gcpfm1.webp"
+                             :alt="translations[lang].casos.gcpfm.title"
+                             loading="lazy"
+                             class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/20 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+                            <h3 class="text-xl sm:text-2xl font-heading font-bold text-white mb-1"
+                                x-text="translations[lang].casos.gcpfm.title"></h3>
+                            <p class="text-sm font-medium text-brand-cyan"
+                               x-text="translations[lang].casos.gcpfm.tech"></p>
                         </div>
                     </div>
 
-                    <!-- View Project Icon -->
-                    <div class="absolute top-4 right-4 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-                        <i class="fa-solid fa-arrow-right text-white text-lg"></i>
+                    <div class="p-5 sm:p-6">
+                        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-4"
+                           x-text="translations[lang].casos.gcpfm.card"></p>
+                        <span class="inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:gap-3 transition-all duration-300">
+                            <span x-text="translations[lang].portfolio.verCaso">Ver el caso</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </span>
                     </div>
-                </div>
+                </a>
 
+            </div>
+
+            <!-- Otros trabajos -->
+            <div class="mt-16" data-aos="fade-up" data-aos-duration="1000">
+                <h3 class="text-sm font-semibold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 mb-6 text-center"
+                    x-text="translations[lang].portfolio.otrosTitle">Otros trabajos</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                    <a href="https://lopezoft.co" target="_blank" rel="noopener noreferrer"
+                       class="group flex items-start gap-4 p-5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-primary/50 transition-all duration-300">
+                        <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 dark:bg-primary/20 border border-primary/30">
+                            <i class="fa-solid fa-building text-primary"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <h4 class="font-heading font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                <span x-text="translations[lang].portfolio.otros.lopezoft.title"></span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-primary transition-colors"></i>
+                            </h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1"
+                               x-text="translations[lang].portfolio.otros.lopezoft.text"></p>
+                            <p class="text-xs text-slate-400 dark:text-slate-500 mt-2">lopezoft.co</p>
+                        </div>
+                    </a>
+
+                    <a href="https://nutrexcol.com" target="_blank" rel="noopener noreferrer"
+                       class="group flex items-start gap-4 p-5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-primary/50 transition-all duration-300">
+                        <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 dark:bg-primary/20 border border-primary/30">
+                            <i class="fa-solid fa-leaf text-primary"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <h4 class="font-heading font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                <span x-text="translations[lang].portfolio.otros.nutrexcol.title"></span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-primary transition-colors"></i>
+                            </h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1"
+                               x-text="translations[lang].portfolio.otros.nutrexcol.text"></p>
+                            <p class="text-xs text-slate-400 dark:text-slate-500 mt-2">nutrexcol.com</p>
+                        </div>
+                    </a>
+
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT SECTION -->
     <section id="contacto" class="relative py-20 lg:py-32 bg-slate-50 dark:bg-slate-800 overflow-hidden">
 
         <!-- Decorative Background -->
@@ -1440,10 +1424,10 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <!-- Main App Logic -->
-    <script src="assets/js/main.js?v=202608311331"></script>
+    <script src="assets/js/main.js?v=202608311350"></script>
 
     <!-- Animations -->
-    <script src="assets/js/animations.js?v=202608311331"></script>
+    <script src="assets/js/animations.js?v=202608311350"></script>
 
     <!-- Original Script (Temporary - will be removed in later phases) -->
     <!-- <script src="script.js"></script> -->

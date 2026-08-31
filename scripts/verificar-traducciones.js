@@ -33,15 +33,15 @@ const en = rutas(t.en);
 const soloEs = es.filter((k) => !en.includes(k));
 const soloEn = en.filter((k) => !es.includes(k));
 
-// Un valor vacío es tan invisible como una clave que falta.
-const vacios = es.filter((k) => {
-  const v = k.split('.').reduce((o, p) => (o == null ? o : o[p]), t.es);
-  return typeof v === 'string' && v.trim() === '';
-});
+// Un valor vacío en UNA sola rama es tan invisible como una clave que falta.
+// Vacío en las dos es deliberado (p. ej. un párrafo de cierre que ese caso no tiene).
+const valor = (rama, k) => k.split('.').reduce((o, p) => (o == null ? o : o[p]), rama);
+const vacio = (v) => typeof v === 'string' && v.trim() === '';
+const vacios = es.filter((k) => vacio(valor(t.es, k)) !== vacio(valor(t.en, k)));
 
 if (soloEs.length) console.log('SOLO EN ES:\n  ' + soloEs.join('\n  '));
 if (soloEn.length) console.log('SOLO EN EN:\n  ' + soloEn.join('\n  '));
-if (vacios.length) console.log('VALORES VACÍOS:\n  ' + vacios.join('\n  '));
+if (vacios.length) console.log('VACÍO EN UNA SOLA RAMA:\n  ' + vacios.join('\n  '));
 
 if (!soloEs.length && !soloEn.length && !vacios.length) {
   console.log(`OK · las dos ramas son simétricas (${es.length} claves)`);
