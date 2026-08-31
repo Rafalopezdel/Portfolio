@@ -21,7 +21,6 @@ Sin build, sin `package.json`. Todo se sirve tal cual.
 ```
 index.html            ← 1.393 líneas / 100 KB. TODA la página. Usar grep -n, no leerlo entero
 estilo.css            ← BEM heredado. ⚠️ tiene reglas que ocultan <nav>
-script.js             ← COMENTADO en el HTML. No descomentar (regla 1 de CLAUDE.md)
 .htaccess             ← gzip, caché, forzar HTTPS, cabeceras de seguridad
 cv/                   ← FUENTE del CV (html + css + generar.sh). NO se despliega
 projects/asistente-whatsapp.html · jpr-academy.html
@@ -161,7 +160,6 @@ commitearlo junto al resto. Pasó de verdad durante la fase B.
 | 3 | **Reglas muertas en `estilo.css`** (`.inicio`, `.contacto` y su tipografía) — el HTML usa Tailwind y esos selectores ya no casan con nada | Código muerto: 16 KB que se descargan y no pintan nada. Se puede borrar el archivo entero tras comprobar selector por selector |
 | 4 | `estilo.old.css` y `script.old.js` en disco (ignorados por git, no se despliegan) | Confusión al abrir la carpeta |
 | 5 | **`deploy.sh` es aditivo**: no borra en el servidor lo que se borra en el repo | Hay que limpiar a mano tras retirar archivos. Receta en `DESPLIEGUE.md` |
-| 6 | **`script.js` es código muerto y ahora además está roto**: está comentado en todos los HTML, y apunta al PDF de CV que se eliminó en la fase E. Se sigue desplegando | 2,8 KB inútiles y una trampa esperando a que alguien lo descomente. Borrarlo del repo, del `INCLUIR` de `deploy.sh` y del servidor cierra el asunto |
 
 ### Resuelto
 
@@ -177,4 +175,6 @@ commitearlo junto al resto. Pasó de verdad durante la fase B.
   `common`), eliminadas.
 - ✅ **Fase E** — hoja de vida regenerada: de 3 páginas y 4 MB a 2 páginas y ~305 KB, en
   español e inglés, con la misma tipografía y paleta que el sitio.
+- ✅ **`script.js` eliminado** del repo, del `INCLUIR` de `deploy.sh` y del servidor
+  (2026-08-31). Era un duplicado comentado de funciones que ya viven en `main.js`.
 

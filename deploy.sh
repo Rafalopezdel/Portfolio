@@ -16,7 +16,7 @@ AQUI="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 URL="https://portfoliorafael.lopezoft.co"
 
 # Lo que ES el sitio. Todo lo demás (docs, .git, README, *.old) se queda en el repo.
-INCLUIR=(index.html estilo.css script.js .htaccess assets projects)
+INCLUIR=(index.html estilo.css .htaccess assets projects)
 
 cd "$AQUI"
 

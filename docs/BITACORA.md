@@ -1,6 +1,46 @@
 # Bitácora
 
-> Entrada nueva **arriba**. Formato en `CLAUDE.md §4`.
+> Entrada nueva **arriba**. Formato en `CLAUDE.md §5`.
+
+## 2026-08-31 — Cierre: `script.js` eliminado y sesión cerrada
+
+- **Qué se hizo:** borrado `script.js` del repo, del `INCLUIR` de `deploy.sh`, de las líneas
+  comentadas de `index.html` y del servidor (devuelve 404, comprobado). Era un duplicado
+  de funciones que ya viven en `assets/js/main.js`, estaba comentado en todos los HTML desde
+  hacía meses y apuntaba al PDF de CV eliminado en la fase E. **Cero referencias vivas** —
+  comprobado función por función antes de borrarlo. Queda en el historial de git.
+- La regla 1 de `CLAUDE.md` ("no descomentes `script.js`") desaparece: ya no hay nada que
+  descomentar. `CLAUDE.md` gana además una sección **§2 ESTADO** para que una sesión nueva
+  sepa en dos minutos dónde está todo.
+- **¿Desplegado?:** sí.
+
+### Cómo quedó el portafolio
+
+| Fase | Qué |
+|---|---|
+| A | Favicon, foto, metadatos, Open Graph · `assets/img` 10 MB → 832 KB |
+| B | Montserrat + Inter, paleta de marca, acento adaptativo por superficie |
+| C | Hero con prueba verificable, "Sobre mí", skills agrupados, currículum |
+| D | Cuatro casos con plantilla común y nombres con significado |
+| E | Hoja de vida en ES y EN, generada desde `cv/` |
+
+**En producción:** `assets/img` 832 KB · `assets/pdf` 616 KB · `translations.js` 42 KB.
+
+### 🔜 Siguiente sesión: visibilidad
+
+El sitio está presentable; **no está siendo encontrado**. Nada de esto existe todavía:
+
+- `sitemap.xml` y `robots.txt`.
+- Alta en Google Search Console y en Bing Webmaster Tools.
+- `hreflang` para las dos versiones de idioma (hoy Alpine cambia el texto sin cambiar la URL:
+  **Google solo indexa la versión española**). Es la decisión técnica de más peso pendiente.
+- Perfil de LinkedIn alineado con el nuevo posicionamiento y con los cuatro casos.
+- Alta en plataformas de trabajo (Upwork, Torre, Get on Board…) y de empleo.
+
+**⚠️ El problema de fondo del bilingüe:** el contenido en inglés **no tiene URL propia**, así
+que para un buscador este sitio es monolingüe. Resolverlo pasa por servir `/en/` como página
+aparte, y eso es un cambio de arquitectura, no un ajuste. Hay que decidirlo antes de tocar SEO.
+
 
 ## 2026-08-31 — Fase E: la hoja de vida
 

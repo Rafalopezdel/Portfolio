@@ -39,9 +39,9 @@ Qué hace, en orden:
    el sitio no vería el cambio en 30 días (Trampa 4). **Deja el cambio escrito en los HTML
    del repo: hay que commitearlo.**
 3. **Respaldo en el servidor:** `~/backup-portfolio-AAAA-MM-DD-HHMM.tgz` con el sitio actual.
-4. **Sube** `index.html`, `estilo.css`, `script.js`, `.htaccess`, `assets/` y `projects/`
-   por `tar` sobre SSH. **No sube** `docs/`, `README.md`, `CLAUDE.md`, `deploy.sh`, `.git/`
-   ni los `*.old.*`.
+4. **Sube** `index.html`, `estilo.css`, `.htaccess`, `assets/` y `projects/` por `tar`
+   sobre SSH. **No sube** `docs/`, `cv/`, `scripts/`, `README.md`, `CLAUDE.md`, `deploy.sh`,
+   `.git/` ni los `*.old.*`.
 5. **Permisos:** directorios `755`, archivos `644`. (Lo que había estaba en `666`/`777`.)
 6. **Verifica en vivo** que el HTML servido apunta al Tailwind local.
 
