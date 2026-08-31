@@ -49,7 +49,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Translations - MUST load before Alpine.js -->
-    <script src="assets/js/translations.js?v=202608311300"></script>
+    <script src="assets/js/translations.js?v=202608311331"></script>
 
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
@@ -95,10 +95,10 @@
     </script>
 
     <!-- Custom CSS (Variables & Overrides) -->
-    <link rel="stylesheet" href="assets/css/custom.css?v=202608311300">
+    <link rel="stylesheet" href="assets/css/custom.css?v=202608311331">
 
     <!-- Original CSS (Temporary - will be removed in later phases) -->
-    <link rel="stylesheet" href="estilo.css?v=202608311300">
+    <link rel="stylesheet" href="estilo.css?v=202608311331">
 
     <!-- Alpine.js Cloak -->
     <style>
@@ -234,7 +234,7 @@
                             class="flex items-center gap-2 px-3 py-2 rounded-full border-2 border-slate-700 hover:border-primary text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 hover:-translate-y-0.5"
                             :title="lang === 'es' ? 'Switch to English' : 'Cambiar a Español'"
                             aria-label="Toggle language">
-                        <span class="text-xl" x-text="lang === 'es' ? '🇬🇧' : '🇪🇸'">🇬🇧</span>
+                        <i class="fa-solid fa-globe text-base" aria-hidden="true"></i>
                         <span class="text-xs font-bold tracking-wider" x-text="lang === 'es' ? 'EN' : 'ES'">EN</span>
                     </button>
 
@@ -253,7 +253,7 @@
                     <button @click="lang = lang === 'es' ? 'en' : 'es'; localStorage.setItem('lang', lang); document.documentElement.setAttribute('lang', lang)"
                             class="flex items-center justify-center w-9 h-9 rounded-full border-2 border-slate-700 hover:border-primary text-slate-300 transition-all duration-300"
                             aria-label="Toggle language">
-                        <span class="text-lg" x-text="lang === 'es' ? '🇬🇧' : '🇪🇸'">🇬🇧</span>
+                        <span class="text-xs font-bold tracking-wider" x-text="lang === 'es' ? 'EN' : 'ES'">EN</span>
                     </button>
 
                     <button @click="theme = theme === 'light' ? 'dark' : 'light'; localStorage.setItem('theme', theme); document.documentElement.setAttribute('data-theme', theme); theme === 'dark' ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')"
@@ -377,22 +377,44 @@
             </h1>
 
             <!-- Subtitle -->
-            <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl text-slate-300 dark:text-slate-400 mb-6 font-light px-4"
+            <p class="text-xl sm:text-2xl md:text-3xl text-primary mb-5 font-semibold px-4"
                data-aos="fade-up"
                data-aos-duration="1000"
                data-aos-delay="600"
-               x-text="translations[lang]?.hero?.subtitle || 'Full Stack Developer | MERN Stack • WordPress • IA Solutions'">
-                Full Stack Developer | MERN Stack • WordPress • IA Solutions
+               x-text="translations[lang]?.hero?.subtitle || 'Full Stack Developer'">
+                Full Stack Developer
             </p>
 
-            <!-- Tagline -->
-            <p class="text-base sm:text-lg md:text-xl text-slate-400 dark:text-slate-500 mb-12 font-light px-4 italic"
+            <!-- Claim: la afirmacion, no una lista de tecnologias -->
+            <p class="max-w-3xl mx-auto text-base sm:text-lg md:text-xl text-slate-300 dark:text-slate-400 mb-10 leading-relaxed px-4"
                data-aos="fade-up"
                data-aos-duration="1000"
                data-aos-delay="700"
-               x-text="translations[lang]?.hero?.tagline || 'Creando experiencias web modernas e inteligentes con IA'">
-                Creando experiencias web modernas e inteligentes con IA
+               x-text="translations[lang]?.hero?.claim">
+                Construyo y opero plataformas en producción: asistentes con IA sobre WhatsApp, e-commerce headless y sistemas de formación.
             </p>
+
+            <!-- Prueba: los sitios que estan vivos ahora mismo. Verificables de un clic. -->
+            <div class="mb-12 px-4"
+                 data-aos="fade-up"
+                 data-aos-duration="1000"
+                 data-aos-delay="750">
+                <p class="text-xs font-semibold tracking-[0.2em] uppercase text-slate-500 mb-4"
+                   x-text="translations[lang]?.hero?.liveLabel || 'En producción hoy'">En producción hoy</p>
+                <div class="flex flex-wrap justify-center items-center gap-x-3 gap-y-2 text-sm sm:text-base">
+                    <a href="https://jprdesigntraining.com" target="_blank" rel="noopener noreferrer"
+                       class="text-slate-300 hover:text-primary underline decoration-slate-700 hover:decoration-primary underline-offset-4 transition-colors duration-300">jprdesigntraining.com</a>
+                    <span class="text-slate-600" aria-hidden="true">·</span>
+                    <a href="https://cafemontelargo.com" target="_blank" rel="noopener noreferrer"
+                       class="text-slate-300 hover:text-primary underline decoration-slate-700 hover:decoration-primary underline-offset-4 transition-colors duration-300">cafemontelargo.com</a>
+                    <span class="text-slate-600" aria-hidden="true">·</span>
+                    <a href="https://gcpfm.co.uk" target="_blank" rel="noopener noreferrer"
+                       class="text-slate-300 hover:text-primary underline decoration-slate-700 hover:decoration-primary underline-offset-4 transition-colors duration-300">gcpfm.co.uk</a>
+                    <span class="text-slate-600" aria-hidden="true">·</span>
+                    <a href="https://lopezoft.co" target="_blank" rel="noopener noreferrer"
+                       class="text-slate-300 hover:text-primary underline decoration-slate-700 hover:decoration-primary underline-offset-4 transition-colors duration-300">lopezoft.co</a>
+                </div>
+            </div>
 
             <!-- Social Links -->
             <div class="flex justify-center items-center gap-4 sm:gap-6 mb-16"
@@ -439,9 +461,16 @@
                     <div class="absolute inset-0 bg-brand-deep opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </a>
 
+                <button type="button" data-descargar-cv
+                        class="inline-flex items-center gap-3 px-8 py-4 border-2 border-primary text-primary hover:bg-brand hover:border-brand hover:text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                    <span x-text="translations[lang]?.hero?.downloadCV || 'Descargar CV'">Descargar CV</span>
+                    <i class="fa-solid fa-download"></i>
+                </button>
+
                 <a href="#contacto"
-                   class="px-8 py-4 border-2 border-primary text-primary hover:bg-brand hover:text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                   class="inline-flex items-center gap-2 px-4 py-4 text-slate-300 hover:text-primary font-medium transition-colors duration-300">
                     <span x-text="translations[lang]?.hero?.contactMe || 'Contáctame'">Contáctame</span>
+                    <i class="fa-solid fa-arrow-right text-sm"></i>
                 </a>
             </div>
 
@@ -474,109 +503,134 @@
             </h2>
 
             <!-- Introduction -->
-            <div class="max-w-4xl mx-auto text-center mb-12 md:mb-16"
+            <div class="max-w-3xl mx-auto mb-12 md:mb-16"
                  data-aos="fade-up"
                  data-aos-duration="1000"
                  data-aos-delay="200">
-                <p class="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 leading-relaxed px-4">
-                    <span class="font-semibold text-primary" x-text="translations[lang]?.about?.intro">Hola, soy Rafael López.</span>
-                    <span x-text="translations[lang]?.about?.description">
-                        Profesional en Ingeniería Industrial con formación en desarrollo web y programación de aplicaciones. Cuento con habilidades técnicas en lenguajes como HTML, CSS y JavaScript, así como experiencia en el uso de herramientas y frameworks modernos como Angular, React, Node.js, Express, MongoDB, Bootstrap y GitHub. Mi perfil combina una sólida base académica con competencias prácticas que me permiten contribuir eficientemente al desarrollo de soluciones web innovadoras y funcionales.
-                    </span>
+                <p class="text-lg sm:text-xl font-semibold text-primary mb-4 px-4"
+                   x-text="translations[lang]?.about?.intro">Full Stack Developer y fundador de Lopezoft.</p>
+                <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line px-4"
+                   x-text="translations[lang]?.about?.description">
+                    Llevo cuatro años construyendo aplicaciones web y, sobre todo, manteniéndolas vivas después de entregarlas.
                 </p>
             </div>
 
-            <!-- Personal Info & Interests Grid -->
+            <!-- Datos de contacto + Que construyo -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
 
-                <!-- Personal Data Card -->
+                <!-- Datos de contacto -->
                 <div class="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 sm:p-8 backdrop-blur-sm border border-slate-200 dark:border-slate-700"
                      data-aos="fade-right"
                      data-aos-duration="1000"
                      data-aos-delay="400">
                     <h3 class="text-xl sm:text-2xl font-heading font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-2">
                         <i class="fa-solid fa-user text-primary"></i>
-                        <span x-text="translations[lang]?.about?.personalDataTitle">Datos Personales</span>
+                        <span x-text="translations[lang]?.about?.personalDataTitle">Datos de contacto</span>
                     </h3>
                     <ul class="space-y-4">
                         <li class="flex items-start gap-3 text-slate-700 dark:text-slate-300">
-                            <i class="fa-solid fa-cake-candles text-primary mt-1"></i>
+                            <i class="fa-solid fa-phone text-primary mt-1 w-4 text-center"></i>
                             <div>
-                                <strong class="block text-sm text-slate-500 dark:text-slate-400" x-text="translations[lang]?.about?.birthday">Cumpleaños</strong>
-                                <span>11-09-1991</span>
+                                <strong class="block text-sm text-slate-500 dark:text-slate-400" x-text="translations[lang]?.about?.phone"></strong>
+                                <a href="tel:+573006436473" class="hover:text-primary transition-colors">(+57) 300 643 6473</a>
                             </div>
                         </li>
                         <li class="flex items-start gap-3 text-slate-700 dark:text-slate-300">
-                            <i class="fa-solid fa-phone text-primary mt-1"></i>
+                            <i class="fa-solid fa-envelope text-primary mt-1 w-4 text-center"></i>
                             <div>
-                                <strong class="block text-sm text-slate-500 dark:text-slate-400" x-text="translations[lang]?.about?.phone">Teléfono</strong>
-                                <a href="tel:+573006436473" class="hover:text-primary transition-colors">(+57) 300 6436473</a>
+                                <strong class="block text-sm text-slate-500 dark:text-slate-400" x-text="translations[lang]?.about?.email"></strong>
+                                <a href="mailto:rafalopezdel@gmail.com" class="hover:text-primary transition-colors break-all">rafalopezdel@gmail.com</a>
                             </div>
                         </li>
                         <li class="flex items-start gap-3 text-slate-700 dark:text-slate-300">
-                            <i class="fa-solid fa-envelope text-primary mt-1"></i>
+                            <i class="fa-solid fa-globe text-primary mt-1 w-4 text-center"></i>
                             <div>
-                                <strong class="block text-sm text-slate-500 dark:text-slate-400" x-text="translations[lang]?.about?.email">Email</strong>
-                                <a href="mailto:rafalopezdel@gmail.com" class="hover:text-primary transition-colors">rafalopezdel@gmail.com</a>
+                                <strong class="block text-sm text-slate-500 dark:text-slate-400" x-text="translations[lang]?.about?.website"></strong>
+                                <a href="https://portfoliorafael.lopezoft.co/" class="hover:text-primary transition-colors break-all">portfoliorafael.lopezoft.co</a>
                             </div>
                         </li>
                         <li class="flex items-start gap-3 text-slate-700 dark:text-slate-300">
-                            <i class="fa-solid fa-globe text-primary mt-1"></i>
+                            <i class="fa-solid fa-location-dot text-primary mt-1 w-4 text-center"></i>
                             <div>
-                                <strong class="block text-sm text-slate-500 dark:text-slate-400" x-text="translations[lang]?.about?.website">Website</strong>
-                                <a href="https://portfoliorafael.lopezoft.co/" target="_blank" class="hover:text-primary transition-colors break-all">portfoliorafael.lopezoft.co</a>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3 text-slate-700 dark:text-slate-300">
-                            <i class="fa-solid fa-location-dot text-primary mt-1"></i>
-                            <div>
-                                <strong class="block text-sm text-slate-500 dark:text-slate-400" x-text="translations[lang]?.about?.address">Dirección</strong>
+                                <strong class="block text-sm text-slate-500 dark:text-slate-400" x-text="translations[lang]?.about?.address"></strong>
                                 <span>Pereira, Colombia</span>
                             </div>
                         </li>
                         <li class="flex items-start gap-3 text-slate-700 dark:text-slate-300">
-                            <i class="fa-solid fa-briefcase text-primary mt-1"></i>
+                            <i class="fa-solid fa-briefcase text-primary mt-1 w-4 text-center"></i>
                             <div>
-                                <strong class="block text-sm text-slate-500 dark:text-slate-400" x-text="translations[lang]?.about?.position">Cargo</strong>
-                                <span x-text="translations[lang]?.about?.positionValue">Desarrollador Web Junior</span>
+                                <strong class="block text-sm text-slate-500 dark:text-slate-400" x-text="translations[lang]?.about?.position"></strong>
+                                <span x-text="translations[lang]?.about?.positionValue">Full Stack Developer</span>
                             </div>
                         </li>
                     </ul>
+
+                    <!-- Perfiles -->
+                    <div class="flex items-center gap-3 mt-6 pt-6 border-t border-slate-200 dark:border-slate-700">
+                        <a href="https://github.com/Rafalopezdel" target="_blank" rel="noopener noreferrer"
+                           class="flex items-center justify-center w-10 h-10 rounded-lg bg-white dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-brand hover:border-brand hover:text-white transition-all duration-300"
+                           aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/rafael-lópez-delgado" target="_blank" rel="noopener noreferrer"
+                           class="flex items-center justify-center w-10 h-10 rounded-lg bg-white dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-brand hover:border-brand hover:text-white transition-all duration-300"
+                           aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://lopezoft.co" target="_blank" rel="noopener noreferrer"
+                           class="ml-auto text-sm text-slate-500 dark:text-slate-400 hover:text-primary transition-colors">lopezoft.co <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+                    </div>
                 </div>
 
-                <!-- Interests Card -->
+                <!-- Que construyo -->
                 <div class="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 sm:p-8 backdrop-blur-sm border border-slate-200 dark:border-slate-700"
                      data-aos="fade-left"
                      data-aos-duration="1000"
                      data-aos-delay="400">
                     <h3 class="text-xl sm:text-2xl font-heading font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-2">
-                        <i class="fa-solid fa-heart text-primary"></i>
-                        <span x-text="translations[lang]?.about?.interestsTitle">Intereses</span>
+                        <i class="fa-solid fa-cubes text-primary"></i>
+                        <span x-text="translations[lang]?.about?.buildTitle">Qué construyo</span>
                     </h3>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-                        <div class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-700/50 rounded-xl hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-300 hover:scale-105 group">
-                            <i class="fa-solid fa-headphones text-3xl text-primary mb-2 group-hover:scale-110 transition-transform"></i>
-                            <span class="text-sm font-medium text-slate-700 dark:text-slate-300" x-text="translations[lang]?.about?.interests.music">MUSICA</span>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 dark:bg-primary/20 border border-primary/30">
+                                <i class="fa-solid fa-robot text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-bold text-slate-900 dark:text-white mb-1"
+                                    x-text="translations[lang]?.about?.build.ai.title"></h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                                   x-text="translations[lang]?.about?.build.ai.text"></p>
+                            </div>
                         </div>
-                        <div class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-700/50 rounded-xl hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-300 hover:scale-105 group">
-                            <i class="fa-solid fa-gamepad text-3xl text-primary mb-2 group-hover:scale-110 transition-transform"></i>
-                            <span class="text-sm font-medium text-slate-700 dark:text-slate-300" x-text="translations[lang]?.about?.interests.games">JUEGOS</span>
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 dark:bg-primary/20 border border-primary/30">
+                                <i class="fa-solid fa-cart-shopping text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-bold text-slate-900 dark:text-white mb-1"
+                                    x-text="translations[lang]?.about?.build.ecommerce.title"></h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                                   x-text="translations[lang]?.about?.build.ecommerce.text"></p>
+                            </div>
                         </div>
-                        <div class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-700/50 rounded-xl hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-300 hover:scale-105 group">
-                            <i class="fa-solid fa-plane text-3xl text-primary mb-2 group-hover:scale-110 transition-transform"></i>
-                            <span class="text-sm font-medium text-slate-700 dark:text-slate-300" x-text="translations[lang]?.about?.interests.travel">VIAJAR</span>
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 dark:bg-primary/20 border border-primary/30">
+                                <i class="fa-solid fa-layer-group text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-bold text-slate-900 dark:text-white mb-1"
+                                    x-text="translations[lang]?.about?.build.platforms.title"></h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                                   x-text="translations[lang]?.about?.build.platforms.text"></p>
+                            </div>
                         </div>
-                        <div class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-700/50 rounded-xl hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-300 hover:scale-105 group">
-                            <i class="fa-solid fa-person-hiking text-3xl text-primary mb-2 group-hover:scale-110 transition-transform"></i>
-                            <span class="text-sm font-medium text-slate-700 dark:text-slate-300" x-text="translations[lang]?.about?.interests.sports">DEPORTE</span>
-                        </div>
-                        <div class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-700/50 rounded-xl hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-300 hover:scale-105 group">
-                            <i class="fa-solid fa-book text-3xl text-primary mb-2 group-hover:scale-110 transition-transform"></i>
-                            <span class="text-sm font-medium text-slate-700 dark:text-slate-300" x-text="translations[lang]?.about?.interests.books">LIBROS</span>
-                        </div>
-                        <div class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-700/50 rounded-xl hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-300 hover:scale-105 group">
-                            <i class="fa-solid fa-hands-holding-child text-3xl text-primary mb-2 group-hover:scale-110 transition-transform"></i>
-                            <span class="text-sm font-medium text-slate-700 dark:text-slate-300" x-text="translations[lang]?.about?.interests.meditation">MEDITACIÓN</span>
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 dark:bg-primary/20 border border-primary/30">
+                                <i class="fa-solid fa-server text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-bold text-slate-900 dark:text-white mb-1"
+                                    x-text="translations[lang]?.about?.build.ops.title"></h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                                   x-text="translations[lang]?.about?.build.ops.text"></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -614,153 +668,92 @@
             </h2>
 
             <!-- Skills Categories -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12">
 
-                <!-- Technical Skills -->
+                <!-- Stack tecnico, agrupado por area -->
                 <div data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
-                    <h3 class="text-2xl font-heading font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-2">
+                    <h3 class="text-2xl font-heading font-bold mb-8 text-slate-900 dark:text-white flex items-center gap-2">
                         <i class="fa-solid fa-code text-primary"></i>
-                        <span x-text="translations[lang]?.skills?.technical">Technical Skills</span>
+                        <span x-text="translations[lang]?.skills?.technical">Stack técnico</span>
                     </h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="300">
-                            JavaScript
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="350">
-                            HTML & CSS
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="400">
-                            TypeScript
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="450">
-                            React
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="500">
-                            Angular
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="550">
-                            Node.js
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="600">
-                            Express.js
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="650">
-                            MongoDB
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="700">
-                            MySQL
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="750">
-                            Nest.js
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="775">
-                            Next.js
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="800">
-                            WordPress & Divi
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="825">
-                            Firebase
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="850">
-                            Tailwind CSS
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="850">
-                            Bootstrap
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="900">
-                            Git & GitHub
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="950">
-                            REST APIs
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="1000">
-                            Responsive Design
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="1025">
-                            Claude AI API
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="1050">
-                            WhatsApp Business API
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="1075">
-                            Redux Toolkit
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="1100">
-                            JWT Authentication
-                        </span>
+
+                    <div class="space-y-7">
+                    <div>
+                        <h4 class="flex items-center gap-2 text-sm font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400 mb-3">
+                            <i class="fa-solid fa-window-maximize text-primary"></i>
+                            <span x-text="translations[lang]?.skills?.groups.frontend"></span>
+                        </h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">React</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">Next.js</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">Angular</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">TypeScript</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">JavaScript</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">Tailwind CSS</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">HTML & CSS</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="flex items-center gap-2 text-sm font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400 mb-3">
+                            <i class="fa-solid fa-database text-primary"></i>
+                            <span x-text="translations[lang]?.skills?.groups.backend"></span>
+                        </h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">Node.js</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">Express</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">Nest.js</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">PostgreSQL</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">MongoDB</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">MySQL</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">REST APIs</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="flex items-center gap-2 text-sm font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400 mb-3">
+                            <i class="fa-solid fa-robot text-primary"></i>
+                            <span x-text="translations[lang]?.skills?.groups.ai"></span>
+                        </h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">Claude AI API</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">WhatsApp Business API</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">Firebase Functions</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">n8n</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="flex items-center gap-2 text-sm font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400 mb-3">
+                            <i class="fa-solid fa-server text-primary"></i>
+                            <span x-text="translations[lang]?.skills?.groups.infra"></span>
+                        </h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">Vercel</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">Firebase</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">Docker</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">WordPress headless</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">Divi</span>
+                            <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/30 rounded-full text-sm font-medium hover:bg-brand hover:text-white hover:border-brand transition-all duration-300 cursor-default">Git & GitHub</span>
+                        </div>
+                    </div>
+
                     </div>
                 </div>
 
-                <!-- Professional Skills -->
+                <!-- Como trabajo -->
                 <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                    <h3 class="text-2xl font-heading font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-2">
+                    <h3 class="text-2xl font-heading font-bold mb-8 text-slate-900 dark:text-white flex items-center gap-2">
                         <i class="fa-solid fa-lightbulb text-primary"></i>
-                        <span x-text="translations[lang]?.skills?.professional">Professional Skills</span>
+                        <span x-text="translations[lang]?.skills?.professional">Cómo trabajo</span>
                     </h3>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="300"
-                              x-text="translations[lang]?.skills?.list.problemSolving">
-                            Resolución de Problemas
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="350"
-                              x-text="translations[lang]?.skills?.list.codeReview">
-                            Code Review & Documentación
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="400"
-                              x-text="translations[lang]?.skills?.list.agile">
-                            Metodologías Ágiles
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="450"
-                              x-text="translations[lang]?.skills?.list.technicalComm">
-                            Comunicación Técnica
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="500"
-                              x-text="translations[lang]?.skills?.list.projectMgmt">
-                            Gestión de Proyectos
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="550"
-                              x-text="translations[lang]?.skills?.list.processOpt">
-                            Optimización de Procesos
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="600"
-                              x-text="translations[lang]?.skills?.list.adaptability">
-                            Adaptabilidad
-                        </span>
-                        <span class="skill-tag px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
-                              data-aos="fade-up" data-aos-delay="650"
-                              x-text="translations[lang]?.skills?.list.continuousLearning">
-                            Aprendizaje Continuo
-                        </span>
+                        <span class="px-4 py-2 bg-white dark:bg-slate-700/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600 rounded-full text-sm font-medium" x-text="translations[lang]?.skills?.list.problemSolving"></span>
+                        <span class="px-4 py-2 bg-white dark:bg-slate-700/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600 rounded-full text-sm font-medium" x-text="translations[lang]?.skills?.list.processOpt"></span>
+                        <span class="px-4 py-2 bg-white dark:bg-slate-700/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600 rounded-full text-sm font-medium" x-text="translations[lang]?.skills?.list.projectMgmt"></span>
+                        <span class="px-4 py-2 bg-white dark:bg-slate-700/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600 rounded-full text-sm font-medium" x-text="translations[lang]?.skills?.list.technicalComm"></span>
+                        <span class="px-4 py-2 bg-white dark:bg-slate-700/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600 rounded-full text-sm font-medium" x-text="translations[lang]?.skills?.list.codeReview"></span>
+                        <span class="px-4 py-2 bg-white dark:bg-slate-700/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600 rounded-full text-sm font-medium" x-text="translations[lang]?.skills?.list.agile"></span>
                     </div>
                 </div>
             </div>
@@ -801,7 +794,7 @@
                             <div class="absolute left-0 top-2 w-3 h-3 bg-primary rounded-full -translate-x-[5px] ring-4 ring-white dark:ring-slate-900 animate-pulse"></div>
                             <div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300 border-2 border-primary/50">
                                 <div class="flex flex-wrap items-center gap-2 mb-3">
-                                    <span class="inline-block px-3 py-1 bg-primary text-white text-xs font-semibold rounded-full">
+                                    <span class="inline-block px-3 py-1 bg-brand text-white text-xs font-semibold rounded-full">
                                         2022 - <span x-text="lang === 'es' ? 'Presente' : 'Present'">Presente</span>
                                     </span>
                                     <span class="inline-block px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-semibold rounded">
@@ -1447,10 +1440,10 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <!-- Main App Logic -->
-    <script src="assets/js/main.js?v=202608311300"></script>
+    <script src="assets/js/main.js?v=202608311331"></script>
 
     <!-- Animations -->
-    <script src="assets/js/animations.js?v=202608311300"></script>
+    <script src="assets/js/animations.js?v=202608311331"></script>
 
     <!-- Original Script (Temporary - will be removed in later phases) -->
     <!-- <script src="script.js"></script> -->

@@ -26,12 +26,19 @@ Alpine arranca, y lo que ven los buscadores):
 **Regla:** toda clave nueva se añade **en las dos ramas** en el mismo commit. Una clave que
 existe en `es` y no en `en` deja el texto en blanco al cambiar de idioma, sin error visible.
 
-Comprobación rápida de simetría:
+**Dos comprobaciones que evitan textos en blanco.** Pásalas siempre que toques
+`translations.js` — un desajuste no da error, solo deja el texto vacío en la página.
+
+Los scripts viven en `scripts/`:
 
 ```bash
-node -e "require('./assets/js/translations.js');" 2>/dev/null || \
-grep -c 'title:' assets/js/translations.js   # sanity check rápido
+node scripts/verificar-traducciones.js   # las ramas es/en tienen la misma forma
+node scripts/verificar-claves-html.js    # toda clave usada en el HTML existe
 ```
+
+La primera encontró el 2026-08-31 que `projectDetail.keyIntegrations`,
+`allRightsReserved` y `viewMoreProjects` **no existían en inglés**: esos textos salían en
+blanco en las cuatro páginas de proyecto y nadie lo había notado.
 
 ## Añadir o cambiar un proyecto
 

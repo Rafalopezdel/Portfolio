@@ -2,6 +2,48 @@
 
 > Entrada nueva **arriba**. Formato en `CLAUDE.md §4`.
 
+## 2026-08-31 — Fase C: contenido
+
+- **Qué se hizo (ES y EN en el mismo cambio):**
+  - **Hero.** El subtítulo era una lista de tecnologías ("MERN Stack • WordPress • IA
+    Solutions") y la bajada, relleno. Ahora: rol + una afirmación de lo que hace, y debajo
+    una **franja "En producción hoy"** con los cuatro dominios vivos, enlazados. Un
+    reclutador puede verificarlo de un clic, que es lo que hace la diferencia.
+  - **CTA doble:** "Ver proyectos" (sólido) + "Descargar CV" (contorno) + "Contáctame" como
+    enlace. El CV ya no está escondido a media página.
+  - **Sobre mí reescrito.** Fuera el "+3 años" (son cuatro) y el texto genérico de perfil.
+    Dentro: qué opera hoy, el ciclo completo que cubre, y G3 contado como ventaja —seis años
+    dirigiendo una empresa— en vez de como "skills transferibles".
+  - **Fuera el cumpleaños** (dato innecesario y vector de sesgo en selección) y **fuera la
+    tarjeta de Intereses**. En su lugar, **"Qué construyo"**: IA aplicada, e-commerce
+    headless, plataformas a medida y operación.
+  - **Skills agrupados** por área (Frontend · Backend y datos · IA y automatización ·
+    Infraestructura y CMS) en vez de una lista plana de 21 chips. Los profesionales, de 8 a 6.
+  - **Currículum**: la entrada de Lopezoft ahora nombra los cuatro proyectos reales con sus
+    cifras. Cursos y formación quedan en la columna secundaria.
+- **Archivos tocados:** `assets/js/translations.js`, `index.html`, `assets/js/main.js`,
+  `projects/project{1,2,3,4}.html`.
+- **¿Desplegado?:** **sí**, verificado en vivo en español e inglés. Respaldo previo:
+  `~/backup-portfolio-2026-08-31-1331.tgz`.
+- **Siguiente paso:** fase D — los cuatro proyectos.
+
+### Tres defectos que aparecieron por el camino y se corrigieron
+
+1. **Tres claves de `projectDetail` faltaban en la rama `en`** (`keyIntegrations`,
+   `allRightsReserved`, `viewMoreProjects`). En inglés esos textos salían **en blanco** en
+   todas las páginas de proyecto. Era anterior a esta sesión.
+2. **Dos contrastes se escaparon de la fase B**: `bg-primary text-white` en la insignia de
+   años del currículum y en un botón de `project2`. Sobre superficie oscura eso es blanco
+   sobre cian (1,9:1). Corregidos a `bg-brand`.
+3. **Los emoji de bandera del selector de idioma no se dibujan en Windows.** El botón leía
+   "GB EN" y "ES ES" en vez de mostrar una bandera. Sustituidos por un icono de globo + el
+   código del idioma, que se ve igual en cualquier sistema.
+
+⬜ **Asimetría que queda:** `project3.features.forms` (solo ES) y
+`project3.features.diviModules` (solo EN). `project3` se retira en la fase D, así que se
+resuelve sola. Hay un verificador de simetría ES/EN en `docs/CONTENIDO.md`.
+
+
 ## 2026-08-31 — Fase B: tipografía y paleta de marca
 
 - **Qué se hizo:**
@@ -92,7 +134,7 @@ borrado remoto quedó bloqueado por el clasificador de permisos. Comando en
 |---|---|---|
 | **A** | Favicon, foto, metadatos, Open Graph, imágenes a WebP | ✅ 2026-08-31 |
 | **B** | Montserrat + Inter y paleta de marca, en `index.html` **y** las 5 páginas de `projects/` (el `tailwind.config` está duplicado en cada una) | ✅ 2026-08-31 |
-| **C** | Hero, "Sobre mí", skills en chips, currículum reordenado. ES y EN en el mismo cambio | ⬜ |
+| **C** | Hero, "Sobre mí", skills agrupados, currículum reordenado. ES y EN en el mismo cambio | ✅ 2026-08-31 |
 | **D** | Los 4 proyectos: 3 páginas nuevas (JPR Academy, Café Montelargo, GCPFM), reescritura del asistente, retiro de CalendarioApp y Website Corporativa, borrado de `project5.html` del repo y del servidor. Fila secundaria con `lopezoft.co` y `nutrexcol.com` | ⬜ |
 | **E** | **Hoja de vida**: regenerar el CV en PDF para que concuerde con el portafolio (mismo posicionamiento, mismos proyectos, mismas cifras) y sustituir el de 4 MB | ⬜ |
 

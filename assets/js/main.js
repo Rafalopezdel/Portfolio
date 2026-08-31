@@ -131,16 +131,17 @@ function seleccionar() {
  * Download CV when button is clicked
  */
 function initCVDownload() {
-  const downloadButton = document.getElementById('descargarCV');
-  if (downloadButton) {
-    downloadButton.addEventListener('click', function () {
+  // Hay mas de un boton de CV (hero y "Sobre mi"): se enganchan todos.
+  const CV = 'assets/pdf/CV_Rafael_Lopez_Full_Stack_Developer_2026.pdf';
+  document.querySelectorAll('#descargarCV, [data-descargar-cv]').forEach(function (boton) {
+    boton.addEventListener('click', function () {
       const enlace = document.createElement('a');
-      enlace.href = 'assets/pdf/CV_Rafael_Lopez_Full_Stack_Developer_2026.pdf';
-      enlace.download = 'CV_Rafael_Lopez_Full_Stack_Developer_2026.pdf';
+      enlace.href = CV;
+      enlace.download = CV.split('/').pop();
       enlace.target = '_blank';
       enlace.click();
     });
-  }
+  });
 }
 
 // ========================================

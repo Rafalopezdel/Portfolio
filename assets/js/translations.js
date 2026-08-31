@@ -21,9 +21,11 @@ const translations = {
     // Hero Section
     hero: {
       title: "RAFAEL LÓPEZ",
-      subtitle: "Full Stack Developer | MERN Stack • WordPress • IA Solutions",
-      tagline: "Creando experiencias web modernas e inteligentes con IA",
-      viewProjects: "Ver Proyectos",
+      subtitle: "Full Stack Developer",
+      claim: "Construyo y opero plataformas en producción: asistentes con IA sobre WhatsApp, e-commerce headless y sistemas de formación.",
+      liveLabel: "En producción hoy",
+      viewProjects: "Ver proyectos",
+      downloadCV: "Descargar CV",
       contactMe: "Contáctame",
       scroll: "Desliza"
     },
@@ -31,24 +33,33 @@ const translations = {
     // About Section
     about: {
       title: "Sobre Mí",
-      intro: "Hola, soy Rafael López.",
-      description: "Full Stack Developer con +3 años de experiencia construyendo aplicaciones web modernas y escalables. Especializado en MERN Stack (MongoDB, Express, React, Node.js), WordPress, y desarrollo de soluciones inteligentes con IA.\n\nMi experiencia incluye desde la creación de sitios corporativos en WordPress hasta sistemas complejos como chatbots con Claude AI integrados a WhatsApp Business API, automatizando procesos empresariales y mejorando la experiencia de usuarios finales.\n\nMi formación en Ingeniería Industrial me aporta una perspectiva única: no solo desarrollo código limpio y eficiente, sino que optimizo procesos, resuelvo problemas de negocio y mejoro la productividad mediante soluciones tecnológicas innovadoras.",
-      personalDataTitle: "Datos Personales",
-      birthday: "Cumpleaños",
+      intro: "Full Stack Developer y fundador de Lopezoft.",
+      description: "Llevo cuatro años construyendo aplicaciones web y, sobre todo, manteniéndolas vivas después de entregarlas. Hoy opero un asistente con IA que agenda citas médicas todos los días, una tienda que se salió de Shopify y una plataforma de formación con control de cupos y pagos.\n\nTrabajo el ciclo completo: Next.js y React en el frontend, Node y PostgreSQL en el backend, y la infraestructura que lo sostiene —despliegues, respaldos, certificados y la lectura de registros que descubre lo que está fallando en silencio—. Esa última parte es la que separa entregar software de operarlo.\n\nAntes de programar fundé y dirigí una empresa de distribución con operación en cinco ciudades. Por eso una conversación conmigo empieza por el problema del negocio y no por el framework.",
+      personalDataTitle: "Datos de contacto",
       phone: "Teléfono",
       email: "Email",
-      website: "Website",
-      address: "Dirección",
+      website: "Sitio web",
+      address: "Ubicación",
       position: "Cargo",
       positionValue: "Full Stack Developer",
-      interestsTitle: "Intereses",
-      interests: {
-        music: "MUSICA",
-        games: "JUEGOS",
-        travel: "VIAJAR",
-        sports: "DEPORTE",
-        books: "LIBROS",
-        meditation: "MEDITACIÓN"
+      buildTitle: "Qué construyo",
+      build: {
+        ai: {
+          title: "IA aplicada",
+          text: "Asistentes que ejecutan acciones reales sobre los sistemas que el cliente ya usa, no que solo conversan."
+        },
+        ecommerce: {
+          title: "E-commerce headless",
+          text: "Tiendas propias con pasarela local, sin comisión por venta ni dependencia de plataforma."
+        },
+        platforms: {
+          title: "Plataformas a medida",
+          text: "Membresías, cupos, pagos y contenido protegido, con panel para que el cliente lo administre solo."
+        },
+        ops: {
+          title: "Operación",
+          text: "Despliegue, respaldos, SSL y monitoreo. Lo que hace que un sistema siga funcionando en el mes seis."
+        }
       },
       downloadCV: "Descargar CV"
     },
@@ -56,84 +67,75 @@ const translations = {
     // Skills Section
     skills: {
       title: "Skills",
-      levels: {
-        basic: "Básico",
-        novice: "Novato",
-        intermediate: "Intermedio",
-        advanced: "Avanzado",
-        expert: "Experto"
+      technical: "Stack técnico",
+      professional: "Cómo trabajo",
+      groups: {
+        frontend: "Frontend",
+        backend: "Backend y datos",
+        ai: "IA y automatización",
+        infra: "Infraestructura y CMS"
       },
-      technical: "Technical Skills",
-      professional: "Professional Skills",
       list: {
-        javascript: "Javascript",
-        htmlcss: "HTML & CSS",
-        angular: "Angular",
-        react: "React",
-        nodejs: "NodeJS",
-        problemSolving: "Resolución de Problemas",
-        codeReview: "Code Review & Documentación",
-        agile: "Metodologías Ágiles",
-        technicalComm: "Comunicación Técnica",
-        projectMgmt: "Gestión de Proyectos",
-        processOpt: "Optimización de Procesos",
-        adaptability: "Adaptabilidad",
-        continuousLearning: "Aprendizaje Continuo"
+        problemSolving: "Resolución de problemas",
+        codeReview: "Code review y documentación",
+        agile: "Metodologías ágiles",
+        technicalComm: "Comunicación técnica",
+        projectMgmt: "Gestión de proyectos",
+        processOpt: "Optimización de procesos"
       }
     },
 
     // Curriculum Section
     curriculum: {
       title: "Curriculum",
-      education: "Educación",
-      experience: "Experiencia de trabajo",
+      education: "Formación",
+      experience: "Experiencia",
       items: {
         reactCourse: {
-          title: "Curso React de Cero a Experto",
+          title: "React de Cero a Experto",
           institution: "Udemy",
           year: "2025",
-          description: "React de cero a experto: Context API, MERN, Hooks, Firestore, JWT, Testing, Autenticaciones, Despliegues, CRUD, Logs, MUI, Multiple Routers y mucho más. Con la capacidad de desenvolverme eficientemente con el Framework siguiendo los estándares para comprender código de otros desarrolladores y optimizar el propio."
+          description: "Context API, MERN, Hooks, Firestore, JWT, testing, autenticación, despliegues y CRUD."
         },
         angularCourse: {
-          title: "Curso Angular de Cero a Experto",
+          title: "Angular de Cero a Experto",
           institution: "Udemy",
           year: "2022",
-          description: "Angular de cero a experto: Signals, componentes, directivas, servicios, mapas, JWT, autenticación, despliegues, mongo, Git, GitHub y mucho más. Con la capacidad de desenvolverme eficientemente con el Framework siguiendo los estándares para comprender código de otros desarrolladores y optimizar el propio."
+          description: "Signals, componentes, directivas, servicios, JWT, autenticación, despliegues y MongoDB."
         },
         webCourse: {
-          title: "Curso HTML, CSS y JavaScript",
+          title: "HTML, CSS y JavaScript",
           institution: "Udemy",
           year: "2021",
-          description: "Master en HTML, CSS3, Maquetación web, Responsive Web Design, SASS, LESS, Flexbox, CSS Grid, Bootstrap, Javascript, JQuery desde cero con más de 40 horas de videos estudiados, con la capacidad de maquetar diferentes diseños web y darle su respectiva funcionalidad."
+          description: "Maquetación, responsive, SASS, Flexbox, CSS Grid, Bootstrap, JavaScript y jQuery."
         },
         university: {
-          title: "Ingenieria Industrial",
-          institution: "Universidad Tecnologica de Pereira",
+          title: "Ingeniería Industrial",
+          institution: "Universidad Tecnológica de Pereira",
           year: "2009 - 2014",
-          description: "Por mi formación académica, puedo desempeñarme como un profesional capaz de investigar, innovar y optimizar procesos de producción y servicios, buscando altos rendimientos económicos, financieros y sociales, así como mejorar la productividad, calidad y competitividad en las organizaciones."
+          description: "Optimización de procesos, gestión de proyectos y análisis de datos aplicados a la productividad de organizaciones. Es la formación que hoy uso para entender el negocio antes de escribir código."
         },
         lopezoft: {
-          title: "Full Stack Developer",
-          institution: "Lopezoft Soluciones Informáticas",
+          title: "Full Stack Developer · Fundador",
+          institution: "Lopezoft",
           year: "2022 - Presente",
-          description: "Desarrollo aplicaciones web full-stack para clientes de diversos sectores utilizando tecnologías modernas y siguiendo mejores prácticas de la industria.\n\n• Implementé chatbot inteligente con Claude AI integrado a WhatsApp Business API y Dentalink, automatizando gestión de citas dentales y reduciendo carga operativa del personal administrativo\n• Desarrollé 5+ sitios web corporativos con WordPress/Divi y React/Tailwind CSS, optimizados para SEO y rendimiento\n• Construí sistema de autenticación JWT en Angular/Nest con guards, renovación de tokens y manejo seguro de sesiones\n• Creé aplicación colaborativa MERN Stack (calendario de eventos) con CRUD completo, Redux Toolkit y persistencia en MongoDB Atlas\n• Trabajo con metodologías ágiles, Git/GitHub para control de versiones, y despliegue en Firebase y GitHub Pages\n\nStack: React, Angular, Node.js, Express, MongoDB, Firebase, TypeScript, WordPress, Tailwind CSS"
+          description: "Construyo y opero las plataformas de los clientes de la empresa, de principio a fin: producto, código, despliegue e infraestructura.\n\n• Asistente de WhatsApp con IA para una clínica odontológica, integrado a Dentalink: agenda, modifica y cancela citas reales. En operación diaria durante todo 2026. Auditando sus registros encontré 25 mensajes a 12 pacientes que se perdían en silencio, y lo corregí con reintentos, alertas y recuperación automática.\n• JPR Academy (jprdesigntraining.com): plataforma de formación en Next.js 15 + Payload CMS + PostgreSQL, con control de cupos por cohorte, pagos con Wompi y video protegido. Vendió 9 de los 10 pases Elite de su primera cohorte.\n• Café Montelargo: migración de Shopify a e-commerce headless propio (Next.js + WooCommerce vía WPGraphQL + Wompi + n8n). Eliminó la comisión por venta y el recargo del 2% de la pasarela externa.\n• GCPFM (Reino Unido): mantenimiento de un WordPress de 28 páginas por REST API, automatizado con scripts propios en Python.\n\nStack: Next.js, React, Angular, Node.js, TypeScript, PostgreSQL, MongoDB, Firebase, WordPress headless, Tailwind CSS, Docker, n8n."
         },
         g3: {
-          title: "Gerente General",
+          title: "Fundador y Gerente General",
           institution: "G3 Seguridad",
           year: "2016 - 2022",
-          description: "Fundé y dirigí empresa de distribución de hardware de seguridad electrónica con operaciones en 5 ciudades a nivel nacional.\n\n• Lideré equipos multidisciplinarios en ventas, logística y operaciones, desarrollando habilidades de gestión que hoy aplico en proyectos de desarrollo de software\n• Optimicé procesos comerciales y operativos, reduciendo tiempos de entrega y mejorando satisfacción del cliente mediante análisis de datos y automatización\n• Gestioné proyectos complejos desde la planificación hasta la ejecución, coordinando recursos y resolviendo problemas críticos bajo presión\n• Negocié con proveedores y clientes, fortaleciendo capacidades de comunicación técnica y toma de decisiones estratégicas\n\nSkills transferibles: Gestión de proyectos, liderazgo, optimización de procesos, resolución de problemas, pensamiento analítico"
+          description: "Fundé y dirigí una empresa de distribución de hardware de seguridad electrónica con operación en cinco ciudades.\n\nSeis años negociando con proveedores, coordinando logística y respondiendo por una nómina enseñan a leer un problema de negocio antes de proponer una solución técnica. Es la razón por la que hoy una conversación conmigo empieza por lo que le cuesta dinero al cliente, y no por el framework."
         },
         servientrega: {
-          title: "Analista - Practicante",
+          title: "Analista de procesos (practicante)",
           institution: "Servientrega S.A.",
           year: "2014 - 2015",
-          description: "Estudio de tiempos y movimientos en el área de logística con el objetivo de implementar pagos por productividad en la entrega de mercancías desarrollando un algoritmo que mide el tiempo y esfuerzo de entrega por zona regional determinada."
+          description: "Estudio de tiempos y movimientos en logística. Desarrollé un algoritmo que medía tiempo y esfuerzo de entrega por zona para implementar pago por productividad."
         }
       }
     },
 
-    // Portfolio Section
     portfolio: {
       title: "PORTFOLIO",
       projects: {
@@ -677,34 +679,45 @@ const translations = {
     // Hero Section
     hero: {
       title: "RAFAEL LÓPEZ",
-      subtitle: "Full Stack Developer | MERN Stack • WordPress • AI Solutions",
-      tagline: "Creating modern and intelligent web experiences with AI",
-      viewProjects: "View Projects",
-      contactMe: "Contact Me",
+      subtitle: "Full Stack Developer",
+      claim: "I build and operate production platforms: AI assistants on WhatsApp, headless e-commerce and training systems.",
+      liveLabel: "Live in production",
+      viewProjects: "View projects",
+      downloadCV: "Download CV",
+      contactMe: "Contact me",
       scroll: "Scroll"
     },
 
     // About Section
     about: {
       title: "About Me",
-      intro: "Hello, I'm Rafael López.",
-      description: "Full Stack Developer with +3 years of experience building modern and scalable web applications. Specialized in MERN Stack (MongoDB, Express, React, Node.js), WordPress, and developing intelligent solutions with AI.\n\nMy experience ranges from creating corporate websites in WordPress to complex systems like chatbots with Claude AI integrated with WhatsApp Business API, automating business processes and improving end-user experience.\n\nMy background in Industrial Engineering gives me a unique perspective: I not only develop clean and efficient code, but also optimize processes, solve business problems, and improve productivity through innovative technological solutions.",
-      personalDataTitle: "Personal Information",
-      birthday: "Birthday",
+      intro: "Full Stack Developer and founder of Lopezoft.",
+      description: "I have spent four years building web applications and, above all, keeping them alive after delivery. Today I operate an AI assistant that books medical appointments every day, a store that moved off Shopify, and a training platform with seat control and payments.\n\nI work the full cycle: Next.js and React on the front end, Node and PostgreSQL on the back end, and the infrastructure that holds it up —deployments, backups, certificates, and the log reading that uncovers what is failing silently—. That last part is what separates shipping software from operating it.\n\nBefore programming I founded and ran a distribution company operating in five cities. That is why a conversation with me starts with the business problem, not with the framework.",
+      personalDataTitle: "Contact details",
       phone: "Phone",
       email: "Email",
       website: "Website",
-      address: "Address",
-      position: "Position",
+      address: "Location",
+      position: "Role",
       positionValue: "Full Stack Developer",
-      interestsTitle: "Interests",
-      interests: {
-        music: "MUSIC",
-        games: "GAMING",
-        travel: "TRAVEL",
-        sports: "SPORTS",
-        books: "BOOKS",
-        meditation: "MEDITATION"
+      buildTitle: "What I build",
+      build: {
+        ai: {
+          title: "Applied AI",
+          text: "Assistants that take real actions on the systems the client already uses, not just chat."
+        },
+        ecommerce: {
+          title: "Headless e-commerce",
+          text: "Own storefronts with local payment gateways, no per-sale commission and no platform lock-in."
+        },
+        platforms: {
+          title: "Custom platforms",
+          text: "Memberships, seat limits, payments and gated content, with an admin panel the client runs alone."
+        },
+        ops: {
+          title: "Operations",
+          text: "Deployment, backups, SSL and monitoring. What keeps a system working in month six."
+        }
       },
       downloadCV: "Download CV"
     },
@@ -712,29 +725,21 @@ const translations = {
     // Skills Section
     skills: {
       title: "Skills",
-      levels: {
-        basic: "Basic",
-        novice: "Novice",
-        intermediate: "Intermediate",
-        advanced: "Advanced",
-        expert: "Expert"
+      technical: "Tech stack",
+      professional: "How I work",
+      groups: {
+        frontend: "Frontend",
+        backend: "Backend & data",
+        ai: "AI & automation",
+        infra: "Infrastructure & CMS"
       },
-      technical: "Technical Skills",
-      professional: "Professional Skills",
       list: {
-        javascript: "Javascript",
-        htmlcss: "HTML & CSS",
-        angular: "Angular",
-        react: "React",
-        nodejs: "NodeJS",
-        problemSolving: "Problem Solving",
-        codeReview: "Code Review & Documentation",
-        agile: "Agile/Scrum Methodologies",
-        technicalComm: "Technical Communication",
-        projectMgmt: "Project Management",
-        processOpt: "Process Optimization",
-        adaptability: "Adaptability",
-        continuousLearning: "Continuous Learning"
+        problemSolving: "Problem solving",
+        codeReview: "Code review & documentation",
+        agile: "Agile methodologies",
+        technicalComm: "Technical communication",
+        projectMgmt: "Project management",
+        processOpt: "Process optimization"
       }
     },
 
@@ -742,54 +747,53 @@ const translations = {
     curriculum: {
       title: "Resume",
       education: "Education",
-      experience: "Work Experience",
+      experience: "Experience",
       items: {
         reactCourse: {
-          title: "React Zero to Expert Course",
+          title: "React from Zero to Expert",
           institution: "Udemy",
           year: "2025",
-          description: "React from zero to expert: Context API, MERN, Hooks, Firestore, JWT, Testing, Authentication, Deployments, CRUD, Logs, MUI, Multiple Routers and much more. With the ability to efficiently work with the Framework following standards to understand code from other developers and optimize my own."
+          description: "Context API, MERN, Hooks, Firestore, JWT, testing, authentication, deployments and CRUD."
         },
         angularCourse: {
-          title: "Angular Zero to Expert Course",
+          title: "Angular from Zero to Expert",
           institution: "Udemy",
           year: "2022",
-          description: "Angular from zero to expert: Signals, components, directives, services, maps, JWT, authentication, deployments, mongo, Git, GitHub and much more. With the ability to efficiently work with the Framework following standards to understand code from other developers and optimize my own."
+          description: "Signals, components, directives, services, JWT, authentication, deployments and MongoDB."
         },
         webCourse: {
-          title: "HTML, CSS and JavaScript Course",
+          title: "HTML, CSS and JavaScript",
           institution: "Udemy",
           year: "2021",
-          description: "Master in HTML, CSS3, Web Layout, Responsive Web Design, SASS, LESS, Flexbox, CSS Grid, Bootstrap, Javascript, JQuery from scratch with more than 40 hours of studied videos, with the ability to layout different web designs and give them their respective functionality."
+          description: "Layout, responsive design, SASS, Flexbox, CSS Grid, Bootstrap, JavaScript and jQuery."
         },
         university: {
           title: "Industrial Engineering",
-          institution: "Universidad Tecnologica de Pereira",
+          institution: "Universidad Tecnológica de Pereira",
           year: "2009 - 2014",
-          description: "Through my academic training, I can perform as a professional capable of researching, innovating, and optimizing production and service processes, seeking high economic, financial, and social returns, as well as improving productivity, quality, and competitiveness in organizations."
+          description: "Process optimization, project management and data analysis applied to organizational productivity. It is the training I use today to understand the business before writing code."
         },
         lopezoft: {
-          title: "Full Stack Developer",
-          institution: "Lopezoft IT Solutions",
+          title: "Full Stack Developer · Founder",
+          institution: "Lopezoft",
           year: "2022 - Present",
-          description: "Develop full-stack web applications for clients across various industries using modern technologies and following industry best practices.\n\n• Implemented intelligent chatbot with Claude AI integrated with WhatsApp Business API and Dentalink, automating dental appointment management and reducing administrative staff workload\n• Developed 5+ corporate websites with WordPress/Divi and React/Tailwind CSS, optimized for SEO and performance\n• Built JWT authentication system in Angular/Nest with guards, token renewal, and secure session management\n• Created collaborative MERN Stack application (event calendar) with full CRUD, Redux Toolkit, and MongoDB Atlas persistence\n• Work with Agile methodologies, Git/GitHub for version control, and deployment on Firebase and GitHub Pages\n\nStack: React, Angular, Node.js, Express, MongoDB, Firebase, TypeScript, WordPress, Tailwind CSS"
+          description: "I build and operate the platforms of the company's clients end to end: product, code, deployment and infrastructure.\n\n• WhatsApp AI assistant for a dental clinic, integrated with Dentalink: it books, reschedules and cancels real appointments. In daily operation throughout 2026. Auditing its logs I found 25 messages to 12 patients being lost silently, and fixed it with retries, alerts and automatic recovery.\n• JPR Academy (jprdesigntraining.com): training platform on Next.js 15 + Payload CMS + PostgreSQL, with per-cohort seat control, Wompi payments and protected video. It sold 9 of the 10 Elite passes in its first cohort.\n• Café Montelargo: migration from Shopify to an owned headless storefront (Next.js + WooCommerce via WPGraphQL + Wompi + n8n). Removed the per-sale commission and the 2% external-gateway surcharge.\n• GCPFM (United Kingdom): maintenance of a 28-page WordPress site through its REST API, automated with custom Python scripts.\n\nStack: Next.js, React, Angular, Node.js, TypeScript, PostgreSQL, MongoDB, Firebase, headless WordPress, Tailwind CSS, Docker, n8n."
         },
         g3: {
-          title: "General Manager",
+          title: "Founder and General Manager",
           institution: "G3 Security",
           year: "2016 - 2022",
-          description: "Founded and managed electronic security hardware distribution company with operations in 5 cities nationwide.\n\n• Led multidisciplinary teams in sales, logistics, and operations, developing management skills that I now apply to software development projects\n• Optimized commercial and operational processes, reducing delivery times and improving customer satisfaction through data analysis and automation\n• Managed complex projects from planning to execution, coordinating resources and solving critical problems under pressure\n• Negotiated with suppliers and clients, strengthening technical communication and strategic decision-making capabilities\n\nTransferable skills: Project management, leadership, process optimization, problem-solving, analytical thinking"
+          description: "I founded and ran an electronic security hardware distribution company operating in five cities.\n\nSix years negotiating with suppliers, coordinating logistics and answering for a payroll teach you to read a business problem before proposing a technical solution. That is why a conversation with me starts with what is costing the client money, not with the framework."
         },
         servientrega: {
-          title: "Analyst - Intern",
+          title: "Process analyst (intern)",
           institution: "Servientrega S.A.",
           year: "2014 - 2015",
-          description: "Time and motion study in the logistics area with the objective of implementing productivity-based payments in merchandise delivery by developing an algorithm that measures the time and effort of delivery by determined regional zone."
+          description: "Time and motion study in logistics. I developed an algorithm measuring delivery time and effort per zone to implement productivity-based pay."
         }
       }
     },
 
-    // Portfolio Section
     portfolio: {
       title: "PORTFOLIO",
       projects: {
@@ -874,7 +878,10 @@ const translations = {
       viewOnGitHub: "View on GitHub",
       liveDemo: "Live Demo",
       whyDivi: "Why Divi Builder?",
-      developmentWorkflow: "Development Workflow"
+      developmentWorkflow: "Development Workflow",
+      keyIntegrations: "Key Integrations",
+      allRightsReserved: "All rights reserved.",
+      viewMoreProjects: "View More Projects"
     },
 
     // Project 1: WhatsApp Dental Assistant

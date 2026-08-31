@@ -52,7 +52,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../assets/css/custom.css?v=202608311300">
+    <link rel="stylesheet" href="../assets/css/custom.css?v=202608311331">
 
     <!-- Tailwind Config -->
     <script>
@@ -104,7 +104,7 @@
                             class="toggle-btn language-toggle !border-slate-700 !text-slate-300 hover:!border-primary hover:!text-white"
                             :title="lang === 'es' ? 'Switch to English' : 'Cambiar a Español'"
                             aria-label="Toggle language">
-                        <span class="flag-icon" x-text="lang === 'es' ? '🇬🇧' : '🇪🇸'">🇬🇧</span>
+                        <span class="text-xs font-bold tracking-wider" x-text="lang === 'es' ? 'EN' : 'ES'">EN</span>
                     </button>
 
                     <!-- Theme Toggle -->
@@ -401,7 +401,7 @@
                     </a>
                     <a href="https://calendar-app-front-mern.vercel.app"
                        target="_blank"
-                       class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-bold hover:bg-primary-dark transition-all duration-300 hover:scale-105">
+                       class="inline-flex items-center gap-2 px-6 py-3 bg-brand text-white rounded-full font-bold hover:bg-brand-deep transition-all duration-300 hover:scale-105">
                         <i class="fa-solid fa-globe"></i>
                         <span x-text="translations[lang].project2.links.demo">Live Demo</span>
                     </a>
@@ -432,7 +432,7 @@
     </footer>
 
     <!-- Translations -->
-    <script src="../assets/js/translations.js?v=202608311300"></script>
+    <script src="../assets/js/translations.js?v=202608311331"></script>
 
     <!-- Scripts -->
     <script>
