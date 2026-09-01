@@ -2,6 +2,27 @@
 
 > Entrada nueva **arriba**. Formato en `CLAUDE.md §5`.
 
+## 2026-09-01 — URL de LinkedIn sin tilde, y Search Console en marcha
+
+- **Qué se hizo:** la URL de LinkedIn tenía tilde (`/in/rafael-lópez-delgado`), lo que la
+  rompe al pegarla en formularios, correos y ATS que no normalizan Unicode. Rafael la cambió
+  en LinkedIn a `/in/rafaellopezdelgado` y aquí se propagó a las **16 apariciones**:
+  `index.html` (JSON-LD `sameAs`, iconos del hero, del footer y de la tarjeta de contacto),
+  `README.md` y los dos HTML de `cv/`. Los PDF se **regeneraron** con `bash cv/generar.sh`
+  (2 páginas, 305 y 302 KB, texto extraíble para los ATS) y se comprobó que tanto el texto
+  visible como el `<a href>` incrustado apuntan a la URL nueva.
+- **Google Search Console: verificado**, y el `sitemap.xml` procesado con las 5 URL
+  detectadas. La verificación es por `<meta name="google-site-verification">` en el `<head>`
+  de `index.html`: **si esa etiqueta desaparece, Google revoca la propiedad.**
+- **Archivos tocados:** `index.html`, `README.md`, `cv/cv-es.html`, `cv/cv-en.html`,
+  `assets/pdf/CV-…-{ES,EN}.pdf`.
+- **¿Desplegado?:** sí. Respaldo en `backup-portfolio-2026-09-01-1135.tgz`. Verificado en
+  vivo: la URL nueva en el HTML servido y en los dos PDF descargados del servidor.
+- **Siguiente paso:** fase 2 — el kit de perfiles (LinkedIn, Get on Board, Torre, Workana),
+  que vive en `C:\Rafaelpps\empleo\` y **no** en este repo, que es público. Pendiente
+  también borrar `assets/js/tailwind.3.4.17.min.js` (407 KB), ya sin referencias.
+
+
 ## 2026-09-01 — Fase 1 de visibilidad: Tailwind compilado, SEO técnico y dos bugs
 
 - **Qué se hizo:**

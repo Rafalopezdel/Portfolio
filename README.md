@@ -46,5 +46,5 @@ Va a `portfoliorafael.lopezoft.co` (hosting compartido de GoDaddy).
 ## Contacto
 
 - **Email:** rafalopezdel@gmail.com
-- **LinkedIn:** https://www.linkedin.com/in/rafael-lópez-delgado
+- **LinkedIn:** https://www.linkedin.com/in/rafaellopezdelgado
 - **GitHub:** https://github.com/Rafalopezdel
