@@ -27,7 +27,7 @@ Después del bootstrap: confirma en **3 líneas** (estado, siguiente paso, dudas
 **Para localizar algo en `index.html` usa `grep -n`, nunca lo leas completo.** Mapa de
 secciones y números de línea aproximados en `docs/ARQUITECTURA.md`.
 
-## 2. ESTADO (2026-08-31)
+## 2. ESTADO (2026-09-01)
 
 El portafolio está **rediseñado y en producción**. Se cerraron cinco fases: identidad visual,
 tipografía y paleta de marca, contenido, los cuatro casos y la hoja de vida. Detalle en
@@ -39,11 +39,18 @@ tipografía y paleta de marca, contenido, los cuatro casos y la hoja de vida. De
 | Público | **Empleo y clientes a la vez**: afirmación + prueba, CTA doble, CV visible |
 | Casos publicados | Asistente WhatsApp con IA · JPR Academy · Café Montelargo · GCPFM |
 | Hoja de vida | `cv/` → `assets/pdf/CV-…-{ES,EN}.pdf`. **Se genera, no se edita** |
-| Peso en producción | `assets/img` 832 KB · `assets/pdf` 616 KB · `translations.js` 42 KB |
+| Peso en producción | `assets/img` 832 KB · `assets/pdf` 616 KB · `translations.js` 42 KB · `tailwind.css` 52 KB |
 
-**Lo siguiente, aún sin empezar:** visibilidad — SEO, LinkedIn, plataformas de empleo y de
-trabajo freelance. Nada de eso está hecho todavía: el sitio no tiene `sitemap.xml` ni
-`robots.txt`, y no está dado de alta en Search Console.
+**En marcha: visibilidad.** El 2026-09-01 se compiló el CSS (407 KB de compilador JIT fuera,
+52 KB estáticos dentro) y se añadieron `robots.txt` y `sitemap.xml`. Decisión tomada: el sitio
+es **monolingüe en español** para los buscadores — el conmutador ES/EN no cambia la URL y se
+queda así; no habrá `/en/` ni `hreflang` mientras el mercado objetivo sea Colombia y remoto en
+español.
+
+**Pendiente:** alta en Google Search Console y Bing (la hace Rafael, necesita su cuenta),
+perfil de LinkedIn alineado con este posicionamiento, y alta en plataformas de empleo y
+freelance. La estrategia de empleo **no vive en este repo** — es público y ahí no van cifras
+de salario ni tácticas de negociación.
 
 ⛔ **Dos reglas de contenido heredadas de `apps/lopezoft/_spec/casos.md`, no negociables:**
 la clínica odontológica **no se nombra** y no aparece ningún dato de paciente; el precio que
@@ -55,10 +62,12 @@ paga Café Montelargo **no se publica** en ningún sitio, ni como cifra ni como 
    Alpine.js por el estado. Alpine (`<body x-data>`) es la única fuente de verdad.
    *(El antiguo `script.js`, que borraba las clases de Tailwind y hacía desaparecer el menú,
    se eliminó el 2026-08-31. Está en el historial de git si alguna vez hace falta mirarlo.)*
-2. ⛔ **Tailwind se sirve desde `/assets/js/tailwind.3.4.17.min.js`, NO desde
-   `cdn.tailwindcss.com`.** El DNS de Claro Colombia devuelve `Query refused` para ese host y
-   el sitio carga **sin estilos** para media Colombia. Volver al CDN tumba el diseño en
-   silencio (el `curl` sigue dando 200). Ver `docs/DESPLIEGUE.md`, trampa 1.
+2. ⛔ **El CSS de Tailwind se compila; NUNCA se vuelve al CDN.** Hoy se sirve
+   `/assets/css/tailwind.css`, generado por `npm run build:css` desde `tailwind.config.js`
+   y `src/tailwind.css`. `cdn.tailwindcss.com` está prohibido: el DNS de Claro Colombia
+   devuelve `Query refused` y el sitio carga **sin estilos** para media Colombia, con el
+   `curl` dando 200 tan tranquilo. `deploy.sh` lo bloquea. Ver `docs/DESPLIEGUE.md`, trampa 1.
+   **No edites `assets/css/tailwind.css` a mano**: se regenera en cada despliegue.
 3. ⚠️ **Nada de `$root` ni de getters en scopes hijos** con Alpine. Acceso directo:
    `translations[lang].nav.home`. Ver `docs/ARQUITECTURA.md`.
 4. ⚠️ **El menú móvil necesita `display: block !important`** para vencer al `estilo.css`
@@ -67,8 +76,10 @@ paga Café Montelargo **no se publica** en ningún sitio, ni como cifra ni como 
 ## 4. DESPLEGAR
 
 ```bash
-bash deploy.sh          # sube a portfoliorafael.lopezoft.co (con respaldo previo y verificación)
+npm install               # una sola vez: instala el compilador de Tailwind
+bash deploy.sh            # compila el CSS, respalda, sube y verifica
 bash deploy.sh --dry-run  # muestra qué subiría, sin tocar nada
+npm run watch:css         # mientras se trabaja: recompila al guardar
 ```
 
 Todo lo demás (datos del servidor, verificación, reversión) está en `docs/DESPLIEGUE.md`.
@@ -98,5 +109,7 @@ Todo lo demás (datos del servidor, verificación, reversión) está en `docs/DE
 - **Fechas absolutas** (`2026-08-31`), nunca "la semana pasada".
 - **Commits:** `tipo: descripción corta`.
 - **Nada de secretos en el repo.** Las llaves SSH viven en `~/.ssh/`.
-- **Sin build:** HTML/CSS/JS servidos tal cual. Cualquier propuesta de build es una decisión,
-  no un detalle de implementación: se plantea antes de hacerla.
+- **Casi sin build:** lo único que se compila es el CSS de Tailwind (`npm run build:css`,
+  lo corre `deploy.sh` solo). El resto —HTML, `custom.css`, `estilo.css`, el JS— se sirve tal
+  cual. Cualquier build **nuevo** (bundler, transpilación, framework) es una decisión, no un
+  detalle de implementación: se plantea antes de hacerla.

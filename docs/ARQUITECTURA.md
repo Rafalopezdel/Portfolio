@@ -5,12 +5,13 @@
 
 ## Stack
 
-Sin build, sin `package.json`. Todo se sirve tal cual.
+Casi sin build. Lo **único** que se compila es el CSS de Tailwind
+(`npm run build:css`); el resto del HTML, CSS y JS se sirve tal cual.
 
 | Capa | Qué |
 |---|---|
 | Reactividad | **Alpine.js 3.13.3** (CDN jsDelivr, con `defer`) |
-| CSS | **Tailwind 3.4.17 — Play CDN servido en local** (`assets/js/tailwind.3.4.17.min.js`, 407 KB) |
+| CSS | **Tailwind 3.4.17 compilado** → `assets/css/tailwind.css` (~52 KB, ~10 KB con gzip) |
 | Iconos | Font Awesome 6.1.2 (cdnjs) |
 | Animación | AOS 2.3.1 (unpkg) |
 | Tipografía | Google Fonts: **Righteous** (títulos) + **Work Sans** (cuerpo) |
@@ -147,16 +148,27 @@ commitearlo junto al resto. Pasó de verdad durante la fase B.
    `index.html`. Es el punto donde el menú pasa de hamburguesa a horizontal.
 3. **`translations.js` va sin `defer`; Alpine con `defer`.** Invertirlo hace que Alpine
    arranque sin traducciones y la página aparezca con los textos de respaldo.
-4. **`tailwind.config` está inline en cada HTML.** Si cambias un color o un breakpoint hay
-   que cambiarlo en `index.html` **y en las 5 páginas de `projects/`**.
-5. **Tailwind Play CDN no es para producción** — lo dice él mismo por consola. Compila el
-   CSS en cada carga (407 KB de compilador). Ver "Deuda conocida".
+4. **El CSS de Tailwind se COMPILA; no se edita `assets/css/tailwind.css`.** La fuente son
+   `tailwind.config.js` y `src/tailwind.css`, y la salida la regenera `npm run build:css`
+   (que `deploy.sh` ejecuta solo antes de subir). Editar la salida a mano se pierde en el
+   siguiente despliegue, sin aviso.
+5. **Una clase que no esté escrita literalmente en el HTML o el JS, no existe.** El `content`
+   de `tailwind.config.js` incluye `assets/js/*.js` justamente porque `main.js` añade
+   `opacity-0`, `invisible` y `translate-y-*` en caliente. Si algún día se construye un
+   nombre de clase concatenando (`'bg-' + color`), Tailwind lo purga y el elemento sale
+   sin estilo **sin ningún error por consola**. Para eso está `safelist`.
+6. **Los modificadores de opacidad solo valen si están en la escala de Tailwind**
+   (0, 5, 10, … 95, 100). `bg-slate-900/98` no genera nada — pasó de verdad: el menú móvil
+   estuvo sin fondo. Con el CDN fallaba igual, solo que nadie lo veía venir. Si hace falta
+   un valor fuera de escala, la sintaxis es `bg-slate-900/[.98]`.
+7. **El orden en el `<head>` es `tailwind.css` → `custom.css` → `estilo.css`.** `custom.css`
+   define el acento adaptativo y pisa utilidades de Tailwind a propósito; invertirlo lo rompe.
 
 ## Deuda conocida (revisada 2026-08-31, tras la fase D)
 
 | # | Qué | Impacto |
 |---|---|---|
-| 1 | **Tailwind Play CDN**: 407 KB de compilador que corre en cada visita, en vez de un `.css` compilado de unos pocos KB | **La deuda más grande que queda.** Arreglarla mete un paso de build en un sitio que no lo tiene: es una decisión, no un detalle |
+| 1 | **`assets/js/tailwind.3.4.17.min.js` (407 KB) sigue en el repo y en el servidor**, ya sin referencias | Se deja un ciclo de despliegue como seguro: quien tenga el HTML viejo en caché aún lo pide, y un 404 ahí le dejaría la página sin estilos. Borrar en la siguiente sesión |
 | 3 | **Reglas muertas en `estilo.css`** (`.inicio`, `.contacto` y su tipografía) — el HTML usa Tailwind y esos selectores ya no casan con nada | Código muerto: 16 KB que se descargan y no pintan nada. Se puede borrar el archivo entero tras comprobar selector por selector |
 | 4 | `estilo.old.css` y `script.old.js` en disco (ignorados por git, no se despliegan) | Confusión al abrir la carpeta |
 | 5 | **`deploy.sh` es aditivo**: no borra en el servidor lo que se borra en el repo | Hay que limpiar a mano tras retirar archivos. Receta en `DESPLIEGUE.md` |

@@ -2,6 +2,52 @@
 
 > Entrada nueva **arriba**. Formato en `CLAUDE.md §5`.
 
+## 2026-09-01 — Fase 1 de visibilidad: Tailwind compilado, SEO técnico y dos bugs
+
+- **Qué se hizo:**
+  - **Tailwind ya no se compila en el navegador.** Se pasó del Play CDN servido en local
+    (**407 KB de compilador JIT en cada visita, en las 5 páginas**) a un CSS estático de
+    **52 KB** (~10 KB con el gzip del `.htaccess`). Fuente: `tailwind.config.js` +
+    `src/tailwind.css`; salida `assets/css/tailwind.css`, versionada. `deploy.sh` la
+    **recompila en cada despliegue**, así que no existe el caso de subir el CSS viejo.
+    Es el primer paso de build del proyecto; se planteó y se aprobó antes de hacerlo.
+  - La `tailwind.config` que estaba **repetida en línea en los cinco HTML** pasa a un solo
+    archivo. Las páginas de `projects/` no traían el `screens` con `lg: 980px`; ahora lo
+    heredan, lo que solo mueve padding y una rejilla de dos columnas 44 px antes.
+  - `robots.txt` y `sitemap.xml` (5 URL), monolingües en español a propósito.
+  - **Decisión cerrada: el sitio es monolingüe para los buscadores.** No se sirve `/en/`
+    aparte ni se pone `hreflang`. El conmutador ES/EN se queda como comodidad de interfaz.
+
+- **Dos bugs encontrados de paso, los dos silenciosos:**
+  1. **El menú móvil llevaba tiempo sin fondo.** Usaba `bg-slate-900/98` y
+     `dark:bg-slate-950/98`, y **98 no está en la escala de opacidad de Tailwind**, así que
+     nunca se generó la regla — con el CDN fallaba exactamente igual. Corregido a `/95`.
+     Se auditaron los 25 modificadores de opacidad del sitio: eran los dos únicos rotos.
+  2. **`deploy.sh` no sellaba `?v=` en las páginas de caso.** Recorría
+     `projects/project*.html` y esos archivos no existen (se llaman `asistente-whatsapp.html`,
+     `cafe-montelargo.html`, `gcpfm.html`, `jpr-academy.html`), así que llevaban meses
+     congeladas en `?v=devD2`: con la caché de un mes, ningún cambio de `custom.css` ni de
+     `translations.js` llegaba a quien ya las hubiera visitado. Patrón corregido a
+     `projects/*.html`.
+
+- **Cómo se verificó:** las 5 páginas comparadas en Chrome contra el sitio en vivo, en tema
+  claro y oscuro y en los dos idiomas; auditoría de todas las clases del HTML contra el CSS
+  compilado (los iconos que salen de `translations.js` son Font Awesome, ajenos al purgado);
+  `verificar-traducciones.js` y `verificar-claves-html.js` en verde.
+
+- **Archivos tocados:** `package.json`, `tailwind.config.js`, `src/tailwind.css`,
+  `assets/css/tailwind.css`, `index.html`, `projects/*.html`, `deploy.sh`, `.gitignore`,
+  `robots.txt`, `sitemap.xml`, `CLAUDE.md`, `docs/ARQUITECTURA.md`, `docs/DESPLIEGUE.md`.
+  En `index.html` entra además el `<meta name="google-site-verification">`, que **no se borra**.
+- **¿Desplegado?:** sí. Respaldo previo en `backup-portfolio-2026-09-01-1119.tgz`. Verificado
+  en vivo: las 6 URL a 200, cero referencias al compilador viejo, y el meta de verificación
+  de Search Console presente en el `<head>`.
+- **Siguiente paso:** Rafael pulsa *Verificar* en Google Search Console (el meta ya está en
+  vivo) y envía el sitemap; alta en Bing Webmaster Tools; y en la siguiente sesión borrar
+  `assets/js/tailwind.3.4.17.min.js` (407 KB) del repo y del servidor — se deja un ciclo
+  como seguro para quien tenga el HTML viejo en caché. Después, fase 2: el kit de perfiles.
+
+
 ## 2026-08-31 — Cierre: `script.js` eliminado y sesión cerrada
 
 - **Qué se hizo:** borrado `script.js` del repo, del `INCLUIR` de `deploy.sh`, de las líneas

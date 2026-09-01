@@ -1,0 +1,13 @@
+{
+  "name": "portfolio-rafael",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portafolio de Rafael Lopez. Sitio estatico; lo unico que se compila es el CSS de Tailwind.",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/tailwind.css -o ./assets/css/tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./src/tailwind.css -o ./assets/css/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}

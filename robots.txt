@@ -1,0 +1,14 @@
+# portfoliorafael.lopezoft.co
+# El sitio es monolingue en espanol: el conmutador ES/EN cambia el texto con
+# Alpine pero NO cambia la URL, asi que no hay version en ingles que indexar.
+# Si algun dia se sirve /en/ como paginas aparte, hay que anadirla al sitemap
+# y poner hreflang. Ver docs/BITACORA.md.
+
+User-agent: *
+Allow: /
+
+# Fuentes y CSS no aportan nada al indice
+Disallow: /assets/css/
+Disallow: /assets/js/
+
+Sitemap: https://portfoliorafael.lopezoft.co/sitemap.xml

@@ -24,3 +24,7 @@ desktop.ini
 # Temporary files
 *.tmp
 *.log
+
+# Dependencias del compilador de Tailwind: se instalan con `npm install`,
+# no se versionan. Lo que SI se versiona es la salida, assets/css/tailwind.css.
+node_modules/

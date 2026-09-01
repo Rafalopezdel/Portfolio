@@ -1,0 +1,12 @@
+/* Entrada del compilador de Tailwind. La salida va a assets/css/tailwind.css
+   y ESA es la que se sirve. No editar la salida a mano: se regenera.
+
+   Regenerar:  npm run build:css      (o  npm run watch:css  mientras se trabaja)
+
+   El orden en el <head> importa:  tailwind.css  ->  custom.css  ->  estilo.css
+   custom.css define las variables del acento adaptativo y pisa utilidades de
+   Tailwind; estilo.css es el CSS heredado. Si tailwind.css va despues, se rompen. */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

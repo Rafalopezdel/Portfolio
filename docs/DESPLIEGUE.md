@@ -32,8 +32,11 @@ bash deploy.sh             # respalda en el servidor, sube, ajusta permisos y ve
 
 Qué hace, en orden:
 
-1. **Guardias previas.** Aborta si algún HTML apunta a `cdn.tailwindcss.com` o si falta el
-   Tailwind local (ver Trampa 1).
+1. **Guardias previas.** Aborta si algún HTML apunta a `cdn.tailwindcss.com` (ver Trampa 1)
+   o si falta Node / `node_modules` para compilar el CSS.
+1b. **Compila el CSS** (`npm run build:css`). Se hace en cada despliegue a propósito: así no
+   existe el escenario de haber escrito una clase nueva y subir el CSS viejo, que se
+   manifestaría como un elemento sin estilo y sin ningún error a la vista.
 2. **Sella `?v=<fecha+hora>`** en `custom.css`, `estilo.css`, `translations.js`, `main.js` y
    `animations.js`. Sin esto, el `.htaccess` cachea CSS y JS **un mes** y quien ya visitó
    el sitio no vería el cambio en 30 días (Trampa 4). **Deja el cambio escrito en los HTML
@@ -43,7 +46,8 @@ Qué hace, en orden:
    sobre SSH. **No sube** `docs/`, `cv/`, `scripts/`, `README.md`, `CLAUDE.md`, `deploy.sh`,
    `.git/` ni los `*.old.*`.
 5. **Permisos:** directorios `755`, archivos `644`. (Lo que había estaba en `666`/`777`.)
-6. **Verifica en vivo** que el HTML servido apunta al Tailwind local.
+6. **Verifica en vivo** que el HTML servido apunta a `assets/css/tailwind.css`, y que
+   `tailwind.css`, `sitemap.xml` y `robots.txt` responden 200.
 
 **Es aditivo: no borra en el servidor lo que borres en el repo.** Tras un despliegue que
 elimina archivos, hay que limpiarlos a mano. Para ver qué sobra en producción:
@@ -110,11 +114,17 @@ nslookup cdn.tailwindcss.com 8.8.8.8   # resuelve
 ```
 
 **Regla:** lo que sea crítico para el render se sirve **desde el propio subdominio**.
-Hoy: `assets/js/tailwind.3.4.17.min.js` (407 KB, `md5 7a614b9a197e532c00d09a23b0996b5f`).
+**Resuelto el 2026-09-01: ya no hay compilador.** Se sirve `assets/css/tailwind.css`, unos
+52 KB estáticos (~10 KB con el gzip del `.htaccess`) generados por `npm run build:css`. La
+prohibición del CDN sigue en pie y `deploy.sh` la vigila.
+
+`assets/js/tailwind.3.4.17.min.js` (407 KB) sigue en el repo y en el servidor, ya sin
+referencias: se deja **un ciclo de despliegue** como seguro, porque quien conserve el HTML
+viejo en caché aún lo pide y un 404 ahí le dejaría la página sin estilos. Borrarlo después.
 Si un día "carga pero sin estilos", comprueba **cada host externo del `<head>`** con el
 resolutor local, no solo con `curl` desde el servidor.
 
-⬜ **Pendiente sano:** compilar el CSS con la CLI de Tailwind y dejar un `.css` estático de
+~~⬜ Pendiente: compilar el CSS con la CLI de Tailwind y dejar un `.css` estático de
 pocos KB en vez de 407 KB de compilador corriendo en cada visita.
 
 ### 2. ⚠️ `ErrorDocument` no hace nada en este hosting
@@ -149,6 +159,13 @@ Costó media hora en la fase B creyendo que el CSS estaba mal.
 **Por eso `deploy.sh` sella `?v=` automáticamente.** Si algún día se añade otro asset propio,
 hay que darle su `?v=` a mano la primera vez; a partir de ahí el script lo mantiene.
 
+⚠️ **Bug corregido el 2026-09-01.** El sellado recorría `projects/project*.html` y esos
+archivos no existen: las páginas de caso se llaman `asistente-whatsapp.html`,
+`cafe-montelargo.html`, `gcpfm.html` y `jpr-academy.html`. Resultado: llevaban meses
+congeladas en `?v=devD2`, así que ningún cambio de `custom.css` ni de `translations.js`
+llegaba a quien ya las hubiera visitado, durante el mes que dura la caché. Ahora el
+patrón es `projects/*.html`.
+
 Para comprobar qué versión hay en vivo:
 
 ```bash
@@ -166,6 +183,6 @@ Mientras esté apagado, **SFTP sí funciona** para leer y descargar.
 
 ```bash
 curl -sS -o /dev/null -w "%{http_code} %{size_download}\n" https://portfoliorafael.lopezoft.co/
-curl -sS https://portfoliorafael.lopezoft.co/ | grep -c 'tailwind.3.4.17.min.js'   # debe dar 1
+curl -sS https://portfoliorafael.lopezoft.co/ | grep -c 'assets/css/tailwind.css'   # debe dar 1
 ssh lopezoft-shared 'ls -la ~/public_html/portfoliorafael'
 ```

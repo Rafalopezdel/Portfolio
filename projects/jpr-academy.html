@@ -37,37 +37,11 @@
         integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Tailwind servido desde el propio dominio: el CDN no resuelve en algunas redes -->
-    <script src="../assets/js/tailwind.3.4.17.min.js"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        // Acento ADAPTATIVO segun la superficie (ver assets/css/custom.css)
-                        primary: 'rgb(var(--acento) / <alpha-value>)',
-                        'primary-light': 'rgb(var(--acento-2) / <alpha-value>)',
-                        'primary-dark': '#1E3A8A',
-                        // FIJOS: fondos rellenos con texto blanco encima
-                        brand: '#2563EB',
-                        'brand-deep': '#1E3A8A',
-                        'brand-cyan': '#38BDF8',
-                        navy: '#0D1B2A',
-                        ink: '#64748B',
-                        mist: '#F3F4F6',
-                    },
-                    fontFamily: {
-                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
-                        body: ['Inter', 'system-ui', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
+    <!-- Tailwind compilado (npm run build:css). No editar la salida a mano. -->
+    <link rel="stylesheet" href="../assets/css/tailwind.css?v=202609011119">
 
-    <script src="../assets/js/translations.js?v=devD2"></script>
-    <link rel="stylesheet" href="../assets/css/custom.css?v=devD2">
+    <script src="../assets/js/translations.js?v=202609011119"></script>
+    <link rel="stylesheet" href="../assets/css/custom.css?v=202609011119">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
     <style>[x-cloak] { display: none !important; }</style>
 </head>
