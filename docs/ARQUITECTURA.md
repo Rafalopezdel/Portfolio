@@ -161,7 +161,12 @@ commitearlo junto al resto. Pasó de verdad durante la fase B.
    (0, 5, 10, … 95, 100). `bg-slate-900/98` no genera nada — pasó de verdad: el menú móvil
    estuvo sin fondo. Con el CDN fallaba igual, solo que nadie lo veía venir. Si hace falta
    un valor fuera de escala, la sintaxis es `bg-slate-900/[.98]`.
-7. **El orden en el `<head>` es `tailwind.css` → `custom.css` → `estilo.css`.** `custom.css`
+7. **Las listas de los casos están cableadas por índice en el HTML.** `projects/*.html` pinta
+   `solucion[0]` … `solucion[5]` y `resultado.puntos[0]` … `[3]` uno a uno. Añadir un séptimo
+   elemento a `solucion` o un quinto a `puntos` en `translations.js` **no renderiza nada** y no
+   da ningún error: hay que tocar también el HTML. Los verificadores no lo detectan porque las
+   claves existen.
+8. **El orden en el `<head>` es `tailwind.css` → `custom.css` → `estilo.css`.** `custom.css`
    define el acento adaptativo y pisa utilidades de Tailwind a propósito; invertirlo lo rompe.
 
 ## Deuda conocida (revisada 2026-08-31, tras la fase D)

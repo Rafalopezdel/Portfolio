@@ -2,6 +2,37 @@
 
 > Entrada nueva **arriba**. Formato en `CLAUDE.md §5`.
 
+## 2026-09-04 — GCPFM: el caso contaba mal la autoría, y `cv/generar.sh` fallaba en silencio
+
+- **Qué se hizo:** Rafael avisó de que el caso de GCP Facilities Management se leía como si
+  hubiera heredado un sitio ajeno. **Lo construyó él entero desde cero** con WordPress y Divi,
+  y solo *después* montó la automatización por REST API para poder mantenerlo. Corregido en
+  `translations.js` (ES y EN: `subtitle`, `card`, `problema`, `resultado.intro` y el bullet de
+  la experiencia en Lopezoft) y en los dos HTML de `cv/`.
+- **Restricción encontrada:** `solucion` está cableado a **6 posiciones** y `resultado.puntos`
+  a **4** en `projects/gcpfm.html` (`x-text="…solucion[0]"` … `[5]`). Añadir un elemento a esos
+  arrays **no renderiza nada**. Por eso la autoría se cuenta en `problema` y en
+  `resultado.intro`, no como tarjeta nueva. Anotado en `ARQUITECTURA.md`.
+
+- **🐛 Bug serio en `cv/generar.sh`, corregido.** El PDF en español **no se regeneraba** y el
+  script terminaba con éxito: se quedaba el PDF de la vez anterior. La causa es que el Chrome
+  headless usaba el **perfil por defecto**, que choca con el Chrome que el usuario tiene
+  abierto; Chrome no escribe el archivo y **sale con código 0**. Dos arreglos:
+  1. `--user-data-dir` a un perfil desechable (`mktemp -d`), que elimina la colisión.
+  2. **Guardia de frescura**: se compara el `mtime` antes y después y el script **aborta** si
+     el PDF no cambió. El fallo silencioso se vuelve ruidoso.
+  Es la segunda trampa de esta familia en el proyecto: algo devuelve éxito y el artefacto
+  queda viejo. La primera fue el `?v=` sin sellar; ver `DESPLIEGUE.md`.
+
+- **Archivos tocados:** `assets/js/translations.js`, `cv/cv-es.html`, `cv/cv-en.html`,
+  `cv/generar.sh`, `assets/pdf/CV-…-{ES,EN}.pdf`.
+- **¿Desplegado?:** sí. Respaldo en `backup-portfolio-2026-09-04-1431.tgz`. Verificado el caso
+  en vivo en el navegador y la frase nueva dentro de los dos PDF.
+- **Siguiente paso:** Rafael vuelve a subir el CV a Get on Board y Computrabajo, que son las
+  dos plataformas que piden el PDF. Fase 3 del plan de empleo: el radar de vacantes, que vive
+  en `C:\Rafaelpps\empleo\` y no en este repo.
+
+
 ## 2026-09-01 — URL de LinkedIn sin tilde, y Search Console en marcha
 
 - **Qué se hizo:** la URL de LinkedIn tenía tilde (`/in/rafael-lópez-delgado`), lo que la

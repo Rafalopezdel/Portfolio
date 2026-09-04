@@ -20,14 +20,34 @@ CHROME="${CHROME:-/c/Program Files/Google/Chrome/Application/chrome.exe}"
 
 generar() {
   local idioma="$1" salida="$2"
-  local fuente_win destino_win
-  fuente_win="$(cygpath -w "$AQUI/cv-$idioma.html")"
-  destino_win="$(cygpath -w "$RAIZ/assets/pdf/$salida")"
+  local fuente_win destino_win fuente destino perfil antes
+  fuente="$AQUI/cv-$idioma.html"
+  destino="$RAIZ/assets/pdf/$salida"
+  fuente_win="$(cygpath -w "$fuente")"
+  destino_win="$(cygpath -w "$destino")"
+
+  # Perfil desechable y propio. Sin esto, si el Chrome del usuario esta abierto,
+  # el headless choca con el perfil por defecto, NO escribe el PDF y sale con
+  # codigo 0: te quedas con el PDF de la vez anterior creyendo que se regenero.
+  perfil="$(mktemp -d)"
+
+  # Marca de tiempo previa: si el archivo no cambia, es que Chrome no escribio.
+  antes=0
+  [[ -f "$destino" ]] && antes="$(stat -c %Y "$destino")"
 
   "$CHROME" --headless=new --disable-gpu --no-pdf-header-footer \
+            --user-data-dir="$(cygpath -w "$perfil")" \
             --virtual-time-budget=10000 \
             --print-to-pdf="$destino_win" \
             "file:///${fuente_win//\\//}" 2>&1 | tail -1
+  rm -rf "$perfil"
+
+  [[ -f "$destino" ]] || { echo "ERROR: Chrome no genero $salida"; exit 1; }
+  if [[ "$(stat -c %Y "$destino")" == "$antes" ]]; then
+    echo "ERROR: $salida no se reescribio — Chrome fallo en silencio."
+    echo "       Cierra Chrome del todo y vuelve a ejecutar."
+    exit 1
+  fi
 
   python -c "
 import fitz, os, sys

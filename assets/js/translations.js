@@ -119,7 +119,7 @@ const translations = {
           title: "Full Stack Developer · Fundador",
           institution: "Lopezoft",
           year: "2022 - Presente",
-          description: "Construyo y opero las plataformas de los clientes de la empresa, de principio a fin: producto, código, despliegue e infraestructura.\n\n• Asistente de WhatsApp con IA para una clínica odontológica, integrado a Dentalink: agenda, modifica y cancela citas reales. En operación diaria durante todo 2026. Auditando sus registros encontré 25 mensajes a 12 pacientes que se perdían en silencio, y lo corregí con reintentos, alertas y recuperación automática.\n• JPR Academy (jprdesigntraining.com): plataforma de formación en Next.js 15 + Payload CMS + PostgreSQL, con control de cupos por cohorte, pagos con Wompi y video protegido. Vendió 9 de los 10 pases Elite de su primera cohorte.\n• Café Montelargo: migración de Shopify a e-commerce headless propio (Next.js + WooCommerce vía WPGraphQL + Wompi + n8n). Eliminó la comisión por venta y el recargo del 2% de la pasarela externa.\n• GCPFM (Reino Unido): mantenimiento de un WordPress de 28 páginas por REST API, automatizado con scripts propios en Python.\n\nStack: Next.js, React, Angular, Node.js, TypeScript, PostgreSQL, MongoDB, Firebase, WordPress headless, Tailwind CSS, Docker, n8n."
+          description: "Construyo y opero las plataformas de los clientes de la empresa, de principio a fin: producto, código, despliegue e infraestructura.\n\n• Asistente de WhatsApp con IA para una clínica odontológica, integrado a Dentalink: agenda, modifica y cancela citas reales. En operación diaria durante todo 2026. Auditando sus registros encontré 25 mensajes a 12 pacientes que se perdían en silencio, y lo corregí con reintentos, alertas y recuperación automática.\n• JPR Academy (jprdesigntraining.com): plataforma de formación en Next.js 15 + Payload CMS + PostgreSQL, con control de cupos por cohorte, pagos con Wompi y video protegido. Vendió 9 de los 10 pases Elite de su primera cohorte.\n• Café Montelargo: migración de Shopify a e-commerce headless propio (Next.js + WooCommerce vía WPGraphQL + Wompi + n8n). Eliminó la comisión por venta y el recargo del 2% de la pasarela externa.\n• GCPFM (Reino Unido): sitio corporativo de 28 páginas construido desde cero con WordPress y Divi, y mantenido después por REST API con scripts propios en Python.\n\nStack: Next.js, React, Angular, Node.js, TypeScript, PostgreSQL, MongoDB, Firebase, WordPress headless, Tailwind CSS, Docker, n8n."
         },
         g3: {
           title: "Fundador y Gerente General",
@@ -351,10 +351,10 @@ const translations = {
 
       gcpfm: {
         title: "GCP Facilities Management",
-        subtitle: "Mantenimiento y automatización de un WordPress corporativo de 28 páginas, en Reino Unido",
+        subtitle: "Sitio corporativo de 28 páginas construido desde cero, y después mantenido por API, en Reino Unido",
         tech: "WordPress · Divi · REST API · Python",
-        card: "Cambios masivos por API en un sitio sin acceso a servidor.",
-        problema: "Un sitio corporativo de 28 páginas en WordPress con Divi, y una restricción incómoda: no hay acceso a servidor, ni a cPanel, ni a DNS. Solo credenciales de WordPress. Con una lista de cambios que tocaba casi todas las páginas, hacerlo a mano una por una no era viable.",
+        card: "Lo construí entero y luego automaticé su mantenimiento por API.",
+        problema: "Construí el sitio corporativo completo — 28 páginas en WordPress con Divi — para un cliente en Reino Unido. Terminada la entrega apareció el problema de verdad: mantenerlo. El alojamiento lo controla el cliente, así que no hay acceso a servidor, ni a cPanel, ni a DNS; solo credenciales de WordPress. Con listas de cambios que tocaban casi todas las páginas, hacerlo a mano una por una no era viable.",
         solucion: [
           {
             icon: "fa-code",
@@ -388,7 +388,7 @@ const translations = {
           }
         ],
         resultado: {
-          intro: "Tres tareas cerradas y verificadas en producción durante 2026.",
+          intro: "El sitio lo construí entero y sigue en producción; sobre él, tres tareas cerradas y verificadas durante 2026.",
           puntos: [
             "192 llamadas a la acción normalizadas en 28 páginas, con verificación automática de cero fallos.",
             "Los dos formularios de contacto entregando en el buzón correcto.",
@@ -517,7 +517,7 @@ const translations = {
           title: "Full Stack Developer · Founder",
           institution: "Lopezoft",
           year: "2022 - Present",
-          description: "I build and operate the platforms of the company's clients end to end: product, code, deployment and infrastructure.\n\n• WhatsApp AI assistant for a dental clinic, integrated with Dentalink: it books, reschedules and cancels real appointments. In daily operation throughout 2026. Auditing its logs I found 25 messages to 12 patients being lost silently, and fixed it with retries, alerts and automatic recovery.\n• JPR Academy (jprdesigntraining.com): training platform on Next.js 15 + Payload CMS + PostgreSQL, with per-cohort seat control, Wompi payments and protected video. It sold 9 of the 10 Elite passes in its first cohort.\n• Café Montelargo: migration from Shopify to an owned headless storefront (Next.js + WooCommerce via WPGraphQL + Wompi + n8n). Removed the per-sale commission and the 2% external-gateway surcharge.\n• GCPFM (United Kingdom): maintenance of a 28-page WordPress site through its REST API, automated with custom Python scripts.\n\nStack: Next.js, React, Angular, Node.js, TypeScript, PostgreSQL, MongoDB, Firebase, headless WordPress, Tailwind CSS, Docker, n8n."
+          description: "I build and operate the platforms of the company's clients end to end: product, code, deployment and infrastructure.\n\n• WhatsApp AI assistant for a dental clinic, integrated with Dentalink: it books, reschedules and cancels real appointments. In daily operation throughout 2026. Auditing its logs I found 25 messages to 12 patients being lost silently, and fixed it with retries, alerts and automatic recovery.\n• JPR Academy (jprdesigntraining.com): training platform on Next.js 15 + Payload CMS + PostgreSQL, with per-cohort seat control, Wompi payments and protected video. It sold 9 of the 10 Elite passes in its first cohort.\n• Café Montelargo: migration from Shopify to an owned headless storefront (Next.js + WooCommerce via WPGraphQL + Wompi + n8n). Removed the per-sale commission and the 2% external-gateway surcharge.\n• GCPFM (United Kingdom): 28-page corporate site built from scratch with WordPress and Divi, then maintained through its REST API with custom Python scripts.\n\nStack: Next.js, React, Angular, Node.js, TypeScript, PostgreSQL, MongoDB, Firebase, headless WordPress, Tailwind CSS, Docker, n8n."
         },
         g3: {
           title: "Founder and General Manager",
@@ -749,10 +749,10 @@ const translations = {
 
       gcpfm: {
         title: "GCP Facilities Management",
-        subtitle: "Maintaining and automating a 28-page corporate WordPress site in the United Kingdom",
+        subtitle: "A 28-page corporate site built from scratch, then maintained through the API, in the United Kingdom",
         tech: "WordPress · Divi · REST API · Python",
-        card: "Bulk changes through the API on a site with no server access.",
-        problema: "A 28-page corporate WordPress site running Divi, with an awkward constraint: no server access, no cPanel, no DNS. WordPress credentials and nothing else. With a change list touching almost every page, doing it by hand one page at a time was not viable.",
+        card: "I built the whole site, then automated its maintenance through the API.",
+        problema: "I built the full corporate site — 28 pages on WordPress with Divi — for a client in the United Kingdom. Once it shipped, the real problem showed up: maintaining it. The client controls the hosting, so there is no server access, no cPanel, no DNS; WordPress credentials and nothing else. With change lists touching almost every page, doing it by hand one page at a time was not viable.",
         solucion: [
           {
             icon: "fa-code",
@@ -786,7 +786,7 @@ const translations = {
           }
         ],
         resultado: {
-          intro: "Three pieces of work closed and verified in production during 2026.",
+          intro: "I built the whole site and it remains in production; on top of it, three pieces of work closed and verified during 2026.",
           puntos: [
             "192 calls to action normalised across 28 pages, with automated zero-failure verification.",
             "Both contact forms delivering to the correct inbox.",
